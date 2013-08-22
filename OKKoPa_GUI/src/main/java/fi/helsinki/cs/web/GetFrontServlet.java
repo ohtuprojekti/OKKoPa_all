@@ -94,7 +94,9 @@ public class GetFrontServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException | COSVisitorException ex) {
+        } catch (SQLException ex) {
+            Logger.getLogger(GetFrontServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (COSVisitorException ex) {
             Logger.getLogger(GetFrontServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -113,7 +115,9 @@ public class GetFrontServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException | COSVisitorException ex) {
+        } catch (SQLException ex) {
+            Logger.getLogger(GetFrontServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (COSVisitorException ex) {
             Logger.getLogger(GetFrontServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

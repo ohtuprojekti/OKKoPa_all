@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fi.helsinki.cs.okkopa.model;
+package fi.helsinki.cs.okkopa.shared.database.model;
 
 import fi.helsinki.cs.okkopa.shared.database.model.QRCodeDbModel;
 import com.j256.ormlite.field.DatabaseField;

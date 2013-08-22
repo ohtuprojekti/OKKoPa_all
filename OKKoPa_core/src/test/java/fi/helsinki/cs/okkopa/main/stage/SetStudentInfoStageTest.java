@@ -1,6 +1,6 @@
 package fi.helsinki.cs.okkopa.main.stage;
 
-import fi.helsinki.cs.okkopa.database.MissedExamDao;
+import fi.helsinki.cs.okkopa.shared.database.MissedExamDao;
 import fi.helsinki.cs.okkopa.shared.database.QRCodeDAO;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;

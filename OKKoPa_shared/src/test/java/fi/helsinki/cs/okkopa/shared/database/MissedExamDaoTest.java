@@ -1,6 +1,7 @@
 
-package fi.helsinki.cs.okkopa.database;
+package fi.helsinki.cs.okkopa.shared.database;
 
+import fi.helsinki.cs.okkopa.shared.database.MissedExamDao;
 import fi.helsinki.cs.okkopa.shared.database.OkkopaDatabaseConnectionSource;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.QRCodeDAO;
