@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!-- passwords -->
+    <entry key="mail.smtp.password"></entry>
+    <entry key="mail.imap.password">testi</entry>
+     
+    <!-- smtp-settings -->
+    <entry key="mail.smtp.auth">true</entry>
+    <entry key="mail.smtp.starttls.enable">true</entry>
+    <entry key="mail.smtp.host">smtp.gmail.com</entry>
+    <entry key="mail.smtp.port">587</entry>
+    <entry key="mail.smtp.user">okkopa2.2013@gmail.com</entry> 
+    
+    <!-- imap-settings -->
+    <entry key="mail.imap.host">localhost</entry>  
+    <entry key="mail.imap.port">4008</entry>
+    <entry key="mail.imap.user">okkopa@okkopa.ok</entry>
+    <entry key="mail.imap.inboxfoldername">inbox</entry>
+    <entry key="mail.imap.deleteafterprocessing">true</entry>
+    <!-- Folder for processed emails, used only
+    if mail.imap.deleteafterprocessing is false-->
+    <entry key="mail.imap.processedfoldername">processed</entry>
+    
+    <!-- Message settings -->
+    <entry key="mail.attachment.maximumsizeinmegabytes">100</entry>
+    
+    <!-- Don't use tabs in "mail.message.body" unless
+    you want them to appear in e-mails. -->
+    <entry key="mail.message.body">
+        Sähköpostin sisältö tähän.
+        Mitenhän toimii monen rivin postit?
+        Näemmä hyvin.
+    </entry>
+    <entry key="mail.message.topic">Sähköpostin otsikko tähän</entry>
+    <entry key="mail.message.replyto">okkopa2.2013@gmail.com</entry>
+     
+    <!-- Database settings -->
+    <!-- Url without .h2.db in the end. -->
+    <entry key="database.h2.url">jdbc:h2:okkopa</entry>
+    <entry key="database.h2.user">okkopa</entry>
+    
+    <!-- Oracle settings (Kurki) -->
+    <entry key="database.oracle.host">bodbacka.cs.helsinki.fi</entry>
+    <entry key="database.oracle.user">tk_testi</entry>
+    <entry key="database.oracle.port">1521</entry>
+    <entry key="database.oracle.instance">test</entry>
+    <entry key="database.oracle.showcoursesforyears">5</entry>
+    
+    <!-- Ldap settings -->
+    <entry key="ldap.user">ou=tikli,ou=login,o=hy</entry>
+    <entry key="ldap.password"></entry>
+    <entry key="ldap.keystore.file">src/main/resources/keystore</entry>
+    <entry key="ldap.keystore.secret">okkopa2013</entry>
+    <entry key="ldap.server.address">ldap-internal.it.helsinki.fi</entry>
+    <entry key="ldap.server.port">636</entry>
+
+    <!-- Other settings -->     
+    <entry key="tikli.enable">true</entry>
+    <entry key="main.minutesbetweenruns">1</entry>
+    <entry key="reference.anonymous.size">9</entry>
+
+    <!-- Exception handling -->
+    <entry key="mail.deletemailswithoutattachment">false</entry>
+    
+    <!-- Save exam papers with unreadable qr-codes. -->
+    <entry key="exampaper.saveunreadable">true</entry>
+    <entry key="exampaper.saveunreadablefolder">errorpdfs</entry>
+    <entry key="exampaper.deleteunreadableafterdays">14</entry>
+    <entry key="exampaper.attachmentname">exam.pdf</entry>
+
+    <!-- Time after which email send is not retried and file will be deleted. -->
+    <entry key="mail.send.retryexpirationminutes">1</entry>
+    <entry key="mail.send.retrysavefolder">retrypdfs</entry>
+     
+    <entry key="tikli.retryattempts">1</entry>
+    <entry key="tikli.retrydealyinminutes">1</entry>
+    <entry key="tikli.description">Koepaperi / Exam paper</entry>
+    <entry key="tikli.authorid">KARKULAHTI_O</entry>
+    <entry key="logger.logcompletestack">false</entry>
+    
+    <!-- Texts for GUI -->
+    <entry key="gui.front.header">OKKoPa - kansisivun luonti</entry>
+    <entry key="gui.front.help">Tarvitsetko apua? Ota yhteys Ossiin!</entry>
+    <entry key="gui.front.link">Kansilehtien luonti (luennoitsijat)</entry>
+    <entry key="gui.front.info">Lisätietoa kannesta</entry>
+    
+    <entry key="gui.create.header">OKKoPa - viitteiden luonti</entry>
+    <entry key="gui.create.help">Tarvitsetko apua? Ota yhteys Ossiin!</entry>
+    <entry key="gui.create.link">Viitteiden luonti (vain admin)</entry>
+    <entry key="gui.create.info">Lisätietoa luonnista</entry>
+    
+    <entry key="gui.add.header">OKKoPa - viitteiden rekisteröinti</entry>
+    <entry key="gui.add.help">Tarvitsetko apua? Ota yhteys Ossiin!</entry>
+    <entry key="gui.add.link">Viitteiden rekisteröinti</entry>
+    <entry key="gui.add.info">Lisätietoa rekisteröinnistä</entry>
+    
+    <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus.</entry>
+    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä.</entry>
+    <entry key="gui.add.username.ok">homma OK! Koe tulee sinulle kunhan se on tarkistettu.</entry>
+    <entry key="gui.add.username.double">"Joku oli jo rekisteröitynyt antamallesi QR-koodille. Ota yhteyttä Ossiin, ja selvitä hässäkkä."</entry>
+    <entry key="gui.add.username.noreferenceondb">"antamaasi viitettä ei löytynyt, etkai vaan yritä syöttää paskaa sisään?"</entry>
+    
+</properties>
