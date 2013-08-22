@@ -18,6 +18,7 @@
     <modules>
         <module>OKKoPa_core</module>
         <module>OKKoPa_shared</module>
+        <module>OKKoPa_GUI</module>
     </modules>
   
     <dependencies>
