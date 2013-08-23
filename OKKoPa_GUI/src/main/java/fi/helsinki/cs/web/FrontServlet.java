@@ -187,7 +187,7 @@ public class FrontServlet extends HttpServlet {
     }
 
     private void parseValue() {
-        value =  courceCode + ":" + courcePeriod + ":" + courceYear + ":" + courceType + ":" + courceNumber + getParseName(55);
+        value =  courceCode + ":" + courcePeriod + ":" + courceYear + ":" + courceType + ":" + courceNumber + ":" + getParseName(55);
     }
 
     private void setCourcesForForm(HttpServletRequest request) {

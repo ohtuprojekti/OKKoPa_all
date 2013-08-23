@@ -212,8 +212,6 @@ public class GetFrontServlet extends HttpServlet {
 
         parceQRCodePart(fields);
 
-        infoID = fields[5];
-
         parseName(fields);
     }
 
