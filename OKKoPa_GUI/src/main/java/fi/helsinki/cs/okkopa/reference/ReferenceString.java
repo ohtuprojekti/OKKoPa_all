@@ -1,7 +1,7 @@
 package fi.helsinki.cs.okkopa.reference;
 
 import java.util.Random;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class ReferenceString {
 

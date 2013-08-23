@@ -1,6 +1,5 @@
 package fi.helsinki.cs.okkopa.reference;
 
-import fi.helsinki.cs.okkopa.reference.ReferenceString;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
