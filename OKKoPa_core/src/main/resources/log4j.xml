@@ -30,33 +30,17 @@
         </layout>
     </appender>
     <!--Loggers-->
-    <logger name="fi.helsinki.cs.okkopa.logger.OKKoPaLoggerTest" additivity="true"> 
-        <!--additivity true if child loggers inherit their parent's appenders.-->
-        <level value="error"/>
-        <appender-ref ref="default.console" />
-    </logger>
     <logger name="org.springframework"> 
         <level value="off"/>
     </logger>
-    <logger name="fi.helsinki.cs.okkopa.OkkopaRunner" additivity="true"> 
+    <logger name="fi.helsinki.cs.okkopa" additivity="true"> 
         <!--additivity true if child loggers inherit their parent's appenders.-->
         <level value="debug"/>
-        <appender-ref ref="default.console" />
     </logger>   
-    <logger name="fi.helsinki.cs.okkopa.ldap.LdapConnector" additivity="true"> 
-        <!--additivity true if child loggers inherit their parent's appenders.-->
-        <level value="debug"/>
-        <appender-ref ref="default.console" />
-    </logger>   
-      
     <!--Root-->
     <root>
-        <!--<priority value ="info" />
+        <priority value ="warn" />
         <appender-ref ref="default.console" />
-        <appender-ref ref="default.file" />-->
-        <appender-ref ref="rolling.file"/>
-        <level value="debug"/>
-        <appender-ref ref="default.console" />
+        <appender-ref ref="default.file" />
     </root>
-
 </log4j:configuration>  
