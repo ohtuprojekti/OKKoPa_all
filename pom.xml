@@ -4,11 +4,32 @@
 
     <groupId>fi.helsinki.cs</groupId>
     <artifactId>OKKoPa</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>OKKoPa</name>
-    <url>http://maven.apache.org</url>
+    <url>http://www.cs.helsinki.fi/okkopa</url>
+    
+    <description>
+        OKKoPa-järjestelmä mahdollistaa kokeiden arvostelun palauttamisen sähköisesti.
+        Opiskelija saa takaisin arvostellut koepaperinsa niihin liitettyjen QR-koodien avulla.
+    </description>
+    
+    <ciManagement>
+        <system>drone.io</system>
+        <url>https://drone.io/github.com/ohtuprojekti/OKKoPa_all</url>
+    </ciManagement>
+    
+    <scm>
+        <url>https://github.com/ohtuprojekti/OKKoPa_all</url>
+    </scm>
+    
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +41,20 @@
         <module>OKKoPa_shared</module>
         <module>OKKoPa_GUI</module>
     </modules>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
   
     <dependencies>
         <!-- SPRING -->
