@@ -2,6 +2,7 @@ package fi.helsinki.cs.web;
 
 import fi.helsinki.cs.okkopa.database.OkkopaDatabase;
 import fi.helsinki.cs.okkopa.model.BatchDbModel;
+import fi.helsinki.cs.okkopa.reference.Reference;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -49,6 +50,7 @@ public class GetFrontServlet extends HttpServlet {
     private String email;
     private String info;
     private OkkopaDatabase database;
+    private Reference reference;
 
     /**
      * Processes requests for both HTTP
@@ -205,7 +207,7 @@ public class GetFrontServlet extends HttpServlet {
         contentStream.close();
     }
 
-    private void parseCource(HttpServletRequest request) {
+    private void parseCource(HttpServletRequest request) throws SQLException {
         String[] fields = request.getParameter("cource").split(":");
 
         parceQRCodePart(fields);
@@ -215,10 +217,10 @@ public class GetFrontServlet extends HttpServlet {
         parseName(fields);
     }
 
-    private void parceQRCodePart(String[] fields) {
+    private void parceQRCodePart(String[] fields) throws SQLException {
         cource = "";
         boolean first = true;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             if (first) {
                 first = false;
             } else {
@@ -226,11 +228,13 @@ public class GetFrontServlet extends HttpServlet {
             }
             cource += fields[i];
         }
+        
+        addInfoPartForQRCode();
     }
 
     private void parseName(String[] fields) {
         name = "";
-        for (int i = 6; i < fields.length; i++) {
+        for (int i = 5; i < fields.length; i++) {
             name += fields[i];
         }
     }
@@ -241,10 +245,27 @@ public class GetFrontServlet extends HttpServlet {
     }
 
     private void addInfoAndEmailToDB() throws SQLException {
+        OkkopaDatabase.addBatchDetails(new BatchDbModel(infoID, info, email));
+        OkkopaDatabase.closeConnectionSource();
+    }
+
+    private void addInfoPartForQRCode() throws SQLException {
         if (OkkopaDatabase.isOpen() == false) {
             database = new OkkopaDatabase();
         }
-        OkkopaDatabase.addBatchDetails(new BatchDbModel("246583", info, email));
-        OkkopaDatabase.closeConnectionSource();
+        
+        getUniqueInfoID();
+        
+        cource += ":" + infoID;
+    }
+
+    private void getUniqueInfoID() throws SQLException {
+        reference = new Reference(9);
+        boolean batchDetailsIdExists;
+        do {
+            infoID = reference.getReference();
+            batchDetailsIdExists = OkkopaDatabase.batchDetailsExists(infoID);
+        }
+        while (batchDetailsIdExists);
     }
 }

@@ -104,6 +104,13 @@ public class OkkopaDatabase {
     public static void addBatchDetails(BatchDbModel batchInfo) throws SQLException {
         batchDbDao.createIfNotExists(batchInfo);
     }
+    
+    public static boolean batchDetailsExists(String id) throws SQLException {
+        if(batchDbDao.queryForId(id) != null) {
+            return true;
+        }
+        return false;
+    }
 
     public static void closeConnectionSource() throws SQLException {
         connectionSource.close();
