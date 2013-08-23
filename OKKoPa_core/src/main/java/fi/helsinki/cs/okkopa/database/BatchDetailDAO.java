@@ -29,7 +29,7 @@ public class BatchDetailDAO {
     public BatchDbModel getBatchDetails(String id) throws SQLException, NotFoundException {
         BatchDbModel batchDb = batchDbDao.queryForId(id);
         if (batchDb == null) {
-            throw new NotFoundException();
+            throw new NotFoundException("No matching report e-email address or e-mail content found.");
         }
         return batchDb;
     }
