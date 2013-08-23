@@ -76,7 +76,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     public void setBatchDetails(ExamPaper examPaper) throws SQLException, FileNotFoundException, IOException, NotFoundException {
         String[] fields = examPaper.getQRCodeString().split(":");
 
-        if (fields.length != 6) {
+        if (fields.length > 6 || fields.length < 5) {
             throw new NotFoundException();
         }
         LOGGER.debug("Kurssi-info luettu: " + examPaper.getQRCodeString());
@@ -89,10 +89,11 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
         } catch (Exception e) {
             throw new NotFoundException();
         }
-        BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
-
-        batch.setEmailContent(bdm.getEmailContent());
-        batch.setReportEmailAddress(bdm.getReportEmailAddress());
+        if (fields.length == 6) {
+            BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
+            batch.setEmailContent(bdm.getEmailContent());
+            batch.setReportEmailAddress(bdm.getReportEmailAddress());
+        }
     }
 
     private void sendEmail() {

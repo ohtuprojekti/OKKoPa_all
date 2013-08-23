@@ -65,10 +65,8 @@ public class GetFrontServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, COSVisitorException, SQLException {
 
-        parseCource(request);
         parseEmailAndInfo(request);
-
-        addInfoAndEmailToDB();
+        parseCource(request);
 
         makeQRCodeImage(cource);
         makeGraphics2DForRender();
@@ -226,7 +224,7 @@ public class GetFrontServlet extends HttpServlet {
             }
             cource += fields[i];
         }
-        
+
         addInfoPartForQRCode();
     }
 
@@ -251,10 +249,15 @@ public class GetFrontServlet extends HttpServlet {
         if (OkkopaDatabase.isOpen() == false) {
             database = new OkkopaDatabase();
         }
-        
-        getUniqueInfoID();
-        
-        cource += ":" + infoID;
+        if (email.length() != 0 || info.length() != 0) {
+            getUniqueInfoID();
+
+            cource += ":" + infoID;
+            
+            addInfoAndEmailToDB();
+        } else {
+            cource += ":na";
+        }
     }
 
     private void getUniqueInfoID() throws SQLException {
@@ -263,7 +266,6 @@ public class GetFrontServlet extends HttpServlet {
         do {
             infoID = reference.getReference();
             batchDetailsIdExists = OkkopaDatabase.batchDetailsExists(infoID);
-        }
-        while (batchDetailsIdExists);
+        } while (batchDetailsIdExists);
     }
 }
