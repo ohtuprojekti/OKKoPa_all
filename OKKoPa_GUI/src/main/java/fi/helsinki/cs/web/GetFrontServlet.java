@@ -145,10 +145,9 @@ public class GetFrontServlet extends HttpServlet {
         bufferedImage = new BufferedImage(width * 3, height * 3, BufferedImage.TYPE_INT_RGB);
         g2d = bufferedImage.createGraphics();
         g2d.fillRect(0, 0, width * 3, height * 3);
-        g2d.drawImage(img, 0, 0, Color.WHITE, null);
-        g2d.drawImage(img, width * 2, height * 2, Color.WHITE, null);
-        g2d.drawImage(img, 0, height * 2, Color.WHITE, null);
-        g2d.drawImage(img, width * 2, 0, Color.WHITE, null);
+        
+        g2d.drawImage(img, width, 0, Color.WHITE, null);
+        g2d.drawImage(img, width, height * 2, Color.WHITE, null);
     }
 
     private void makeFontSettings(int size, Color c) {
@@ -160,15 +159,15 @@ public class GetFrontServlet extends HttpServlet {
 
     private void drawTextToImage(String line) {
         makeFontSettings(45, Color.BLACK);
-        g2d.drawString(line, (width * 3) / 2 - (fm.stringWidth(line) / 2), (height * 3) / 2 + 50);
+        g2d.drawString(line, (width * 3) / 2 - (fm.stringWidth(line) / 2), (height * 3) / 2 );
 
-        g2d.drawString(name, (width * 3) / 2 - (fm.stringWidth(name) / 2), (height * 3) / 2 + 150);
+        g2d.drawString(name, (width * 3) / 2 - (fm.stringWidth(name) / 2), (height * 3) / 2 + 100);
     }
 
     private void drawUrlToImage() {
         url = "http://cs.helsinki.fi/okkopa";
         makeFontSettings(24, Color.BLACK);
-        g2d.drawString(url, (width * 3) / 2 - (fm.stringWidth(url) / 2), (height * 3) / 2 - 50);
+        g2d.drawString(url, (width * 3) / 2 - (fm.stringWidth(url) / 2), (height * 3) / 2 - 100);
     }
 
     private void closeImages() {

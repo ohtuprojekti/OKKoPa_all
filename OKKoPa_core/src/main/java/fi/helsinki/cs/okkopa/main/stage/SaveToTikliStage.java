@@ -61,7 +61,12 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
         StudentDbModel student = new StudentDbModel(examPaper.getStudent().getStudentNumber());
         try {
             oc.connect();
-            if (oc.courseExists(course) && oc.studentExists(student)) {
+            LOGGER.debug("Connected to Kurki db.");
+            boolean courseExists = oc.courseExists(course);
+            LOGGER.debug("Course found from Kurki: "+courseExists);
+            boolean studentExists = oc.studentExists(student);
+            LOGGER.debug("Student found from Kurki: "+studentExists);
+            if (courseExists && studentExists) {
                 oc.insertFeedBackRow(feedback);
             }
             

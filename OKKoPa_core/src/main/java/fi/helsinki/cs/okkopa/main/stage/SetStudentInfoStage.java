@@ -58,7 +58,7 @@ public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
     private String fetchUserId(String qrcode) throws SQLException, NotFoundException {
         // Filter too short
         if (qrcode.length() == 0) {
-            throw new NotFoundException();
+            throw new NotFoundException("fetchUserId received empty string.");
         }
         // Check database
         if (Character.isDigit(qrcode.charAt(0))) {
@@ -67,7 +67,7 @@ public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
         // Filter if has digits
         for (char c : qrcode.toCharArray()) {
             if (Character.isDigit(c)) {
-                throw new NotFoundException();
+                throw new NotFoundException("Found a number in user name. QR-code: "+qrcode);
             }
         }
         return qrcode;
