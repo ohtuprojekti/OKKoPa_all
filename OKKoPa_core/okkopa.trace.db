@@ -1,0 +1,20 @@
+08-26 11:34:51 database: close
+org.h2.message.DbException: IO Exception: "java.io.EOFException"; "/cs/fs/home/phemmila/Netbeans_projects/OKKoPa_all/OKKoPa_core/okkopa.h2.db" [90031-173]
+	at org.h2.message.DbException.get(DbException.java:160)
+	at org.h2.message.DbException.convertIOException(DbException.java:317)
+	at org.h2.store.FileStore.readFully(FileStore.java:268)
+	at org.h2.store.PageStore.readPage(PageStore.java:1291)
+	at org.h2.store.PageStore.getPage(PageStore.java:738)
+	at org.h2.store.PageStreamTrunk$Iterator.next(PageStreamTrunk.java:250)
+	at org.h2.store.PageLog.free(PageLog.java:209)
+	at org.h2.store.PageStore.compact(PageStore.java:491)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1229)
+	at org.h2.engine.Database.close(Database.java:1179)
+	at org.h2.engine.DatabaseCloser.run(DatabaseCloser.java:64)
+Caused by: org.h2.jdbc.JdbcSQLException: IO Exception: "java.io.EOFException"; "/cs/fs/home/phemmila/Netbeans_projects/OKKoPa_all/OKKoPa_core/okkopa.h2.db" [90031-173]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
+	... 11 more
+Caused by: java.io.EOFException
+	at org.h2.store.fs.FileUtils.readFully(FileUtils.java:343)
+	at org.h2.store.FileStore.readFully(FileStore.java:266)
+	... 8 more

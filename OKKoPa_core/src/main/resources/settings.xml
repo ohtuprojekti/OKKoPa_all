@@ -47,7 +47,7 @@
     
     <!-- Oracle settings (Kurki) -->
     <entry key="database.oracle.host">bodbacka.cs.helsinki.fi</entry>
-    <entry key="database.oracle.user">tk_testi</entry>
+    <entry key="database.oracle.user">okkopa</entry>
     <entry key="database.oracle.port">1521</entry>
     <entry key="database.oracle.instance">test</entry>
     <entry key="database.oracle.showcoursesforyears">5</entry>

@@ -19,6 +19,10 @@ public class BatchDetails {
         this.settings = settings;
         reset();
     }
+    
+    private BatchDetails() {
+        
+    }
     //Courseinfo:
 
     public String getCourseCode() {

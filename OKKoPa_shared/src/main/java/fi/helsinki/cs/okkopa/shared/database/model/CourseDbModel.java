@@ -1,9 +1,7 @@
-package fi.helsinki.cs.okkopa.model;
+package fi.helsinki.cs.okkopa.shared.database.model;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
-
 
 @DatabaseTable(tableName = "KURSSI")
 public class CourseDbModel {
@@ -41,14 +39,6 @@ public class CourseDbModel {
         this.year = year;
         this.type = type;
         this.courseNumber = courseNumber;
-    }
-    /**
-     *Initializes course information which defined in class BatchDetails
-     * @param batch
-     */
-    public CourseDbModel(BatchDetails batch) {
-        this(batch.getCourseCode(), batch.getPeriod(), batch.getYear(), batch.getType(), batch.getCourseNumber());
-
     }
 
     /**
