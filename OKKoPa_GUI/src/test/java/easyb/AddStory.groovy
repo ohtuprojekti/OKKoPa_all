@@ -87,7 +87,7 @@ scenario "User gives incorrect reference code with correct username", {
 //    }
 // 
 //    then "reference code is registered", {
-//        selenium.getText("//p[3]").shouldBe "- Homma OK! Koe tulee sinulle kunhan se on tarkistettu."
+//        selenium.getText("//p[3]").shouldBe "- homma OK! Koe tulee sinulle kunhan se on tarkistettu."
 //        selenium.stop();
 //    }
 //}
