@@ -1,5 +1,6 @@
-package fi.helsinki.cs.okkopa.model;
+package fi.helsinki.cs.okkopa.shared.database.model;
 
+import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

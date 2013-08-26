@@ -1,16 +1,16 @@
 package fi.helsinki.cs.okkopa.main.stage;
 
 import com.unboundid.ldap.sdk.LDAPException;
-import fi.helsinki.cs.okkopa.database.OracleConnector;
+import fi.helsinki.cs.okkopa.shared.database.OracleConnector;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.ldap.LdapConnector;
 import fi.helsinki.cs.okkopa.main.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
-import fi.helsinki.cs.okkopa.model.CourseDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
 import fi.helsinki.cs.okkopa.model.ExamPaper;
-import fi.helsinki.cs.okkopa.model.FeedbackDbModel;
-import fi.helsinki.cs.okkopa.model.StudentDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.FeedbackDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.StudentDbModel;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
@@ -56,9 +56,9 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
     }
 
     private void saveToTikli(ExamPaper examPaper) {
-        CourseDbModel course = new CourseDbModel(batch);
+        CourseDbModel course = new CourseDbModel(batch.getCourseCode(), batch.getPeriod(), batch.getYear(), batch.getType(), batch.getCourseNumber());
         FeedbackDbModel feedback = new FeedbackDbModel(settings, course, examPaper.getPdf(), examPaper.getStudent().getStudentNumber());
-        StudentDbModel student = new StudentDbModel(examPaper.getStudent());
+        StudentDbModel student = new StudentDbModel(examPaper.getStudent().getStudentNumber());
         try {
             oc.connect();
             LOGGER.debug("Connected to Kurki db.");

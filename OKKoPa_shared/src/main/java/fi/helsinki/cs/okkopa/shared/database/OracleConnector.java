@@ -1,4 +1,4 @@
-package fi.helsinki.cs.okkopa.database;
+package fi.helsinki.cs.okkopa.shared.database;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -6,10 +6,10 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
-import fi.helsinki.cs.okkopa.model.CourseDbModel;
-import fi.helsinki.cs.okkopa.model.FeedbackDbModel;
 import fi.helsinki.cs.okkopa.shared.Settings;
-import fi.helsinki.cs.okkopa.model.StudentDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.FeedbackDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.StudentDbModel;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
