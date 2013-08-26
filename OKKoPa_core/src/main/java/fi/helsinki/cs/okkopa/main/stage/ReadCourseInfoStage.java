@@ -30,6 +30,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     private EmailSender emailSender;
     private Settings settings;
     private BatchDetailDAO batchDao;
+    private final static String NOBATCHSTRING = "NA"; 
 
     @Autowired
     public ReadCourseInfoStage(PDFProcessor pDFProcessor, ExceptionLogger exceptionLogger, BatchDetails batch, Settings settings, EmailSender emailSender, BatchDetailDAO batchDao) {
@@ -77,7 +78,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
         String[] fields = examPaper.getQRCodeString().split(":");
 
         if (fields.length > 6 || fields.length < 5) {
-            throw new NotFoundException();
+            throw new NotFoundException("Wrong number of frontpage parameters. Expected 5-6, but was "+fields.length+".");
         }
         LOGGER.debug("Kurssi-info luettu: " + examPaper.getQRCodeString());
         try {
@@ -87,11 +88,14 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
             batch.setType(fields[3]);
             batch.setCourseNumber(Integer.parseInt(fields[4]));
         } catch (Exception e) {
-            throw new NotFoundException();
+            throw new NotFoundException("Invalid parameter found in frontpage.");
         }
-        if (fields.length == 6) {
+        if (fields.length == 6 && !fields[5].toUpperCase().equals(NOBATCHSTRING)) {
             BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
-            batch.setEmailContent(bdm.getEmailContent());
+            if (bdm.getEmailContent() != null) {
+                batch.setEmailContent(bdm.getEmailContent());
+            }
+                
             batch.setReportEmailAddress(bdm.getReportEmailAddress());
         }
     }

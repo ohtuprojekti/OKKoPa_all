@@ -42,7 +42,7 @@ public class QRCodeDAO {
     public String getUserID(String qrcodeString) throws SQLException, NotFoundException {
         QRCodeDbModel qrCode = qrCodeDao.queryForId(qrcodeString);
         if (qrCode == null) {
-            throw new NotFoundException();
+            throw new NotFoundException("No matching userID found for anonymous qr-code: "+qrcodeString);
         }
         return qrCode.getUserId();
     }
