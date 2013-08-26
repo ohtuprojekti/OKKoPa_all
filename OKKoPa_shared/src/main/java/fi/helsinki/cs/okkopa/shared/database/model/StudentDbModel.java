@@ -1,4 +1,4 @@
-package fi.helsinki.cs.okkopa.model;
+package fi.helsinki.cs.okkopa.shared.database.model;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -14,10 +14,6 @@ public class StudentDbModel {
 
     public StudentDbModel(String studentNumber) {
         this.studentNumber = studentNumber;
-    }
-    
-    public StudentDbModel(Student student) {
-        this(student.getStudentNumber());
     }
 
     public String getStudentNumber() {
