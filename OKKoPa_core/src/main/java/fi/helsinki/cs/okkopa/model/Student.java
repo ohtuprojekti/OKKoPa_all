@@ -3,7 +3,6 @@ package fi.helsinki.cs.okkopa.model;
 /**
  * A Container class for student information.
  * Contains e-mail address, student number and username.
- *
  */
 public class Student {
 

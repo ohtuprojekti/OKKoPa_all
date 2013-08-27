@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.helsinki.cs.okkopa.model;
 
 import com.j256.ormlite.field.DatabaseField;
@@ -9,7 +5,6 @@ import com.j256.ormlite.table.DatabaseTable;
 
 /**
  *
- * @author hannahir
  */
 @DatabaseTable(tableName = "batchInfo")
 public class BatchDbModel {
@@ -89,6 +84,4 @@ public class BatchDbModel {
     public void setReportEmailAddress(String reportEmailAddress) {
         this.reportEmailAddress = reportEmailAddress;
     }
-    
-    
 }
