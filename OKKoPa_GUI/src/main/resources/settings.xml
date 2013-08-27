@@ -94,13 +94,20 @@
     <entry key="gui.create.help">Tarvitsetko apua? Ota yhteys Ossiin!/ Do you need help? Contact Ossi!</entry>
     <entry key="gui.create.link">Viitteiden luonti (vain admin) /Create references (only admin)</entry>
     <entry key="gui.create.info">Lisätietoa luonnista/ More information</entry>
+    <entry key="gui.create.text.amount">Viitteiden määrä</entry>
+    <entry key="gui.create.text.size">Merkkien määrä</entry>
+    <entry key="gui.create.text.letters">Käytetäänkö kirjaimia</entry>
+    <entry key="gui.create.text.letters.yes">Kyllä</entry>
+    <entry key="gui.create.text.letters.no">Ei</entry>
+    <entry key="gui.create.text.back">Mitä palautetaan</entry>
+    <entry key="gui.create.text.back.txt">txt-tiedosto viitteistä</entry>
+    <entry key="gui.create.text.back.zip">zip-tiedosto luoduista QR-koodeista</entry>
     
     <entry key="gui.add.header">OKKoPa - viitteiden rekisteröinti/ OKKoPa-register references</entry>
     <entry key="gui.add.help">Tarvitsetko apua? Ota yhteys Ossiin!/ Do you need help? Contact Ossi!</entry>
     <entry key="gui.add.link">Viitteiden rekisteröinti / Register references</entry>
     <entry key="gui.add.info">Lisätietoa rekisteröinnistä/ More ingormation about registration.</entry>
     
-
     <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ Reference is incorrect. Pleace check it and try again.</entry>
     <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters.</entry>
     <entry key="gui.add.username.ok">Homma OK! Koe tulee sinulle kunhan se on tarkistettu./ Exampaper will be sent to you. when its ready.</entry>
