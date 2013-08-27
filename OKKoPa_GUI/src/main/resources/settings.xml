@@ -82,6 +82,8 @@
     <entry key="logger.logcompletestack">false</entry>
     
     <!-- Texts for GUI -->
+    <entry key="gui.form.submit">Lähetä / Submit</entry>
+    
     <entry key="gui.front.header">OKKoPa - kansisivun luonti/ OKKoPa - create front page</entry>
     <entry key="gui.front.help">Tarvitsetko apua? Ota yhteys Ossiin!/ Do you nedd help? Contact Ossi!</entry>
     <entry key="gui.front.link">Kansilehtien luonti (luennoitsijat)/ Create front page (lecturers)</entry>
@@ -107,6 +109,9 @@
     <entry key="gui.add.help">Tarvitsetko apua? Ota yhteys Ossiin!/ Do you need help? Contact Ossi!</entry>
     <entry key="gui.add.link">Viitteiden rekisteröinti / Register references</entry>
     <entry key="gui.add.info">Lisätietoa rekisteröinnistä/ More ingormation about registration.</entry>
+    
+    <entry key="gui.add.text.username">Käyttäjätunnus</entry>
+    <entry key="gui.add.text.code">Viitteesi</entry>
     
     <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ Reference is incorrect. Pleace check it and try again.</entry>
     <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters.</entry>

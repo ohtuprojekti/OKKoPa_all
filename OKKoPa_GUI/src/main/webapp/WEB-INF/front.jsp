@@ -50,7 +50,7 @@
                     <td>${email}</td><td><input type="text" name="email" /></td>
                 </tr>
                 <tr>
-                    <td></td><td><input type="submit" name="Lähetä" /></td>
+                    <td></td><td><input type="submit" value="${submit}" /></td>
                 </tr>
             </table>      
         </form>

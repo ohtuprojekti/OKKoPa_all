@@ -36,13 +36,13 @@ public class AddReferenceServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            noErrorsSoFar = true;
-
-            getIDCodeByForm(request);
             Warning.clearWarnings();
 
             if (id != null && code != null) {
+                noErrorsSoFar = true;
+                getIDCodeByForm(request);
                 checkUsername();
+                
                 if (noErrorsSoFar == true) {
                     noErrorsSoFar = checkIfTypo();
                 }
@@ -51,6 +51,12 @@ public class AddReferenceServlet extends HttpServlet {
 
             request.setAttribute("message", Settings.instance.getProperty("gui.add.header"));
             request.setAttribute("help", Settings.instance.getProperty("gui.add.help"));
+            
+            request.setAttribute("username", Settings.instance.getProperty("gui.add.text.username"));
+            request.setAttribute("code", Settings.instance.getProperty("gui.add.text.code"));
+            
+            request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
+            
             request.setAttribute("warning", Warning.getWarning());
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/add.jsp");

@@ -36,6 +36,7 @@ public class CreateServlet extends HttpServlet {
         request.setAttribute("backTxt", Settings.instance.getProperty("gui.create.text.back.txt"));
         request.setAttribute("backZip", Settings.instance.getProperty("gui.create.text.back.zip"));
         
+        request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/create.jsp");
         dispatcher.forward(request, response);

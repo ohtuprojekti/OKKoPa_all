@@ -84,7 +84,7 @@
                         <input type="radio" name="back" value="zip" checked="checked">${backZip}</td>
                 </tr>
                 <tr>
-                    <td></td><td><input type="submit" name="Lähetä" /></td>
+                    <td></td><td><input type="submit" value="${submit}" /></td>
                 </tr>
             </table>
         </form>

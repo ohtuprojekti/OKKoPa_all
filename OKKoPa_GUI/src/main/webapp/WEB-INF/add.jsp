@@ -20,13 +20,13 @@
               method="post">
             <table>
                 <tr>
-                    <td>Käyttäjätunnus</td><td><input type="text" name="id" /></td>
+                    <td>${username}</td><td><input type="text" name="id" /></td>
                 </tr>
                 <tr>
-                    <td>Viite</td><td><input type="text" name="code" /></td>
+                    <td>${code}</td><td><input type="text" name="code" /></td>
                 </tr>
                 <tr>
-                    <td></td><td><input type="submit" name="Lähetä" /></td>
+                    <td></td><td><input type="submit" value="${submit}" /></td>
                 </tr>
             </table>
         </form>
