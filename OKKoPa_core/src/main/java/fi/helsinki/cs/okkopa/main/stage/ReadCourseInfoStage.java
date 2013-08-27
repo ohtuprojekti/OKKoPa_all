@@ -116,10 +116,10 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
 
     private void getAndSetInfoAndEmail(String[] fields) throws NotFoundException, SQLException {
         BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
-        if (bdm.getEmailContent() != null || bdm.getEmailContent().equals("")) {
+        if (bdm.getEmailContent() != null && !bdm.getEmailContent().equals("")) {
             batch.setEmailContent(bdm.getEmailContent());
         }
-        if (bdm.getReportEmailAddress() != null || bdm.getReportEmailAddress().equals("")) {
+        if (bdm.getReportEmailAddress() != null && !bdm.getReportEmailAddress().equals("")) {
             batch.setReportEmailAddress(bdm.getReportEmailAddress());
         }
     }
