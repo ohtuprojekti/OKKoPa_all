@@ -1,4 +1,4 @@
-/**package easyb;
+package easyb;
 
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.*;
@@ -15,11 +15,9 @@ scenario "User gives empty reference code and username", {
     
     given "Viitteiden rekisteröinti is selected",{       
         WebDriver driver = new HtmlUnitDriver(true);
-        String baseUrl = "http://localhost:8081/";
+        String baseUrl = "http://localhost:8081";
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
-        selenium.open("/");
-        selenium.click("link=Viitteiden rekisteröinti");
-        selenium.waitForPageToLoad("30000");
+        selenium.open("/add");
     }
  
     when "empty form is submitted", {       
@@ -39,11 +37,9 @@ scenario "User gives incorrect reference code with correct username", {
     
     given "Viitteiden rekisteröinti is selected",{
         WebDriver driver = new HtmlUnitDriver(true);
-        String baseUrl = "http://localhost:8081/";
+        String baseUrl = "http://localhost:8081";
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
-        selenium.open("/");
-        selenium.click("link=Viitteiden rekisteröinti");
-        selenium.waitForPageToLoad("30000");
+        selenium.open("/add");
     }
  
     when "incorrect reference code is submitted", { 
@@ -69,9 +65,7 @@ scenario "User gives incorrect reference code with correct username", {
 //        WebDriver driver = new HtmlUnitDriver(true);
 //        String baseUrl = "http://localhost:8081/";
 //        selenium = new WebDriverBackedSelenium(driver, baseUrl);
-//        selenium.open("/");
-//        selenium.click("link=Viitteiden rekisteröinti");
-//        selenium.waitForPageToLoad("30000");
+//        selenium.open("/add");
 //    }
 // 
 //    when "correct reference code is submitted", { 
@@ -83,7 +77,7 @@ scenario "User gives incorrect reference code with correct username", {
 //        db.addQRCode(stringReference); 
 //        
 //        selenium.typeKeys("name=id", "testi");
-//	selenium.typeKeys("name=code", ""+stringReference);
+//	selenium.typeKeys("name=code", ""+stringReference); <--ongelma
 //        selenium.click("name=Lähetä");
 //        selenium.waitForPageToLoad("30000");
 //    }
@@ -92,4 +86,4 @@ scenario "User gives incorrect reference code with correct username", {
 //        selenium.getText("//p[3]").shouldBe "- homma OK! Koe tulee sinulle kunhan se on tarkistettu."
 //        selenium.stop();
 //    }
-//}**/
+//}
