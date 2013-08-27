@@ -31,23 +31,40 @@ public class PDFSplitter {
      */
     public List<ExamPaper> splitToExamPapersWithPDFStreams(InputStream pdfStream) throws IOException, DocumentException, PdfException, COSVisitorException {
         PDDocument allPdfDocument = PDDocument.load(pdfStream);
+        
         if (allPdfDocument.getNumberOfPages() % 2 != 0) {
             throw new DocumentException("Odd number of pages");
         }
+        ArrayList<ExamPaper> examPapers = splitPdfAndSortExamPapers(allPdfDocument);
+        
+        allPdfDocument.close();
+        
+        return examPapers;
+    }
+
+    private ArrayList<ExamPaper> splitPdfAndSortExamPapers(PDDocument allPdfDocument) throws IOException, COSVisitorException {
         Splitter splitter = new Splitter();
         splitter.setSplitAtPage(2);
+        
         List<PDDocument> pdfDocuments = splitter.split(allPdfDocument);
         ArrayList<ExamPaper> examPapers = new ArrayList<>();
+        
         for (PDDocument pdfDocument : pdfDocuments) {
-            ExamPaper paper = new ExamPaper();
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            pdfDocument.save(out);
-            byte[] data = out.toByteArray();
-            paper.setPdf(data);
-            examPapers.add(paper);
-            pdfDocument.close();
+            examPapers.add(createExamPaper(pdfDocument));
         }
-        allPdfDocument.close();
         return examPapers;
+    }
+
+    private ExamPaper createExamPaper(PDDocument pdfDocument) throws COSVisitorException, IOException {
+        ExamPaper paper = new ExamPaper();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        
+        pdfDocument.save(out);
+        byte[] data = out.toByteArray();   
+        paper.setPdf(data);
+        
+        pdfDocument.close();
+        
+        return paper;
     }
 }

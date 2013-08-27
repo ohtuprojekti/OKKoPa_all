@@ -26,7 +26,9 @@ public class QRCodeReader {
     public Result readQRCode(BufferedImage page) throws ChecksumException, NotFoundException, FormatException {
         LuminanceSource source = new BufferedImageLuminanceSource((BufferedImage) page);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+        
         com.google.zxing.qrcode.QRCodeReader reader = new com.google.zxing.qrcode.QRCodeReader();
+        
         return reader.decode(bitmap);
     }
 }

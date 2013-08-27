@@ -2,7 +2,6 @@ package fi.helsinki.cs.okkopa.main.stage;
 
 /**
  *
- * @author hannahir
  * @param <I>
  * @param <O>
  */

@@ -1,7 +1,6 @@
 package fi.helsinki.cs.okkopa.model;
 
 /**
- *
  * Sets and holds course information. 
  */
 public class CourseInfo {
