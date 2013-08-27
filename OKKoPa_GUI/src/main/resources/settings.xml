@@ -101,11 +101,11 @@
     <entry key="gui.add.info">Lisätietoa rekisteröinnistä/ More ingormation about registration</entry>
     
 
-    <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ reference is incorrect. Pleace check it and try again</entry>
-    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters</entry>
-    <entry key="gui.add.username.ok">homma OK! Koe tulee sinulle kunhan se on tarkistettu./Exampaper will be sent to you. when its ready :D</entry>
-    <entry key="gui.add.username.double">Joku oli jo rekisteröitynyt antamallesi QR-koodille. Ota yhteyttä Ossiin, ja selvitä hässäkkä./ reference is registered already. Contact Ossi</entry>
-    <entry key="gui.add.username.noreferenceondb">antamaasi viitettä ei löytynyt, etkai vaan yritä syöttää paskaa sisään?/reference does not exist</entry>
+    <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ Reference is incorrect. Pleace check it and try again.</entry>
+    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters.</entry>
+    <entry key="gui.add.username.ok">Homma OK! Koe tulee sinulle kunhan se on tarkistettu./ Exampaper will be sent to you. when its ready :D</entry>
+    <entry key="gui.add.username.double">Joku oli jo rekisteröitynyt antamallesi QR-koodille. Ota yhteyttä Ossiin, ja selvitä hässäkkä./ Reference is registered already. Contact Ossi.</entry>
+    <entry key="gui.add.username.noreferenceondb">Antamaasi viitettä ei löytynyt, etkai vaan yritä syöttää paskaa sisään?/ Reference does not exist.</entry>
     <entry key="gui.add.missedexams">Rekisteröit viitteesi hieman myöhässä, joten tulevat konseptit tulevat sinulle, mutta missasit seuraavissa kellonajoissa konsepteja:/</entry>
     
 </properties>

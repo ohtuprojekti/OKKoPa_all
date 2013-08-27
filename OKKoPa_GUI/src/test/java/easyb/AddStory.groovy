@@ -13,7 +13,7 @@ scenario "User gives empty reference code and username", {
     
     Selenium selenium
     
-    given "Viitteiden rekisteröinti is selected",{
+    given "Viitteiden rekisteröinti is selected",{       
         WebDriver driver = new HtmlUnitDriver(true);
         String baseUrl = "http://localhost:8081/";
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
@@ -28,7 +28,7 @@ scenario "User gives empty reference code and username", {
     }
  
     then "user will see an error message", {
-        selenium.getText("//p[3]").shouldBe "- Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä."
+        selenium.getText("//p[3]").shouldBe "- Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters."
         selenium.stop();
     }
 }
@@ -54,10 +54,12 @@ scenario "User gives incorrect reference code with correct username", {
     }
  
     then "user will see an error message", {
-        selenium.getText("//p[3]").shouldBe "- Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus."
+        selenium.getText("//p[3]").shouldBe "- Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ Reference is incorrect. Pleace check it and try again."
         selenium.stop();
     }
 }
+
+
 //
 //scenario "User gives correct reference code and username", {
 //    
