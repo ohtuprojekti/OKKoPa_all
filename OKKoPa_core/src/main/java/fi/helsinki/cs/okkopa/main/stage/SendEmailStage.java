@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author hannahir
  */
 @Component
 public class SendEmailStage extends Stage<ExamPaper, ExamPaper> {

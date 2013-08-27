@@ -9,6 +9,7 @@ import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
 import fi.helsinki.cs.okkopa.model.ExamPaper;
+import fi.helsinki.cs.okkopa.model.Student;
 import fi.helsinki.cs.okkopa.shared.database.model.FeedbackDbModel;
 import fi.helsinki.cs.okkopa.shared.database.model.StudentDbModel;
 import java.security.GeneralSecurityException;
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author hannahir
  */
 @Component
 public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
@@ -53,12 +53,14 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
     @Override
     public void process(ExamPaper examPaper) {
         if (batch.getCourseCode() != null && tikliEnabled) {
-            // Get student number from LDAP:
             try {
+                // Get student number from LDAP:
                 ldapConnector.setStudentInfo(examPaper.getStudent());
+                
                 saveToTikli(examPaper);
                 LOGGER.debug("Koepaperi tallennettu Tikliin.");
                 batch.addSuccessfulTikliSave();
+                
             } catch (NotFoundException | LDAPException | GeneralSecurityException ex) {
                 exceptionLogger.logException(ex);
             }
@@ -67,26 +69,46 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
     }
 
     private void saveToTikli(ExamPaper examPaper) {
-        CourseDbModel course = new CourseDbModel(batch.getCourseCode(), batch.getPeriod(), batch.getYear(), batch.getType(), batch.getCourseNumber());
-        FeedbackDbModel feedback = new FeedbackDbModel(settings, course, examPaper.getPdf(), examPaper.getStudent().getStudentNumber());
-        StudentDbModel student = new StudentDbModel(examPaper.getStudent().getStudentNumber());
+        CourseDbModel course = getCourceDbModel();
+        FeedbackDbModel feedback = getFeedbackDbModel(course, examPaper);
+        StudentDbModel student = getStudentDbModel(examPaper);
+        
+        connectToKurkiAndInsertFeedback(course, student, feedback);
+        LOGGER.debug("Tikliin tallennus päättyi!");
+    }
+
+    private CourseDbModel getCourceDbModel() {
+        return new CourseDbModel(batch.getCourseCode(), batch.getPeriod(),
+                batch.getYear(), batch.getType(), batch.getCourseNumber());
+    }
+
+    private FeedbackDbModel getFeedbackDbModel(CourseDbModel course, ExamPaper examPaper) {
+        return new FeedbackDbModel(settings, course, examPaper.getPdf(),
+                examPaper.getStudent().getStudentNumber());
+    }
+
+    private StudentDbModel getStudentDbModel(ExamPaper examPaper) {
+        return new StudentDbModel(examPaper.getStudent().getStudentNumber());
+    }
+
+    private void connectToKurkiAndInsertFeedback(CourseDbModel course, StudentDbModel student, FeedbackDbModel feedback) {
         try {
             oc.connect();
             LOGGER.debug("Connected to Kurki db.");
+            
             boolean courseExists = oc.courseExists(course);
-            LOGGER.debug("Course found from Kurki: "+courseExists);
+            LOGGER.debug("Course found from Kurki: " + courseExists);
+            
             boolean studentExists = oc.studentExists(student);
-            LOGGER.debug("Student found from Kurki: "+studentExists);
+            LOGGER.debug("Student found from Kurki: " + studentExists);
+            
             if (courseExists && studentExists) {
                 oc.insertFeedBackRow(feedback);
             }
-            
         } catch (SQLException ex) {
-            LOGGER.error(ex.toString());
-            
+            LOGGER.error(ex.toString());  
         } finally {
             oc.disconnect();
         }
-        LOGGER.debug("Tikliin tallennus päättyi!");
     }
 }
