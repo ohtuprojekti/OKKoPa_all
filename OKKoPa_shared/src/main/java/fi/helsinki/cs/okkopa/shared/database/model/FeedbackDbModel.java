@@ -8,7 +8,7 @@ import fi.helsinki.cs.okkopa.shared.Settings;
 import java.util.Calendar;
 import java.util.Date;
 
-@DatabaseTable(tableName = "SUORITUSPALAUTE")
+@DatabaseTable(tableName = "TK_TESTI.SUORITEPALAUTE")
 public class FeedbackDbModel {
 
     @DatabaseField(columnName = "SUORITUSPALAUTE_ID", generatedIdSequence = "SUORITUSPALAUTE_SEQUENCE")

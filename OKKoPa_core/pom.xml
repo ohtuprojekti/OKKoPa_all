@@ -97,6 +97,7 @@
                                 <filter>
                                     <artifact>*:*</artifact>
                                     <excludes>
+                                        <exclude>passwords.xml</exclude>
                                         <exclude>settings.xml</exclude>
                                         <exclude>keystore</exclude>
                                         <exclude>META-INF/*.SF</exclude>
@@ -120,6 +121,7 @@
                         </goals>
                         <configuration>
                             <tasks>
+                                <copy file="${basedir}/src/main/resources/passwords.xml" toFile="${basedir}/target/passwords.xml" />
                                 <copy file="${basedir}/src/main/resources/settings.xml" toFile="${basedir}/target/settings.xml" />
                                 <copy file="${basedir}/src/main/resources/keystore" toFile="${basedir}/target/keystore" />
                             </tasks>
