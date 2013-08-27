@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author hannahir
  */
 @Component
 public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {

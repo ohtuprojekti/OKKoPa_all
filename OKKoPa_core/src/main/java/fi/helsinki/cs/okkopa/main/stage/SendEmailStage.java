@@ -59,31 +59,50 @@ public class SendEmailStage extends Stage<ExamPaper, ExamPaper> {
     private void sendEmail(ExamPaper examPaper) {
         try {
             LOGGER.debug("Lähetetään sähköposti.");
-            InputStream is = new ByteArrayInputStream(examPaper.getPdf());
-            emailSender.send(examPaper.getStudent().getEmail(), is);
-            IOUtils.closeQuietly(is);
+            sendEmail2(examPaper);
+            
         } catch (MessagingException ex) {
             LOGGER.debug("Sähköpostin lähetys epäonnistui.");
-            saveFailedEmail(examPaper);
+            
             LOGGER.debug("Tallennetaan PDF-liite levylle.");
+            saveFailedEmail(examPaper);
             exceptionLogger.logException(ex);
         }
     }
 
     private void saveFailedEmail(ExamPaper examPaper) {
         try {
-            String filename = System.currentTimeMillis() + ".pdf";
-            InputStream is = new ByteArrayInputStream(examPaper.getPdf());
-            fileSaver.saveInputStream(is, saveRetryFolder, filename);
-            IOUtils.closeQuietly(is);
-            FailedEmailDbModel failedEmail = new FailedEmailDbModel();
-            failedEmail.setFilename(filename);
-            failedEmail.setReceiverEmail(examPaper.getStudent().getEmail());
-            failedEmail.setFailTime(new Date());
-            failedEmailDatabase.addFailedEmail(failedEmail);
-        } catch (FileAlreadyExistsException | SQLException ex1) {
-            exceptionLogger.logException(ex1);
+            String filename = saveFailedPdf(examPaper);
+            
+            addFailedEmailToDb(filename, examPaper);
+            
+        } catch (FileAlreadyExistsException | SQLException ex) {
+            exceptionLogger.logException(ex);
             // TODO if one fails what then?
         }
+    }
+
+    private void sendEmail2(ExamPaper examPaper) throws MessagingException {
+        InputStream is = new ByteArrayInputStream(examPaper.getPdf());
+        emailSender.send(examPaper.getStudent().getEmail(), is);
+        IOUtils.closeQuietly(is);
+    }
+
+    private String saveFailedPdf(ExamPaper examPaper) throws FileAlreadyExistsException {
+        String filename = System.currentTimeMillis() + ".pdf";
+        InputStream is = new ByteArrayInputStream(examPaper.getPdf());
+        fileSaver.saveInputStream(is, saveRetryFolder, filename);
+        IOUtils.closeQuietly(is);
+        return filename;
+    }
+
+    private void addFailedEmailToDb(String filename, ExamPaper examPaper) throws SQLException {
+        FailedEmailDbModel failedEmail = new FailedEmailDbModel();
+        
+        failedEmail.setFilename(filename);
+        failedEmail.setReceiverEmail(examPaper.getStudent().getEmail());
+        failedEmail.setFailTime(new Date());
+        
+        failedEmailDatabase.addFailedEmail(failedEmail);
     }
 }
