@@ -1,8 +1,7 @@
 package fi.helsinki.cs.okkopa.model;
 
 /**
- *
- * Sets and hold course information. 
+ * Sets and holds course information. 
  */
 public class CourseInfo {
 
@@ -31,7 +30,7 @@ public class CourseInfo {
     }
     
     /**
-     *Gets course code which initialized in constructor.
+     * Gets course code which initialized in constructor.
      * @return course code.
      */
     public String getCourseCode() {
@@ -39,7 +38,7 @@ public class CourseInfo {
     }
 
     /**
-     *Sets course code
+     * Sets course code
      * @param courseCode
      */
     public void setCourseCode(String courseCode) {
@@ -47,7 +46,7 @@ public class CourseInfo {
     }
 
     /**
-     *Gets course number.
+     * Gets course number.
      * @return course number
      */
     public int getCourseNumber() {
@@ -55,7 +54,7 @@ public class CourseInfo {
     }
 
     /**
-     *Sets course number.
+     * Sets course number.
      * @param courseNumber
      */
     public void setCourseNumber(int courseNumber) {
@@ -63,15 +62,15 @@ public class CourseInfo {
     }
 
     /**
-     *Gets period of year.
-     * @return
+     * Gets period of year.
+     * @return period
      */
     public String getPeriod() {
         return period;
     }
 
     /**
-     *Sets period.
+     * Sets period.
      * @param period
      */
     public void setPeriod(String period) {
@@ -79,7 +78,7 @@ public class CourseInfo {
     }
 
     /**
-     *Gets year
+     * Gets year.
      * @return year
      */
     public int getYear() {
@@ -87,7 +86,7 @@ public class CourseInfo {
     }
 
     /**
-     *Sets year.
+     * Sets year.
      * @param year
      */
     public void setYear(int year) {
@@ -103,7 +102,7 @@ public class CourseInfo {
     }
 
     /**
-     *Sets type of course.
+     * Sets type of course.
      * @param type
      */
     public void setType(String type) {

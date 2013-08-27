@@ -18,7 +18,7 @@
               method="post">
             <table>
                 <tr>
-                    <td>Viitteiden määrä</td><td><select name="amount">
+                    <td>${amount}</td><td><select name="amount">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -55,7 +55,7 @@
                         </select></td>
                 </tr>
                 <tr>
-                    <td>Merkkien määrä</td><td><select name="size">
+                    <td>${size}</td><td><select name="size">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -74,17 +74,17 @@
                         </select></td>
                 </tr>
                 <tr>
-                    <td>Käytetäänkö kirjaimia</td><td>
-                        <input type="radio" name="letters" value="yes" checked="checked">Kyllä
-                        <input type="radio" name="letters" value="no">Ei</td>
+                    <td>${letters}</td><td>
+                        <input type="radio" name="letters" value="yes" checked="checked">${lettersYes}
+                        <input type="radio" name="letters" value="no">${lettersNo}</td>
                 </tr>
                 <tr>
-                    <td>Mitä palautetaan</td><td>
-                        <input type="radio" name="back" value="txt">txt-tiedosto viitteistä</td><td></td></tr><tr><td></td><td>
-                        <input type="radio" name="back" value="zip" checked="checked">zip-tiedosto luoduista QR-koodeista</td>
+                    <td>${back}</td><td>
+                        <input type="radio" name="back" value="txt">${backTxt}</td><td></td></tr><tr><td></td><td>
+                        <input type="radio" name="back" value="zip" checked="checked">${backZip}</td>
                 </tr>
                 <tr>
-                    <td></td><td><input type="submit" name="Lähetä" /></td>
+                    <td></td><td><input type="submit" value="${submit}" /></td>
                 </tr>
             </table>
         </form>

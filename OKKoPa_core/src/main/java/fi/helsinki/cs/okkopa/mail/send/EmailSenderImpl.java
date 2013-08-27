@@ -55,14 +55,19 @@ public class EmailSenderImpl implements EmailSender {
         OKKoPaMessage msg = new OKKoPaMessage(receiverEmailAddress, senderAddress, properties);
         msg.setSubject(subject);
         msg.setText(message);
+        
+        addAttachment(attachment, msg);
+        
+        msg.send();
+    }
 
+    private void addAttachment(InputStream attachment, OKKoPaMessage msg) throws MessagingException {
         if (attachment != null) {
             try {
                 msg.addPDFAttachment(attachment, attachmentName);
             } catch (IOException ex) {
                 throw new MessagingException("Error while reading pdf stream");
             }
-        }     
-        msg.send();
+        }
     }
 }

@@ -47,6 +47,8 @@ public class FrontServlet extends HttpServlet {
         request.setAttribute("info", Settings.instance.getProperty("gui.front.infofield"));
         request.setAttribute("email", Settings.instance.getProperty("gui.front.emailfield"));
         
+        request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
+        
         oc = connectToDB();
         
         cources = formatAndGetCources();

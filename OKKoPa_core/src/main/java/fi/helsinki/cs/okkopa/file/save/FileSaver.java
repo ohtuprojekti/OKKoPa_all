@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class FileSaver implements Saver {
-    
+
     private static final Logger LOGGER = Logger.getLogger(FileSaver.class.getName());
 
     public FileSaver() {
@@ -34,17 +34,7 @@ public class FileSaver implements Saver {
         if (files == null) {
             return null;
         }
-
-        ArrayList<File> list = new ArrayList();
-        for (int i = 0; i < files.length; i++) {
-
-            if (files[i].isFile()) {
-                list.add(files[i]);
-
-            }
-        }
-
-        return list;
+        return getActualFiles(files);
     }
 
     /**
@@ -58,16 +48,46 @@ public class FileSaver implements Saver {
             LOGGER.warn("saveInputStream got null parameter. Returning false!");
             return false;
         }
+        if (createFolder(folderPath)) {
+            return false;
+        }
+        File file = createFileOnFolder(folderPath, fileName);
 
+        if (saveinputStreamToFile(file, inputStream) == false) {
+            return false;
+        }
+        return true;
+    }
+
+    private ArrayList<File> getActualFiles(File[] files) {
+        ArrayList<File> list = new ArrayList();
+        for (int i = 0; i < files.length; i++) {
+
+            if (files[i].isFile()) {
+                list.add(files[i]);
+            }
+        }
+        return list;
+    }
+
+    private boolean createFolder(String folderPath) {
         File folder = new File(folderPath);
         if (!folder.exists() && !folder.mkdirs()) {
             LOGGER.warn("Failed to create folder " + folderPath + ".");
-            return false;
+            return true;
         }
+        return false;
+    }
+
+    private File createFileOnFolder(String folderPath, String fileName) throws FileAlreadyExistsException {
         File file = new File(folderPath + "/" + fileName);
         if (file.exists()) {
             throw new FileAlreadyExistsException("File " + folderPath + "/" + fileName + " already exists.");
         }
+        return file;
+    }
+
+    private boolean saveinputStreamToFile(File file, InputStream inputStream) {
         FileOutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(file);

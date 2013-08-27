@@ -25,6 +25,19 @@ public class CreateServlet extends HttpServlet {
         request.setAttribute("message", Settings.instance.getProperty("gui.create.header"));
         request.setAttribute("help", Settings.instance.getProperty("gui.create.help"));
         
+        request.setAttribute("amount", Settings.instance.getProperty("gui.create.text.amount"));
+        request.setAttribute("size", Settings.instance.getProperty("gui.create.text.size"));
+        
+        request.setAttribute("letters", Settings.instance.getProperty("gui.create.text.letters"));
+        request.setAttribute("lettersYes", Settings.instance.getProperty("gui.create.text.letters.yes"));
+        request.setAttribute("lettersNo", Settings.instance.getProperty("gui.create.text.letters.no"));
+        
+        request.setAttribute("back", Settings.instance.getProperty("gui.create.text.back"));
+        request.setAttribute("backTxt", Settings.instance.getProperty("gui.create.text.back.txt"));
+        request.setAttribute("backZip", Settings.instance.getProperty("gui.create.text.back.zip"));
+        
+        request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/create.jsp");
         dispatcher.forward(request, response);
     }

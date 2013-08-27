@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ */
 @Component
 public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {
 
@@ -19,6 +22,12 @@ public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {
     ExceptionLogger exceptionLogger;
     private BatchDetails batch;
 
+    /**
+     *
+     * @param pdfProcessor
+     * @param exceptionLogger
+     * @param batch
+     */
     @Autowired
     public SplitPDFStage(PDFProcessor pdfProcessor, ExceptionLogger exceptionLogger, BatchDetails batch) {
         this.batch = batch;
@@ -29,14 +38,17 @@ public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {
     @Override
     public void process(InputStream in) {
         List<ExamPaper> examPapers;
+        
         // Split PDF to ExamPapers (2 pages per each).
         try {
             examPapers = pdfProcessor.splitPDF(in);
             LOGGER.debug("PDF jaettu osiin.");
+            
             batch.setTotalPages(examPapers.size());
         } catch (DocumentException ex) {
             // Errors: bad PDF-file, odd number of pages.
             exceptionLogger.logException(ex);
+            
             return;
         }
         processNextStages(examPapers);

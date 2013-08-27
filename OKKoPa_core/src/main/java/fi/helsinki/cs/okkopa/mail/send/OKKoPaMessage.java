@@ -83,12 +83,7 @@ public class OKKoPaMessage {
      */
     protected Session generateSession() {
         if (properties.getProperty("mail.smtp.auth").equals("true")) {
-            return Session.getInstance(properties, new Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(properties.getProperty("mail.smtp.user"),
-                            properties.getProperty("mail.smtp.password"));
-                }
-            });
+            return getSession();
         } else {
             return Session.getInstance(properties);
         }
@@ -103,6 +98,7 @@ public class OKKoPaMessage {
     private MimeMessage generateMessage() throws MessagingException {
         // Get the default Session object.
         session = generateSession();
+        
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sender));
 
@@ -112,6 +108,7 @@ public class OKKoPaMessage {
 
         message.setSubject(subject);
         message.setContent(body);
+        
         return message;
     }
 
@@ -183,5 +180,15 @@ public class OKKoPaMessage {
 
     public String getSubject() {
         return subject;
+    }
+
+    private Session getSession() {
+        return Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(properties.getProperty("mail.smtp.user"),
+                        properties.getProperty("mail.smtp.password"));
+            }
+        });
     }
 }

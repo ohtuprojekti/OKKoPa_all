@@ -67,6 +67,4 @@ public class QRCodeDAO {
         }
         return false;
     }
-
-
 }

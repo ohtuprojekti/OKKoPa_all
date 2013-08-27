@@ -18,17 +18,19 @@ public class OkkopaRunner implements Runnable {
 
     private Stage first;
     
-    
     @Autowired
     public OkkopaRunner(DeleteOldErrorPDFsStage errorPDFStage, RetryFailedEmailsStage retryFailedEmailsStage,
             GetEmailStage getEmailStage, SplitPDFStage splitPDFStage,
             ReadCourseInfoStage readCourseInfoStage, ReadQRCodeStage readQRCodeStage,
             SetStudentInfoStage setStudentInfoStage, SendEmailStage sendEmailStage,
             SaveToTikliStage saveToTikliStage) {
+        
         // cleanup and error correction stages
         this.first = errorPDFStage;
         this.first.setNext(retryFailedEmailsStage);
+        
         retryFailedEmailsStage.setNext(getEmailStage);
+        
         // normal process stages
         getEmailStage.setNext(splitPDFStage);
         splitPDFStage.setNext(readCourseInfoStage);

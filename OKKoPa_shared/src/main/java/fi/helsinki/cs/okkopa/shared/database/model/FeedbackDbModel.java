@@ -104,24 +104,13 @@ public class FeedbackDbModel {
     public FeedbackDbModel(Settings settings, CourseDbModel course, byte[] blob, String studentNumber) {
         this.studentNumber = studentNumber;
         this.date = Calendar.getInstance().getTime();
-
-        //Course data:
-        this.courseCode = course.getCourseCode();
-        this.courseNumber = course.getCourseNumber();
-        this.courseType = course.getType();
-        this.period = course.getPeriod();
-        this.year = course.getYear();
-
-        //File data:
-        this.data = blob;
-        this.mimeType = "application/pdf";
-        this.fileName = settings.getProperty("exampaper.attachmentname");
-
+       
+        setCourceData(course);
+        
+        setBlob(blob, settings);
+        
         //Check these before release:
-        this.feedbackAuthor = settings.getProperty("tikli.authorid");
-        this.feedbackText = settings.getProperty("tikli.description");
-        this.feedbackType = "Koe";
-        this.feedbackUrl = null;
+        setTikliSettings(settings);
     }
 
     public int getId() {
@@ -186,5 +175,26 @@ public class FeedbackDbModel {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    private void setCourceData(CourseDbModel course) {
+        this.courseCode = course.getCourseCode();
+        this.courseNumber = course.getCourseNumber();
+        this.courseType = course.getType();
+        this.period = course.getPeriod();
+        this.year = course.getYear();
+    }
+
+    private void setBlob(byte[] blob, Settings settings) {
+        this.data = blob;
+        this.mimeType = "application/pdf";
+        this.fileName = settings.getProperty("exampaper.attachmentname");
+    }
+
+    private void setTikliSettings(Settings settings) {
+        this.feedbackAuthor = settings.getProperty("tikli.authorid");
+        this.feedbackText = settings.getProperty("tikli.description");
+        this.feedbackType = "Koe";
+        this.feedbackUrl = null;
     }
 }

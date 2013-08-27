@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
+import java.awt.RenderingHints;
+import java.awt.font.TextLayout;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -51,6 +54,7 @@ public class GetFrontServlet extends HttpServlet {
     private String info;
     private OkkopaDatabase database;
     private Reference reference;
+    private TextLayout tl;
 
     /**
      * Processes requests for both HTTP
@@ -151,7 +155,13 @@ public class GetFrontServlet extends HttpServlet {
     }
 
     private void makeFontSettings(int size, Color c) {
-        font = new Font("Serif", Font.BOLD, size);
+        RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+        g2d.setRenderingHints(rh);
+
+        g2d.setFont(new Font("Franklin Gothic Medium", Font.BOLD, size));
         g2d.setFont(font);
         g2d.setPaint(c);
         fm = g2d.getFontMetrics();
@@ -160,14 +170,24 @@ public class GetFrontServlet extends HttpServlet {
     private void drawTextToImage(String line) {
         makeFontSettings(45, Color.BLACK);
         g2d.drawString(line, (width * 3) / 2 - (fm.stringWidth(line) / 2), (height * 3) / 2 );
-
-        g2d.drawString(name, (width * 3) / 2 - (fm.stringWidth(name) / 2), (height * 3) / 2 + 100);
+        
+        tl = new TextLayout(name, g2d.getFont(), g2d.getFontRenderContext());
+        tl.draw(g2d, (width * 3) / 2 - (fm.stringWidth(name) / 2), (height * 3) / 2 + 100);
     }
 
     private void drawUrlToImage() {
         url = "http://cs.helsinki.fi/okkopa";
-        makeFontSettings(24, Color.BLACK);
+        makeFontSettings(35, Color.BLACK);
         g2d.drawString(url, (width * 3) / 2 - (fm.stringWidth(url) / 2), (height * 3) / 2 - 100);
+        
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Font[] fonts = ge.getAllFonts();
+
+        for (int i = 0; i < fonts.length; i++) {
+            
+            System.out.print(fonts[i].getFontName() + " : ");
+            System.out.println(fonts[i].getFamily());
+        }
     }
 
     private void closeImages() {

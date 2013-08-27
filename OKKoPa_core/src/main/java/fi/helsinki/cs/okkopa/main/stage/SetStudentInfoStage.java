@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ */
 @Component
 public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
 
@@ -21,6 +24,13 @@ public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
     private MissedExamDao missedExamDAO;
     private String atDomain;
 
+    /**
+     *
+     * @param qRCodeDatabase
+     * @param missedExamDAO
+     * @param exceptionLogger
+     * @param settings
+     */
     @Autowired
     public SetStudentInfoStage(QRCodeDAO qRCodeDatabase, MissedExamDao missedExamDAO, ExceptionLogger exceptionLogger, Settings settings) {
         this.qRCodeDatabase = qRCodeDatabase;
@@ -34,16 +44,15 @@ public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
         try {
             LOGGER.debug("QR code: " + examPaper.getQRCodeString());
             String userId = fetchUserId(examPaper.getQRCodeString());
+            
             if (userId == null) {
                 //Rekisteröimätön anonyymikoodi.
                 missedExamDAO.addMissedExam(examPaper.getQRCodeString());
                 return;
             }
-            Student student = new Student();
-            examPaper.setStudent(student);
-            student.setUsername(userId);
-            student.setEmail(userId + atDomain);
+            Student student = getNewStudent(examPaper, userId);
             LOGGER.debug("Sähköpostiosoite: " + student.getEmail());
+        
         } catch (NotFoundException | SQLException ex) {
             exceptionLogger.logException(ex);
             LOGGER.debug("Luettu QR-koodi ei ollut käyttäjätunnus eikä generoitu koodi.");
@@ -56,20 +65,39 @@ public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
     
 
     private String fetchUserId(String qrcode) throws SQLException, NotFoundException {
-        // Filter too short
-        if (qrcode.length() == 0) {
-            throw new NotFoundException("fetchUserId received empty string.");
-        }
+        filterTooShorts(qrcode);
+        
         // Check database
         if (Character.isDigit(qrcode.charAt(0))) {
             return qRCodeDatabase.getUserID(qrcode);
         }
-        // Filter if has digits
+        
+        filterIfUsernameHasDigits(qrcode);
+        
+        return qrcode;
+    }
+
+    private Student getNewStudent(ExamPaper examPaper, String userId) {
+        Student student = new Student();
+        
+        examPaper.setStudent(student);
+        student.setUsername(userId);
+        student.setEmail(userId + atDomain);
+        
+        return student;
+    }
+
+    private void filterTooShorts(String qrcode) throws NotFoundException {
+        if (qrcode.length() == 0) {
+            throw new NotFoundException("fetchUserId received empty string.");
+        }
+    }
+
+    private void filterIfUsernameHasDigits(String qrcode) throws NotFoundException {
         for (char c : qrcode.toCharArray()) {
             if (Character.isDigit(c)) {
                 throw new NotFoundException("Found a number in user name. QR-code: "+qrcode);
             }
         }
-        return qrcode;
     }
 }

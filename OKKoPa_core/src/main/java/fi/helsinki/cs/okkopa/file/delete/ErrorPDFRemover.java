@@ -46,10 +46,14 @@ public class ErrorPDFRemover implements Remover {
             return;
         }
         for (File pdf : fileList) {
-            float fileAgeInDays = TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - pdf.lastModified());
+            float fileAgeInDays = getFileAgeInDays(pdf);
             if (fileAgeInDays > saveDays) {
                 pdf.delete();
             }
         }
+    }
+
+    private long getFileAgeInDays(File pdf) {
+        return TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - pdf.lastModified());
     }
 }

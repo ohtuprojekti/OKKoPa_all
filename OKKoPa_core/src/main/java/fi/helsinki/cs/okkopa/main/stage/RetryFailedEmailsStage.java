@@ -21,6 +21,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ */
 @Component
 public class RetryFailedEmailsStage extends Stage {
 
@@ -32,15 +35,24 @@ public class RetryFailedEmailsStage extends Stage {
     private FailedEmailDAO failedEmailDatabase;
     private int retryExpirationMinutes;
 
+    /**
+     *
+     * @param emailSender
+     * @param exceptionLogger
+     * @param settings
+     * @param fileSaver
+     * @param failedEmailDatabase
+     */
     @Autowired
     public RetryFailedEmailsStage(EmailSender emailSender, ExceptionLogger exceptionLogger,
             Settings settings, Saver fileSaver, FailedEmailDAO failedEmailDatabase) {
         this.emailSender = emailSender;
         this.exceptionLogger = exceptionLogger;
-        saveRetryFolder = settings.getProperty("mail.send.retrysavefolder");
         this.fileSaver = fileSaver;
         this.failedEmailDatabase = failedEmailDatabase;
-        retryExpirationMinutes = Integer.parseInt(settings.getProperty("mail.send.retryexpirationminutes"));
+        
+        this.saveRetryFolder = settings.getProperty("mail.send.retrysavefolder");
+        this.retryExpirationMinutes = Integer.parseInt(settings.getProperty("mail.send.retryexpirationminutes"));
     }
 
     @Override
@@ -57,11 +69,14 @@ public class RetryFailedEmailsStage extends Stage {
     private void checkFailedEmails() {
         // Get failed email send attachments (PDF-files)
         LOGGER.debug("Yritetään lähettää sähköposteja uudelleen.");
+        
         ArrayList<File> fileList = fileSaver.list(saveRetryFolder);
+        
         if (fileList == null) {
             LOGGER.debug("Ei uudelleenlähetettävää.");
             return;
         }
+        
         // Get list of failed emails from database
         List<FailedEmailDbModel> failedEmails;
         try {
@@ -70,6 +85,34 @@ public class RetryFailedEmailsStage extends Stage {
             exceptionLogger.logException(ex);
             return;
         }
+        matchFilesAndSend(failedEmails, fileList);
+    }
+
+    private boolean retryFailedEmail(File pdf, FailedEmailDbModel failedEmail) {
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(pdf);
+        } catch (FileNotFoundException ex) {
+            exceptionLogger.logException(ex);
+            LOGGER.debug("Tiedostoa ei ollutkaan levyllä vaikka listaus sen palautti.");
+            return true;
+        }
+        
+        try {
+            sendEmail(failedEmail, fis);
+            pdf.delete();
+            LOGGER.debug("Lähetettiin sähköposti onnistuneesti (uusintayritys).");
+        } catch (MessagingException ex) {
+            exceptionLogger.logException(ex);
+            
+            deleteFileIfTooOld(failedEmail, pdf);
+            return true;
+        }
+        IOUtils.closeQuietly(fis);
+        return false;
+    }
+
+    private void matchFilesAndSend(List<FailedEmailDbModel> failedEmails, ArrayList<File> fileList) {
         // Match files and send
         for (FailedEmailDbModel failedEmail : failedEmails) {
             for (File pdf : fileList) {
@@ -82,29 +125,11 @@ public class RetryFailedEmailsStage extends Stage {
         // TODO clean nonmatching database <-> folder
     }
 
-    private boolean retryFailedEmail(File pdf, FailedEmailDbModel failedEmail) {
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(pdf);
-        } catch (FileNotFoundException ex) {
-            exceptionLogger.logException(ex);
-            LOGGER.debug("Tiedostoa ei ollutkaan levyllä vaikka listaus sen palautti.");
-            return true;
-        }
-        try {
-            sendEmail(failedEmail, fis);
+    private void deleteFileIfTooOld(FailedEmailDbModel failedEmail, File pdf) {
+        // Delete if too old.
+        long ageInMinutes = TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - failedEmail.getFailTime().getTime());
+        if (ageInMinutes > retryExpirationMinutes) {
             pdf.delete();
-            LOGGER.debug("Lähetettiin sähköposti onnistuneesti (uusintayritys).");
-        } catch (MessagingException ex) {
-            exceptionLogger.logException(ex);
-            // Delete if too old.
-            long ageInMinutes = TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - failedEmail.getFailTime().getTime());
-            if (ageInMinutes > retryExpirationMinutes) {
-                pdf.delete();
-            }
-            return true;
         }
-        IOUtils.closeQuietly(fis);
-        return false;
     }
 }
