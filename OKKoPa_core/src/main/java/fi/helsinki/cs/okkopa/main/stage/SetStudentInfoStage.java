@@ -12,6 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
 
@@ -21,6 +25,13 @@ public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
     private MissedExamDao missedExamDAO;
     private String atDomain;
 
+    /**
+     *
+     * @param qRCodeDatabase
+     * @param missedExamDAO
+     * @param exceptionLogger
+     * @param settings
+     */
     @Autowired
     public SetStudentInfoStage(QRCodeDAO qRCodeDatabase, MissedExamDao missedExamDAO, ExceptionLogger exceptionLogger, Settings settings) {
         this.qRCodeDatabase = qRCodeDatabase;

@@ -16,6 +16,10 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
 
@@ -27,6 +31,14 @@ public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
     private PDFProcessor pdfProcessor;
     private BatchDetails batch;
 
+    /**
+     *
+     * @param fileSaver
+     * @param pdfProcessor
+     * @param exceptionLogger
+     * @param settings
+     * @param batch
+     */
     @Autowired
     public ReadQRCodeStage(Saver fileSaver, PDFProcessor pdfProcessor,
             ExceptionLogger exceptionLogger, Settings settings, BatchDetails batch) {

@@ -18,6 +18,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class SendEmailStage extends Stage<ExamPaper, ExamPaper> {
 
@@ -28,6 +32,14 @@ public class SendEmailStage extends Stage<ExamPaper, ExamPaper> {
     private Saver fileSaver;
     private FailedEmailDAO failedEmailDatabase;
 
+    /**
+     *
+     * @param emailSender
+     * @param exceptionLogger
+     * @param settings
+     * @param fileSaver
+     * @param failedEmailDatabase
+     */
     @Autowired
     public SendEmailStage(EmailSender emailSender, ExceptionLogger exceptionLogger,
             Settings settings, Saver fileSaver, FailedEmailDAO failedEmailDatabase) {

@@ -21,6 +21,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class RetryFailedEmailsStage extends Stage {
 
@@ -32,6 +36,14 @@ public class RetryFailedEmailsStage extends Stage {
     private FailedEmailDAO failedEmailDatabase;
     private int retryExpirationMinutes;
 
+    /**
+     *
+     * @param emailSender
+     * @param exceptionLogger
+     * @param settings
+     * @param fileSaver
+     * @param failedEmailDatabase
+     */
     @Autowired
     public RetryFailedEmailsStage(EmailSender emailSender, ExceptionLogger exceptionLogger,
             Settings settings, Saver fileSaver, FailedEmailDAO failedEmailDatabase) {

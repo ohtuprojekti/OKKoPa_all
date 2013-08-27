@@ -17,11 +17,11 @@ public class QRCodeReader {
     /**
      * Reads QR code from single image.
      *
-     * @param page is a single PDF page converted into BufferedImage
-     * @return QR code decoded into bitmap
-     * @throws ChecksumException if error correction fails for any reason
-     * @throws NotFoundException if no QR code is found in the BufferdImage
-     * @throws FormatException if the QR code cannot be decoded
+     * @param page is a single PDF page converted into BufferedImage.
+     * @return QR code decoded into bitmap.
+     * @throws ChecksumException if error correction fails for any reason.
+     * @throws NotFoundException if no QR code is found in the BufferdImage.
+     * @throws FormatException if the QR code cannot be decoded.
      */
     public Result readQRCode(BufferedImage page) throws ChecksumException, NotFoundException, FormatException {
         LuminanceSource source = new BufferedImageLuminanceSource((BufferedImage) page);

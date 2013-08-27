@@ -1,5 +1,11 @@
 package fi.helsinki.cs.okkopa.main.stage;
 
+/**
+ *
+ * @author hannahir
+ * @param <I>
+ * @param <O>
+ */
 public abstract class Stage<I, O> {
 
     private Stage<O, ?> next;
