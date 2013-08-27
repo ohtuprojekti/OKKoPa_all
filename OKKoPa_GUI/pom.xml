@@ -201,7 +201,13 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>2.34.0</version>
-        </dependency>          
+        </dependency>     
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.34.0</version>
+            <scope>test</scope>
+        </dependency>                
         <dependency>
             <groupId>com.opera</groupId>
             <artifactId>operadriver</artifactId>
