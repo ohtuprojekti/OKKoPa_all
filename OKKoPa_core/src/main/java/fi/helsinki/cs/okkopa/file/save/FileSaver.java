@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class FileSaver implements Saver {
-    
+
     private static final Logger LOGGER = Logger.getLogger(FileSaver.class.getName());
 
     public FileSaver() {
@@ -48,24 +48,12 @@ public class FileSaver implements Saver {
             LOGGER.warn("saveInputStream got null parameter. Returning false!");
             return false;
         }
-
-        File folder = new File(folderPath);
-        if (!folder.exists() && !folder.mkdirs()) {
-            LOGGER.warn("Failed to create folder " + folderPath + ".");
+        if (createFolder(folderPath)) {
             return false;
         }
-        File file = new File(folderPath + "/" + fileName);
-        if (file.exists()) {
-            throw new FileAlreadyExistsException("File " + folderPath + "/" + fileName + " already exists.");
-        }
-        FileOutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream(file);
-            IOUtils.copy(inputStream, outputStream);
-            outputStream.close();
-            inputStream.close();
-        } catch (IOException ex) {
-            LOGGER.error(ex.toString(), ex);
+        File file = createFileOnFolder(folderPath, fileName);
+
+        if (saveinputStreamToFile(file, inputStream) == false) {
             return false;
         }
         return true;
@@ -80,5 +68,36 @@ public class FileSaver implements Saver {
             }
         }
         return list;
+    }
+
+    private boolean createFolder(String folderPath) {
+        File folder = new File(folderPath);
+        if (!folder.exists() && !folder.mkdirs()) {
+            LOGGER.warn("Failed to create folder " + folderPath + ".");
+            return true;
+        }
+        return false;
+    }
+
+    private File createFileOnFolder(String folderPath, String fileName) throws FileAlreadyExistsException {
+        File file = new File(folderPath + "/" + fileName);
+        if (file.exists()) {
+            throw new FileAlreadyExistsException("File " + folderPath + "/" + fileName + " already exists.");
+        }
+        return file;
+    }
+
+    private boolean saveinputStreamToFile(File file, InputStream inputStream) {
+        FileOutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            IOUtils.copy(inputStream, outputStream);
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException ex) {
+            LOGGER.error(ex.toString(), ex);
+            return false;
+        }
+        return true;
     }
 }
