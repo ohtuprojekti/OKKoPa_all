@@ -1,4 +1,4 @@
-package easyb;
+/**package easyb;
 
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.*;
@@ -92,4 +92,4 @@ scenario "User gives incorrect reference code with correct username", {
 //        selenium.getText("//p[3]").shouldBe "- homma OK! Koe tulee sinulle kunhan se on tarkistettu."
 //        selenium.stop();
 //    }
-//}
+//}**/

@@ -176,7 +176,7 @@ public class FrontServlet extends HttpServlet {
     }
 
     private List<CourseDbModel> formatAndGetCources() throws SQLException {
-        list = new ArrayList<String>();
+        list = new ArrayList<>();
         return oc.getCourseList();
     }
 

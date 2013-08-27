@@ -81,22 +81,11 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
             throw new NotFoundException("Wrong number of frontpage parameters. Expected 5-6, but was "+fields.length+".");
         }
         LOGGER.debug("Kurssi-info luettu: " + examPaper.getQRCodeString());
-        try {
-            batch.setCourseCode(fields[0]);
-            batch.setPeriod(fields[1]);
-            batch.setYear(Integer.parseInt(fields[2]));
-            batch.setType(fields[3]);
-            batch.setCourseNumber(Integer.parseInt(fields[4]));
-        } catch (Exception e) {
-            throw new NotFoundException("Invalid parameter found in frontpage.");
-        }
+        
+        setCourceFields(fields);
+        
         if (fields.length == 6 && !fields[5].toUpperCase().equals(NOBATCHSTRING)) {
-            BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
-            if (bdm.getEmailContent() != null) {
-                batch.setEmailContent(bdm.getEmailContent());
-            }
-                
-            batch.setReportEmailAddress(bdm.getReportEmailAddress());
+            getAndSetInfoAndEmail(fields);
         }
     }
 
@@ -107,6 +96,28 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
         } catch (MessagingException ex) {
             LOGGER.debug("Raporttisähköpostin lähetys epäonnistui.");
             exceptionLogger.logException(ex);
+        }
+    }
+
+    private void setCourceFields(String[] fields) throws NotFoundException {
+        try {
+            batch.setCourseCode(fields[0]);
+            batch.setPeriod(fields[1]);
+            batch.setYear(Integer.parseInt(fields[2]));
+            batch.setType(fields[3]);
+            batch.setCourseNumber(Integer.parseInt(fields[4]));
+        } catch (Exception e) {
+            throw new NotFoundException("Invalid parameter found in frontpage.");
+        }
+    }
+
+    private void getAndSetInfoAndEmail(String[] fields) throws NotFoundException, SQLException {
+        BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
+        if (bdm.getEmailContent() != null || bdm.getEmailContent().equals("")) {
+            batch.setEmailContent(bdm.getEmailContent());
+        }
+        if (bdm.getReportEmailAddress() != null || bdm.getReportEmailAddress().equals("")) {    
+            batch.setReportEmailAddress(bdm.getReportEmailAddress());
         }
     }
 }

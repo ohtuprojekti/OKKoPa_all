@@ -45,6 +45,7 @@ public class Settings extends Properties {
 
         try {
             InputStream currentStream = getClass().getResourceAsStream("/" + fileName);
+            System.out.println(this.getClass().getClassLoader().getResource("").getPath());
             currentProps.loadFromXML(currentStream);
             currentStream.close();
             return currentProps;
