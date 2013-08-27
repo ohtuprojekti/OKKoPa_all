@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author hannahir
  */
 @Component
 public class RetryFailedEmailsStage extends Stage {
