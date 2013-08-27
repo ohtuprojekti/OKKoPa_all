@@ -13,9 +13,6 @@ import java.util.logging.Logger;
  */
 public class Settings extends Properties {
 
-    /**
-     *
-     */
     public static Settings instance = readSettingXML2("settings.xml");
     
     public Settings(String fileName) throws FileNotFoundException, IOException {
