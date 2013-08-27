@@ -14,11 +14,9 @@ public class DeleteOldErrorPDFsStage extends Stage {
         this.errorPDFRemover = errorPDFRemover;
     }
     
-    
     @Override
     public void process(Object in) {
         errorPDFRemover.deleteOldMessages();
         processNextStages(null);
-    }
-    
+    }  
 }
