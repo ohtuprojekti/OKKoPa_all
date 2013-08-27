@@ -32,8 +32,6 @@ public class CreateServlet extends HttpServlet {
         request.setAttribute("lettersYes", Settings.instance.getProperty("gui.create.text.letters.yes"));
         request.setAttribute("lettersNo", Settings.instance.getProperty("gui.create.text.letters.no"));
         
-        System.out.println("\n möö\n\n" + Settings.instance.getProperty("gui.create.text.back") + "\n möö\n\n");
-        
         request.setAttribute("back", Settings.instance.getProperty("gui.create.text.back"));
         request.setAttribute("backTxt", Settings.instance.getProperty("gui.create.text.back.txt"));
         request.setAttribute("backZip", Settings.instance.getProperty("gui.create.text.back.zip"));
