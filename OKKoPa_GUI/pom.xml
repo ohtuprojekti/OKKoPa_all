@@ -8,7 +8,6 @@
         <version>1.0</version>
     </parent>
 
-
     <groupId>fi.helsinki.cs</groupId>
     <artifactId>OKKoPa_GUI</artifactId>
     <version>1.0</version>
@@ -23,15 +22,13 @@
     
     <profiles>
         <profile>
-            <id>easyb</id>
-  
+            <id>easyb</id>  
             <!-- When skipITs is defined, don't run easyb tests. -->  
             <activation>
                 <property>
                     <name>!skipITs</name>
                 </property>
             </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -54,7 +51,6 @@
                     </plugin>			
                 </plugins>
             </build>
-
         </profile>
     </profiles>
 
@@ -187,6 +183,14 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.zeroturnaround</groupId>
+            <artifactId>zt-zip</artifactId>
+            <version>1.6</version>
+            <type>jar</type>
+        </dependency>
+        
+        <!--Servlets-->
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
@@ -197,6 +201,8 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        
+        <!--Selenium-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -219,12 +225,5 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.zeroturnaround</groupId>
-            <artifactId>zt-zip</artifactId>
-            <version>1.6</version>
-            <type>jar</type>
-        </dependency>
     </dependencies>
-
 </project>
