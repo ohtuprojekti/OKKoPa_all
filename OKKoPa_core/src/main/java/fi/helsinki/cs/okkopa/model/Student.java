@@ -12,7 +12,7 @@ public class Student {
     private String username;
     
     /**
-     *Initializes and hold student information.
+     * Initializes and holds student information.
      */
     public Student() {
     }

@@ -12,6 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class GetEmailStage extends Stage<Object, InputStream> {
 
@@ -19,6 +23,11 @@ public class GetEmailStage extends Stage<Object, InputStream> {
     private EmailRead emailReader;
     private ExceptionLogger exceptionLogger;
 
+    /**
+     *
+     * @param server
+     * @param exceptionLogger
+     */
     @Autowired
     public GetEmailStage(EmailRead server, ExceptionLogger exceptionLogger) {
         this.exceptionLogger = exceptionLogger;

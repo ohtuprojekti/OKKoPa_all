@@ -11,6 +11,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {
 
@@ -19,6 +23,12 @@ public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {
     ExceptionLogger exceptionLogger;
     private BatchDetails batch;
 
+    /**
+     *
+     * @param pdfProcessor
+     * @param exceptionLogger
+     * @param batch
+     */
     @Autowired
     public SplitPDFStage(PDFProcessor pdfProcessor, ExceptionLogger exceptionLogger, BatchDetails batch) {
         this.batch = batch;

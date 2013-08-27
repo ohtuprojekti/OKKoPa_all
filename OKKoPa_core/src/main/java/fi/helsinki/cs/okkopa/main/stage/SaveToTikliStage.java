@@ -17,6 +17,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
 
@@ -28,6 +32,13 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
     private Settings settings;
     private BatchDetails batch;
 
+    /**
+     *
+     * @param ldapConnector
+     * @param settings
+     * @param exceptionLogger
+     * @param batch
+     */
     @Autowired
     public SaveToTikliStage(LdapConnector ldapConnector, Settings settings,
             ExceptionLogger exceptionLogger, BatchDetails batch) {

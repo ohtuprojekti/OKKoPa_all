@@ -19,6 +19,10 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author hannahir
+ */
 @Component
 public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
 
@@ -31,6 +35,15 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     private BatchDetailDAO batchDao;
     private final static String NOBATCHSTRING = "NA";
 
+    /**
+     *
+     * @param pDFProcessor
+     * @param exceptionLogger
+     * @param batch
+     * @param settings
+     * @param emailSender
+     * @param batchDao
+     */
     @Autowired
     public ReadCourseInfoStage(PDFProcessor pDFProcessor, ExceptionLogger exceptionLogger, BatchDetails batch, Settings settings, EmailSender emailSender, BatchDetailDAO batchDao) {
         this.pdfProcessor = pDFProcessor;
@@ -55,6 +68,14 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
         }
     }
 
+    /**
+     *
+     * @param examPaper
+     * @throws SQLException
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws NotFoundException
+     */
     public void setBatchDetails(ExamPaper examPaper) throws SQLException, FileNotFoundException, IOException, NotFoundException {
         String[] fields = examPaper.getQRCodeString().split(":");
 
