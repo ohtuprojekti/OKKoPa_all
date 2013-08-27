@@ -49,16 +49,13 @@ public class PDFProcessorImpl implements PDFProcessor {
     @Override
     public String readQRCode(ExamPaper examPaper) throws NotFoundException {
         Exception e = new Exception();
+        
         List<BufferedImage> pageImages = examPaper.getPageImages();
+        
         for (double scaler : SCALERS) {
             for (BufferedImage pageImage : pageImages) {
-                int newWidth = (int) (pageImage.getWidth() * scaler);
-                int newHeight = (int) (pageImage.getHeight() * scaler);
-                BufferedImage resized = new BufferedImage(newWidth, newHeight, pageImage.getType());
-                Graphics2D g = resized.createGraphics();
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.drawImage(pageImage, 0, 0, newWidth, newHeight, 0, 0, pageImage.getWidth(), pageImage.getHeight(), null);
-                g.dispose();
+                BufferedImage resized = createScaledPageImage(pageImage, scaler);
+                
                 try {
                     return reader.readQRCode(resized).getText();
                 } catch (com.google.zxing.NotFoundException | ChecksumException | FormatException ex) {
@@ -73,6 +70,7 @@ public class PDFProcessorImpl implements PDFProcessor {
     public List<BufferedImage> getPageImages(ExamPaper examPaper) throws PdfException {
         PdfDecoder pdf = new PdfDecoder(false);
         pdf.setExtractionMode(PdfDecoder.FINALIMAGES);
+        
         InputStream is = new ByteArrayInputStream(examPaper.getPdf());
         pdf.openPdfFileFromInputStream(is, true);
 
@@ -81,5 +79,19 @@ public class PDFProcessorImpl implements PDFProcessor {
             pageImages.add(pdf.getPageAsImage(i));
         }
         return pageImages;
+    }
+
+    private BufferedImage createScaledPageImage(BufferedImage pageImage, double scaler) {
+        int newWidth = (int) (pageImage.getWidth() * scaler);
+        int newHeight = (int) (pageImage.getHeight() * scaler);
+        
+        BufferedImage resized = new BufferedImage(newWidth, newHeight, pageImage.getType());
+        
+        Graphics2D g = resized.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.drawImage(pageImage, 0, 0, newWidth, newHeight, 0, 0, pageImage.getWidth(), pageImage.getHeight(), null);
+        g.dispose();
+        
+        return resized;
     }
 }
