@@ -35,7 +35,7 @@ public class EmailReadImpl implements EmailRead {
     private final String processedFolderName;
     private final int maximumAttachmentSizeInMegabytes;
     
-    private final int BYTESINMEGABYTE = 1048576;
+    private final int BYTESINMEGABYTE = 1024 * 1024;
 
     /**
      * Constructor, gets settings from the given properties object.
@@ -64,6 +64,7 @@ public class EmailReadImpl implements EmailRead {
     public void connect() throws MessagingException {
         Properties properties = System.getProperties();
         Session session = Session.getDefaultInstance(properties);
+        
         store = session.getStore("imaps");
         store.connect(host, port, username, password);
         inbox = store.getFolder(inboxFolderName);
@@ -74,17 +75,9 @@ public class EmailReadImpl implements EmailRead {
     public List<InputStream> getMessagesAttachments(Message message) throws MessagingException, IOException {
         List<InputStream> attachments = new ArrayList<>();
         Multipart multipart = (Multipart) message.getContent();
-        for (int i = 0; i < multipart.getCount(); i++) {
-            BodyPart bodyPart = multipart.getBodyPart(i);
-            // filter by type, filename and attachment size
-            if (!Part.ATTACHMENT.equalsIgnoreCase(bodyPart.getDisposition())
-                    && !StringUtils.isNotBlank(bodyPart.getFileName()) && 
-                    ((double) bodyPart.getSize() / BYTESINMEGABYTE) <= maximumAttachmentSizeInMegabytes) {
-                continue;
-            }
-            InputStream inputStream = bodyPart.getInputStream();
-            attachments.add(inputStream);
-        }
+        
+        goThroughMultipartsInSearchOfPDFs(multipart, attachments);
+        
         return attachments;
     }
 
@@ -101,14 +94,8 @@ public class EmailReadImpl implements EmailRead {
     public void cleanUpMessage(Message message) throws MessagingException {
         // if not deleting, move to processed folder
         if (!deleteAfterProcessing) {
-            Folder processed = store.getFolder(processedFolderName);
-            if (!processed.exists()) {
-                LOGGER.info("Sähköpostikansiota " + processedFolderName + " ei löytynyt. Luodaan kansio.");
-                processed.create(Folder.HOLDS_MESSAGES);
-            }
-            processed.open(Folder.READ_WRITE);
-            Message[] messages = {message};
-            inbox.copyMessages(messages, processed);
+            Folder processed = getFolder();
+            copyMessage(message, processed);
         }
         // delete in any case from inbox
         message.setFlag(Flags.Flag.DELETED, true);
@@ -122,5 +109,36 @@ public class EmailReadImpl implements EmailRead {
         } catch (Exception ex) {
             // Ignore
         }
+    }
+
+    private void goThroughMultipartsInSearchOfPDFs(Multipart multipart, List<InputStream> attachments) throws MessagingException, IOException {
+        for (int i = 0; i < multipart.getCount(); i++) {
+            BodyPart bodyPart = multipart.getBodyPart(i);
+            
+            // filter by type, filename and attachment size
+            if (!Part.ATTACHMENT.equalsIgnoreCase(bodyPart.getDisposition()) && 
+                    !StringUtils.isNotBlank(bodyPart.getFileName()) && 
+                    ((double) bodyPart.getSize() / BYTESINMEGABYTE) <= maximumAttachmentSizeInMegabytes) {
+                continue;
+            }
+            InputStream inputStream = bodyPart.getInputStream();
+            attachments.add(inputStream);
+        }
+    }
+
+    private Folder getFolder() throws MessagingException {
+        Folder processed = store.getFolder(processedFolderName);
+        if (!processed.exists()) {
+            LOGGER.info("Sähköpostikansiota " + processedFolderName + " ei löytynyt. Luodaan kansio.");
+            processed.create(Folder.HOLDS_MESSAGES);
+        }
+        processed.open(Folder.READ_WRITE);
+        
+        return processed;
+    }
+
+    private void copyMessage(Message message, Folder processed) throws MessagingException {
+        Message[] messages = {message};
+        inbox.copyMessages(messages, processed);
     }
 }
