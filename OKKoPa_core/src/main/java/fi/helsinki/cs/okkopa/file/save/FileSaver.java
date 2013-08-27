@@ -34,17 +34,7 @@ public class FileSaver implements Saver {
         if (files == null) {
             return null;
         }
-
-        ArrayList<File> list = new ArrayList();
-        for (int i = 0; i < files.length; i++) {
-
-            if (files[i].isFile()) {
-                list.add(files[i]);
-
-            }
-        }
-
-        return list;
+        return getActualFiles(files);
     }
 
     /**
@@ -79,5 +69,16 @@ public class FileSaver implements Saver {
             return false;
         }
         return true;
+    }
+
+    private ArrayList<File> getActualFiles(File[] files) {
+        ArrayList<File> list = new ArrayList();
+        for (int i = 0; i < files.length; i++) {
+
+            if (files[i].isFile()) {
+                list.add(files[i]);
+            }
+        }
+        return list;
     }
 }

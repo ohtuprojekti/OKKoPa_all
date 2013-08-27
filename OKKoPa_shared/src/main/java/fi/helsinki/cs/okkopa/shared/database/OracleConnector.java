@@ -83,7 +83,6 @@ public class OracleConnector {
         return this.courseDbModel.query(prepQuery);
     }
 
-
     /**
      *
      * @param course
@@ -99,7 +98,6 @@ public class OracleConnector {
         } else {
             return false;
         }
-
     }
 
     /**
@@ -117,7 +115,6 @@ public class OracleConnector {
         } else {
             return false;
         }
-
     }
 
     /**
@@ -131,5 +128,4 @@ public class OracleConnector {
             throw new SQLException("Rows inserted <> 1");
         } LOGGER.debug("Palaute rivi lisätty tikliin");
     }
-
 }
