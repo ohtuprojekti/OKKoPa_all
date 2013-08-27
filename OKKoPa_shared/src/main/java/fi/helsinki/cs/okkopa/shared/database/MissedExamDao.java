@@ -34,14 +34,12 @@ public class MissedExamDao {
     }
     
     public List<Date> getMissedExams(String anonymousCode) throws SQLException {
-        QRCodeDbModel qrCode = new QRCodeDbModel(anonymousCode, null);
-        MissedExamDbModel missedExam = new MissedExamDbModel(qrCode);
-        
         QueryBuilder<MissedExamDbModel, Void> queryBuilder = missedExamDao.queryBuilder();
         PreparedQuery prepQuery = queryBuilder.where().eq("qrCode", anonymousCode).prepare();
         
         List<MissedExamDbModel> missedExams = missedExamDao.query(prepQuery);
         List<Date> result = new ArrayList<Date>();
+        
         for (MissedExamDbModel model : missedExams) {
             result.add(model.getDate());
         }
