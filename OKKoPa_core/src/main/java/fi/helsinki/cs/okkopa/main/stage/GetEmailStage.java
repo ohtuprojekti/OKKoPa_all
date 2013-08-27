@@ -30,25 +30,36 @@ public class GetEmailStage extends Stage<Object, InputStream> {
         try {
             emailReader.connect();
             LOGGER.debug("Kirjauduttu sisään.");
-            Message nextMessage = emailReader.getNextMessage();
-            while (nextMessage != null) {
-                LOGGER.debug("Sähköposti haettu.");
-                List<InputStream> messagesAttachments = emailReader.getMessagesAttachments(nextMessage);
-                for (InputStream attachment : messagesAttachments) {
-                    LOGGER.debug("Käsitellään liitettä.");
-                    processNextStages(attachment);
-                    IOUtils.closeQuietly(attachment);
-                }
-                emailReader.cleanUpMessage(nextMessage);
-                nextMessage = emailReader.getNextMessage();
-            }
+            
+            loopMessagesAsLongAsThereAreNew();
+            
             LOGGER.debug("Ei lisää viestejä.");
-
-
+            
         } catch (MessagingException | IOException ex) {
             exceptionLogger.logException(ex);
         } finally {
             emailReader.closeQuietly();
+        }
+    }
+
+    private void processAttachments(Message nextMessage) throws MessagingException, IOException {
+        List<InputStream> messagesAttachments = emailReader.getMessagesAttachments(nextMessage);
+        for (InputStream attachment : messagesAttachments) {
+            LOGGER.debug("Käsitellään liitettä.");
+            processNextStages(attachment);
+            IOUtils.closeQuietly(attachment);
+        }
+    }
+
+    private void loopMessagesAsLongAsThereAreNew() throws MessagingException, IOException {
+        Message nextMessage = emailReader.getNextMessage();
+        while (nextMessage != null) {
+            LOGGER.debug("Sähköposti haettu.");
+            
+            processAttachments(nextMessage);
+            
+            emailReader.cleanUpMessage(nextMessage);
+            nextMessage = emailReader.getNextMessage();
         }
     }
 }
