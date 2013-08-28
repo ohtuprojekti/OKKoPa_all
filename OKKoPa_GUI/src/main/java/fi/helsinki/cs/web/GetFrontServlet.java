@@ -1,8 +1,9 @@
 package fi.helsinki.cs.web;
 
 import fi.helsinki.cs.okkopa.database.OkkopaDatabase;
-import fi.helsinki.cs.okkopa.model.BatchDbModel;
 import fi.helsinki.cs.okkopa.reference.Reference;
+import fi.helsinki.cs.okkopa.shared.Settings;
+import fi.helsinki.cs.okkopa.shared.database.model.BatchDbModel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -20,6 +21,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,8 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 public class GetFrontServlet extends HttpServlet {
 
@@ -55,6 +59,16 @@ public class GetFrontServlet extends HttpServlet {
     private OkkopaDatabase database;
     private Reference reference;
     private TextLayout tl;
+    
+    @Autowired
+    Settings settings;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+    }
 
     /**
      * Processes requests for both HTTP
@@ -266,7 +280,7 @@ public class GetFrontServlet extends HttpServlet {
 
     private void addInfoPartForQRCode() throws SQLException {
         if (OkkopaDatabase.isOpen() == false) {
-            database = new OkkopaDatabase();
+            database = new OkkopaDatabase(settings);
         }
         if (email.length() != 0 || info.length() != 0) {
             getUniqueInfoID();

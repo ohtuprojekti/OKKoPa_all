@@ -1,14 +1,27 @@
 package fi.helsinki.cs.web;
 
-import fi.helsinki.cs.okkopa.database.Settings;
+import fi.helsinki.cs.okkopa.shared.Settings;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 public class CreateServlet extends HttpServlet {
+    
+    @Autowired
+    Settings settings;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+    }
 
     /**
      * Processes requests for both HTTP
@@ -22,21 +35,21 @@ public class CreateServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("message", Settings.instance.getProperty("gui.create.header"));
-        request.setAttribute("help", Settings.instance.getProperty("gui.create.help"));
+        request.setAttribute("message", settings.getProperty("gui.create.header"));
+        request.setAttribute("help", settings.getProperty("gui.create.help"));
         
-        request.setAttribute("amount", Settings.instance.getProperty("gui.create.text.amount"));
-        request.setAttribute("size", Settings.instance.getProperty("gui.create.text.size"));
+        request.setAttribute("amount", settings.getProperty("gui.create.text.amount"));
+        request.setAttribute("size", settings.getProperty("gui.create.text.size"));
         
-        request.setAttribute("letters", Settings.instance.getProperty("gui.create.text.letters"));
-        request.setAttribute("lettersYes", Settings.instance.getProperty("gui.create.text.letters.yes"));
-        request.setAttribute("lettersNo", Settings.instance.getProperty("gui.create.text.letters.no"));
+        request.setAttribute("letters", settings.getProperty("gui.create.text.letters"));
+        request.setAttribute("lettersYes", settings.getProperty("gui.create.text.letters.yes"));
+        request.setAttribute("lettersNo", settings.getProperty("gui.create.text.letters.no"));
         
-        request.setAttribute("back", Settings.instance.getProperty("gui.create.text.back"));
-        request.setAttribute("backTxt", Settings.instance.getProperty("gui.create.text.back.txt"));
-        request.setAttribute("backZip", Settings.instance.getProperty("gui.create.text.back.zip"));
+        request.setAttribute("back", settings.getProperty("gui.create.text.back"));
+        request.setAttribute("backTxt", settings.getProperty("gui.create.text.back.txt"));
+        request.setAttribute("backZip", settings.getProperty("gui.create.text.back.zip"));
         
-        request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
+        request.setAttribute("submit", settings.getProperty("gui.form.submit"));
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/create.jsp");
         dispatcher.forward(request, response);

@@ -1,14 +1,27 @@
 package fi.helsinki.cs.web;
 
-import fi.helsinki.cs.okkopa.database.Settings;
+import fi.helsinki.cs.okkopa.shared.Settings;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 public class IndexServlet extends HttpServlet {
+    
+    @Autowired
+    private Settings settings;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+    }
 
     /**
      * Processes requests for both HTTP
@@ -23,13 +36,13 @@ public class IndexServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setAttribute("add", Settings.instance.getProperty("gui.add.link"));
-        request.setAttribute("create", Settings.instance.getProperty("gui.create.link"));
-        request.setAttribute("front", Settings.instance.getProperty("gui.front.link"));
+        request.setAttribute("add", settings.getProperty("gui.add.link"));
+        request.setAttribute("create", settings.getProperty("gui.create.link"));
+        request.setAttribute("front", settings.getProperty("gui.front.link"));
         
-        request.setAttribute("addInfo", Settings.instance.getProperty("gui.add.info"));
-        request.setAttribute("createInfo", Settings.instance.getProperty("gui.create.info"));
-        request.setAttribute("frontInfo", Settings.instance.getProperty("gui.front.info"));
+        request.setAttribute("addInfo", settings.getProperty("gui.add.info"));
+        request.setAttribute("createInfo", settings.getProperty("gui.create.info"));
+        request.setAttribute("frontInfo", settings.getProperty("gui.front.info"));
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp");
             dispatcher.forward(request, response);

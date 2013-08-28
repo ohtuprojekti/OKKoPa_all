@@ -54,7 +54,6 @@ public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
     public void process(ExamPaper examPaper) {
         try {
             readAndSetQRCode(examPaper);
-            
         } catch (PdfException | NotFoundException ex) {
             exceptionLogger.logException(ex);
             LOGGER.debug("QR-koodia ei pystytty lukemaan.");

@@ -1,9 +1,9 @@
 package fi.helsinki.cs.web;
 
 import fi.helsinki.cs.okkopa.database.OkkopaDatabase;
-import fi.helsinki.cs.okkopa.database.Settings;
 import fi.helsinki.cs.okkopa.reference.Reference;
 import fi.helsinki.cs.okkopa.reference.Warning;
+import fi.helsinki.cs.okkopa.shared.Settings;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
@@ -11,10 +11,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 public class AddReferenceServlet extends HttpServlet {
 
@@ -22,7 +25,16 @@ public class AddReferenceServlet extends HttpServlet {
     private String id;
     private String code;
     private boolean noErrorsSoFar;
+    @Autowired
+    private Settings settings;
     private OkkopaDatabase database;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+    }
 
     /**
      * Processes requests for both HTTP
@@ -42,21 +54,21 @@ public class AddReferenceServlet extends HttpServlet {
             if (id != null && code != null) {
                 noErrorsSoFar = true;
                 checkUsername();
-                
+
                 if (noErrorsSoFar == true) {
                     noErrorsSoFar = checkIfTypo();
                 }
                 doTheThingsIfNoErrors();
             }
 
-            request.setAttribute("message", Settings.instance.getProperty("gui.add.header"));
-            request.setAttribute("help", Settings.instance.getProperty("gui.add.help"));
-            
-            request.setAttribute("username", Settings.instance.getProperty("gui.add.text.username"));
-            request.setAttribute("code", Settings.instance.getProperty("gui.add.text.code"));
-            
-            request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
-            
+            request.setAttribute("message", settings.getProperty("gui.add.header"));
+            request.setAttribute("help", settings.getProperty("gui.add.help"));
+
+            request.setAttribute("username", settings.getProperty("gui.add.text.username"));
+            request.setAttribute("code", settings.getProperty("gui.add.text.code"));
+
+            request.setAttribute("submit", settings.getProperty("gui.form.submit"));
+
             request.setAttribute("warning", Warning.getWarning());
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/add.jsp");
@@ -130,7 +142,7 @@ public class AddReferenceServlet extends HttpServlet {
     }
 
     private void setReferenceTypoWarning() {
-        Warning.setWarning(Settings.instance.getProperty("gui.add.reference.typo"));
+        Warning.setWarning(settings.getProperty("gui.add.reference.typo"));
     }
 
     private boolean stringContainsInteger() {
@@ -145,17 +157,17 @@ public class AddReferenceServlet extends HttpServlet {
 
     private void checkUsername() {
         if (id.length() <= 2) {
-            Warning.setWarning(Settings.instance.getProperty("gui.add.username.typo"));
+            Warning.setWarning(settings.getProperty("gui.add.username.typo"));
             noErrorsSoFar = false;
         }
     }
 
     private boolean tryToAddQRCodeToUser() throws SQLException {
         if (OkkopaDatabase.addUSer(code, id)) {
-            Warning.setWarning(Settings.instance.getProperty("gui.add.username.ok"));
+            Warning.setWarning(settings.getProperty("gui.add.username.ok"));
             return true;
         } else {
-            Warning.setWarning(Settings.instance.getProperty("gui.add.username.double"));
+            Warning.setWarning(settings.getProperty("gui.add.username.double"));
             return false;
         }
     }
@@ -166,14 +178,14 @@ public class AddReferenceServlet extends HttpServlet {
                 checkIfMissedExams();
             }
         } else {
-            Warning.setWarning(Settings.instance.getProperty("gui.add.username.noreferenceondb"));
+            Warning.setWarning(settings.getProperty("gui.add.username.noreferenceondb"));
         }
     }
 
     private void doTheThingsIfNoErrors() throws SQLException {
         if (noErrorsSoFar == true) {
             if (OkkopaDatabase.isOpen() == false) {
-                database = new OkkopaDatabase();
+                database = new OkkopaDatabase(settings);
             }
             checkIfQRCodeExists();
             OkkopaDatabase.closeConnectionSource();
@@ -184,7 +196,7 @@ public class AddReferenceServlet extends HttpServlet {
         List<Date> missedExams = OkkopaDatabase.getMissedExams(code);
 
         if (missedExams.size() > 0) {
-            Warning.setWarning(Settings.instance.getProperty("gui.add.missedexams"));
+            Warning.setWarning(settings.getProperty("gui.add.missedexams"));
             for (Date date : missedExams) {
                 Warning.setWarning(date.toString());
             }

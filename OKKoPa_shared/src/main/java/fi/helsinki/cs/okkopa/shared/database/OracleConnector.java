@@ -15,10 +15,12 @@ import java.util.Calendar;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Provides a connection to Kurki Oracle database.
  */
+@Component
 public class OracleConnector {
 
     private static final Logger LOGGER = Logger.getLogger(OracleConnector.class.getName());
