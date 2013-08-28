@@ -114,8 +114,6 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
 5. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi       
 </entry>
 
-    <entry key="gui.front.link">Kurssikansilehden luonti (luennoijat) / Create course front page (lecturers)</entry>
-    <entry key="gui.front.info">Lisätietoa kannesta/ More information</entry>
     
     <entry key="gui.front.infofield">Opiskelijoille lähtevä viesti (ei pakollinen) / Message for students (optional):</entry>
     <entry key="gui.front.emailfield">Sähköpostiosoite (ei pakollinen) / E-mail address (optional):</entry>
@@ -137,31 +135,44 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
 5. Click "submit" to add the codes to the system and download them in the format of your choosing.
 6. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi           
 </entry>
-    <entry key="gui.create.link">Anonyymien QR-koodien luonti (vain admin) / Create anonymous QR-codes (admin only)</entry>
-    <entry key="gui.create.info">Lisätietoa luonnista / More information</entry>
-    <entry key="gui.create.text.amount">Anonyymien QR-koodien määrä / Amount of anonymous QR-codes</entry>
-    <entry key="gui.create.text.size">Merkkien määrä</entry>
-    <entry key="gui.create.text.letters">Käytetäänkö kirjaimia</entry>
-    <entry key="gui.create.text.letters.yes">Kyllä</entry>
-    <entry key="gui.create.text.letters.no">Ei</entry>
-    <entry key="gui.create.text.back">Mitä palautetaan</entry>
-    <entry key="gui.create.text.back.txt">txt-tiedosto viitteistä</entry>
-    <entry key="gui.create.text.back.zip">zip-tiedosto luoduista QR-koodeista</entry>
-    
-    <entry key="gui.add.header">OKKoPa - viitteiden rekisteröinti / OKKoPa-register references</entry>
-    <entry key="gui.add.help">Tarvitsetko apua? Ota yhteys Ossiin! / Do you need help? Contact Ossi!</entry>
-    <entry key="gui.add.link">Viitteiden rekisteröinti / Register references</entry>
-    <entry key="gui.add.info">Lisätietoa rekisteröinnistä / More ingormation about registration.</entry>
-    
-    <entry key="gui.add.text.username">Käyttäjätunnus</entry>
-    <entry key="gui.add.text.code">Viitteesi</entry>
-    
-    <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ Reference is incorrect. Pleace check it and try again.</entry>
-    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters.</entry>
-    <entry key="gui.add.username.ok">Homma OK! Koe tulee sinulle kunhan se on tarkistettu./ Exampaper will be sent to you. when its ready.</entry>
-    <entry key="gui.add.username.double">Joku oli jo rekisteröitynyt antamallesi QR-koodille. Ota yhteyttä Ossiin, ja selvitä hässäkkä./ Reference is registered already. Contact Ossi!</entry>
-    <entry key="gui.add.username.noreferenceondb">Antamaasi viitettä ei löytynyt, etkai vaan yritä syöttää paskaa sisään?/ Reference does not exist.</entry>
 
-    <entry key="gui.add.missedexams">Rekisteröit viitteesi hieman myöhässä, joten tulevat konseptit tulevat sinulle, mutta missasit seuraavissa kellonajoissa konsepteja:/</entry>
+    <entry key="gui.create.text.amount">Anonyymien QR-koodien määrä / Amount of anonymous QR-codes</entry>
+    <entry key="gui.create.text.size">Merkkien määrä / Amount of characters</entry>
+    <entry key="gui.create.text.letters">Käytetäänkö kirjaimia? / Use letters? </entry>
+    <entry key="gui.create.text.letters.yes">Kyllä / Yes</entry>
+    <entry key="gui.create.text.letters.no">Ei / No</entry>
+    <entry key="gui.create.text.back">Mitä palautetaan / Format</entry>
+    <entry key="gui.create.text.back.txt">txt-tiedosto / txt file</entry>
+    <entry key="gui.create.text.back.zip">zip-tiedosto luoduista QR-koodeista / QR-codes in a zip file</entry>
+    
+    <entry key="gui.add.header">OKKoPa - QR-koodin rekisteröinti / OKKoPa - QR-code registration</entry>
+    <entry key="gui.add.help">
+Huomaathan, että QR-koodin käyttö ei korvaa kokeidenpalautustilaisuutta.
+Mikäli sinulla on kysyttävää tenttiin, arvosanaan tai arvosteluun liittyen, ole hyvä ja osallistu kokeidenpalautustilaisuuteen.        
+
+1. Kirjoita käyttäjätunnuksesi.
+2. Kirjoita QR-kooditarraasi painettu 8-merkkinen koodi.
+3. Paina "lähetä" varataksesi QR-koodin käyttäjätunnuksellesi.
+4. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+                
+Please note that using QR-codes does not substitute course feedback sessions. 
+If you have any questions about the exam, your grade or evaluation, please, participate in course feedback session.
+
+1. Fill in your username.
+2. Fill in the 8-digit code from your QR-code sticker.
+3. Click "Submit" in order to reserve the QR-code for your username.
+4. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi         
+    </entry>
+
+    
+    <entry key="gui.add.text.username">Käyttäjätunnus / Username </entry>
+    <entry key="gui.add.text.code">QR-koodi / QR-code</entry>
+    
+    <entry key="gui.add.reference.typo">Virheellinen QR-koodi, tarkista oikeinkirjoitus. / There's an error in the QR-code. Pleace check re-type and try again.</entry>
+    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä. / Username must be at least two characters.</entry>
+    <entry key="gui.add.username.ok">QR-koodin rekistöinti käyttäjätunnuksellesi onnistui! / QR-code registeration to your username was successful!</entry>
+    <entry key="gui.add.username.double">Kirjoittamasi QR-koodi on jo rekisteröity. / Reference is already registered. </entry>
+    <entry key="gui.add.username.noreferenceondb">Antamaasi QR-koodia ei löytynyt. / The QR-code you submitted could not be found.</entry>
+    <entry key="gui.add.missedexams">Rekisteröimällesi koodille on jo palautettu seuraavat kokeet: / Following exams have already been returned: /</entry>
     
 </properties>
