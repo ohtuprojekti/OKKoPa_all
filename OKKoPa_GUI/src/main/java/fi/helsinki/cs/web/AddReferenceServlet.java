@@ -38,9 +38,9 @@ public class AddReferenceServlet extends HttpServlet {
         try {
             Warning.clearWarnings();
 
+            getIDCodeByForm(request);
             if (id != null && code != null) {
                 noErrorsSoFar = true;
-                getIDCodeByForm(request);
                 checkUsername();
                 
                 if (noErrorsSoFar == true) {

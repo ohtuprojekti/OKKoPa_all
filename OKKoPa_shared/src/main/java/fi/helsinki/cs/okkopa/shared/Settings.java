@@ -1,7 +1,6 @@
 package fi.helsinki.cs.okkopa.shared;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -11,6 +10,11 @@ import java.util.Properties;
  */
 public class Settings extends Properties {
 
+    /**
+     *
+     * @param fileName to where xml-file is.
+     * @throws IOException
+     */
     public Settings(String fileName) throws IOException {
         Properties props = readSettingXML(fileName);
 
