@@ -100,18 +100,46 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
     <entry key="gui.form.submit">Lähetä / Submit</entry>
     
     <entry key="gui.front.header">OKKoPa - kurssikansisivun luonti / OKKoPa - create course front page</entry>
-    <entry key="gui.front.help">Tarvitsetko apua? Ota yhteys Ossiin! / Do you nedd help? Contact Ossi!</entry>
+    <entry key="gui.front.help">
+1. Valitse kurssi jolle haluat luoda kansilehden.
+2. Kirjoita halutessasi viesti (esim. kokeenpalautustilaisuuden ajankohta) opiskelijoille. Tämä viesti lisätään opiskelijalle lähtevän sähköpostin perään.
+3. Lisää halutessasi sähköpostiosoite, johon saat ilmoituksen skannauksen onnistumisesta (sähköpostiosoite ei näy opiskelijoille).
+4. Paina "lähetä" tallentaaksesi tai tulostaaksesi PDF-kansilehden.
+5. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+               
+1. Please select a course you want to create a front page for.
+2. If you want you can write a message (i.e time and place of the course feedback session) for students. This message will be appended to an e-mail that will be sent to students.
+3. You can also add an e-mail address for receiving a report of the success on scanning the exams (e-mail address will not be shown to students).
+4. Click "submit" to save or print the PDF cover page.
+5. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi       
+</entry>
+
     <entry key="gui.front.link">Kurssikansilehden luonti (luennoijat) / Create course front page (lecturers)</entry>
     <entry key="gui.front.info">Lisätietoa kannesta/ More information</entry>
     
-    <entry key="gui.front.infofield">Opiskelijoille lähtevä info / Information wich will be sent to students.</entry>
-    <entry key="gui.front.emailfield">Luennoitsijan/assarin email</entry>
+    <entry key="gui.front.infofield">Opiskelijoille lähtevä viesti (ei pakollinen) / Message for students (optional):</entry>
+    <entry key="gui.front.emailfield">Sähköpostiosoite (ei pakollinen) / E-mail address (optional):</entry>
     
-    <entry key="gui.create.header">OKKoPa - viitteiden luonti / OKKoPa -  create references</entry>
-    <entry key="gui.create.help">Tarvitsetko apua? Ota yhteys Ossiin! / Do you need help? Contact Ossi!</entry>
-    <entry key="gui.create.link">Viitteiden luonti (vain admin) / Create references (only admin)</entry>
+    <entry key="gui.create.header">OKKoPa - Anonyymien QR-koodien luonti / OKKoPa -  Create anonymous QR-codes</entry>
+    
+<entry key="gui.create.help">
+1. Valitse kuinka monta koodia haluat luoda.        
+2. Valitse kuinka monta merkkiä haluat koodien sisältävän.       
+3. Valitse haluatko koodin sisältävän kirjaimia.
+4. Valitse missä muodossa haluat tallentaa koodit.
+5. Paina "lähetä" lisätäksesi koodit järjestelmään sekä tallentaaksesi halutussa formaatissa.
+6. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+               
+1. Select the amount of codes to be generated.
+2. Select the number of characters you want to use in a code.       
+3. Choose if you want the code to contain letters.       
+4. Choose the in which format you want to download the codes.
+5. Click "submit" to add the codes to the system and download them in the format of your choosing.
+6. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi           
+</entry>
+    <entry key="gui.create.link">Anonyymien QR-koodien luonti (vain admin) / Create anonymous QR-codes (admin only)</entry>
     <entry key="gui.create.info">Lisätietoa luonnista / More information</entry>
-    <entry key="gui.create.text.amount">Viitteiden määrä</entry>
+    <entry key="gui.create.text.amount">Anonyymien QR-koodien määrä / Amount of anonymous QR-codes</entry>
     <entry key="gui.create.text.size">Merkkien määrä</entry>
     <entry key="gui.create.text.letters">Käytetäänkö kirjaimia</entry>
     <entry key="gui.create.text.letters.yes">Kyllä</entry>
