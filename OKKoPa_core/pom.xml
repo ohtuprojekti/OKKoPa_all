@@ -97,7 +97,6 @@
                                 <filter>
                                     <artifact>*:*</artifact>
                                     <excludes>
-                                        <exclude>passwords.xml</exclude>
                                         <exclude>settings.xml</exclude>
                                         <exclude>keystore</exclude>
                                         <exclude>META-INF/*.SF</exclude>
