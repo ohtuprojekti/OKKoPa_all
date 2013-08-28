@@ -64,10 +64,10 @@ public class QRCodeDAO {
     }
 
     /**
-     *
-     * @param qrCodeString
-     * @param UserId
-     * @return
+     * Adds student username for given anonymous reference-code.
+     * @param qrCodeString user-given qr-code reference.
+     * @param UserId students username.
+     * @return true or false if wasn't already registered to someone else.
      * @throws SQLException
      */
     public boolean addUser(String qrCodeString, String UserId) throws SQLException {

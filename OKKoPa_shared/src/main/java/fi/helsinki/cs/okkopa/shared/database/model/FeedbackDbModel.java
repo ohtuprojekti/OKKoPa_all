@@ -1,6 +1,5 @@
 package fi.helsinki.cs.okkopa.shared.database.model;
 
-import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -8,6 +7,9 @@ import fi.helsinki.cs.okkopa.shared.Settings;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Kurki database model for feedback info for student in given cource.
+ */
 @DatabaseTable(tableName = "TK_TESTI.SUORITEPALAUTE")
 public class FeedbackDbModel {
 
@@ -42,6 +44,28 @@ public class FeedbackDbModel {
     @DatabaseField(columnName = "SUORITUSPALAUTE_DATA_NIMI")
     private String fileName;
 
+    public FeedbackDbModel() {
+    }
+
+    /**
+     * Initializes settings, cource database model, file-blob and student number. 
+     * @param settings
+     * @param course
+     * @param blob
+     * @param studentNumber
+     */
+    public FeedbackDbModel(Settings settings, CourseDbModel course, byte[] blob, String studentNumber) {
+        this.studentNumber = studentNumber;
+        this.date = Calendar.getInstance().getTime();
+       
+        setCourceData(course);
+        
+        setBlob(blob, settings);
+        
+        //Check these before release:
+        setTikliSettings(settings);
+    }
+    
     public String getStudentNumber() {
         return studentNumber;
     }
@@ -96,21 +120,6 @@ public class FeedbackDbModel {
 
     public String getFileName() {
         return fileName;
-    }
-
-    public FeedbackDbModel() {
-    }
-
-    public FeedbackDbModel(Settings settings, CourseDbModel course, byte[] blob, String studentNumber) {
-        this.studentNumber = studentNumber;
-        this.date = Calendar.getInstance().getTime();
-       
-        setCourceData(course);
-        
-        setBlob(blob, settings);
-        
-        //Check these before release:
-        setTikliSettings(settings);
     }
 
     public int getId() {

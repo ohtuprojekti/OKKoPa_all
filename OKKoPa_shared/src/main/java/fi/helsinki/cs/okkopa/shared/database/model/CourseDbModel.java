@@ -3,6 +3,9 @@ package fi.helsinki.cs.okkopa.shared.database.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+/**
+ * Kurki database model for cource info.
+ */
 @DatabaseTable(tableName = "KURSSI")
 public class CourseDbModel {
 
