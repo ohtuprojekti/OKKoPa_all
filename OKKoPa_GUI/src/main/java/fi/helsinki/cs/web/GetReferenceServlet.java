@@ -174,7 +174,7 @@ public class GetReferenceServlet extends HttpServlet {
     }
 
     private int addToDBAndFileOrDoAgain(String line, int i) throws SQLException, FileNotFoundException, IOException {
-        if (line != null || line.equals("") == false) {
+        if (line != null && !line.equals("")) {
             if (OkkopaDatabase.addQRCode(line) == false) {
                 i--;
                 System.out.println("möö");
