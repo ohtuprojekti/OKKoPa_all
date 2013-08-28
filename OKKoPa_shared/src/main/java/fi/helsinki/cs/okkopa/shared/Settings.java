@@ -4,11 +4,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import org.springframework.stereotype.Component;
 
 /**
  * Manages and reads XML files.
  */
+@Component
 public class Settings extends Properties {
+
+    public Settings() throws IOException {
+        this(System.getenv("OKKOPA_SETTINGS_FILEPATH"));
+    }
 
     /**
      *
@@ -17,12 +23,6 @@ public class Settings extends Properties {
      */
     public Settings(String fileName) throws IOException {
         Properties props = readSettingXML(fileName);
-
-        try {
-            props.putAll(readSettingXML("passwords.xml"));
-        } catch (IOException ex) {
-            // doesn't matter if there is no passwords in separate file
-        }
         this.putAll(props);
     }
 
