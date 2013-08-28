@@ -179,15 +179,6 @@ public class GetFrontServlet extends HttpServlet {
         url = "http://cs.helsinki.fi/okkopa";
         makeFontSettings(35, Color.BLACK);
         g2d.drawString(url, (width * 3) / 2 - (fm.stringWidth(url) / 2), (height * 3) / 2 - 100);
-        
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        Font[] fonts = ge.getAllFonts();
-
-        for (int i = 0; i < fonts.length; i++) {
-            
-            System.out.print(fonts[i].getFontName() + " : ");
-            System.out.println(fonts[i].getFamily());
-        }
     }
 
     private void closeImages() {

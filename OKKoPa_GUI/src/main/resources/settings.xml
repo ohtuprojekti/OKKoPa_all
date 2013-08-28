@@ -96,6 +96,7 @@
     <entry key="gui.create.help">Tarvitsetko apua? Ota yhteys Ossiin!/ Do you need help? Contact Ossi!</entry>
     <entry key="gui.create.link">Viitteiden luonti (vain admin) /Create references (only admin)</entry>
     <entry key="gui.create.info">Lisätietoa luonnista/ More information</entry>
+    
     <entry key="gui.create.text.amount">Viitteiden määrä</entry>
     <entry key="gui.create.text.size">Merkkien määrä</entry>
     <entry key="gui.create.text.letters">Käytetäänkö kirjaimia</entry>
