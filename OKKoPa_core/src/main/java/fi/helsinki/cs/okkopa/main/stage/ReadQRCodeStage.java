@@ -16,9 +16,6 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- *
- */
 @Component
 public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
 
@@ -54,7 +51,6 @@ public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
     public void process(ExamPaper examPaper) {
         try {
             readAndSetQRCode(examPaper);
-            
         } catch (PdfException | NotFoundException ex) {
             exceptionLogger.logException(ex);
             LOGGER.debug("QR-koodia ei pystytty lukemaan.");

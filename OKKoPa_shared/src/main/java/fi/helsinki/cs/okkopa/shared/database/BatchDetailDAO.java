@@ -1,11 +1,10 @@
-package fi.helsinki.cs.okkopa.database;
+package fi.helsinki.cs.okkopa.shared.database;
 
-import fi.helsinki.cs.okkopa.shared.database.OkkopaDatabaseConnectionSource;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.table.TableUtils;
+import fi.helsinki.cs.okkopa.shared.database.model.BatchDbModel;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
-import fi.helsinki.cs.okkopa.model.BatchDbModel;
 import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -2,6 +2,7 @@ package fi.helsinki.cs.web;
 
 import fi.helsinki.cs.okkopa.database.OkkopaDatabase;
 import fi.helsinki.cs.okkopa.reference.Reference;
+import fi.helsinki.cs.okkopa.shared.Settings;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -19,6 +20,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +29,8 @@ import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.zeroturnaround.zip.ZipUtil;
 
 public class GetReferenceServlet extends HttpServlet {
@@ -35,7 +39,6 @@ public class GetReferenceServlet extends HttpServlet {
     private String size;
     private String letters;
     private Reference reference;
-    private OkkopaDatabase database;
     private PrintWriter writer;
     private Graphics2D g2d;
     private BufferedImage bufferedImage;
@@ -49,6 +52,16 @@ public class GetReferenceServlet extends HttpServlet {
     private ByteArrayOutputStream stream;
     private String back;
     private String url;
+    private OkkopaDatabase database;
+    @Autowired
+    Settings settings;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+    }
 
     /**
      * Processes requests for both HTTP
@@ -71,7 +84,7 @@ public class GetReferenceServlet extends HttpServlet {
             }
 
             if (OkkopaDatabase.isOpen() == false) {
-                database = new OkkopaDatabase();
+                database = new OkkopaDatabase(settings);
             }
 
             reference = new Reference(Integer.valueOf(size));
@@ -138,8 +151,8 @@ public class GetReferenceServlet extends HttpServlet {
 
     private void getAmountSizeLettersBackByForm(HttpServletRequest request) {
         amount = request.getParameter("amount");
-        size = request.getParameter("size");
-        letters = request.getParameter("letters");
+        size = settings.getProperty("gui.create.code.size");
+        letters = settings.getProperty("gui.create.code.letters");
         back = request.getParameter("back");
     }
 
@@ -161,7 +174,7 @@ public class GetReferenceServlet extends HttpServlet {
     }
 
     private int addToDBAndFileOrDoAgain(String line, int i) throws SQLException, FileNotFoundException, IOException {
-        if (line != null || line.equals("") == false) {
+        if (line != null && !line.equals("")) {
             if (OkkopaDatabase.addQRCode(line) == false) {
                 i--;
                 System.out.println("möö");
@@ -178,7 +191,7 @@ public class GetReferenceServlet extends HttpServlet {
 
     private String getReference() {
         String line;
-        if (letters.equals("yes")) {
+        if (letters.equals("true")) {
             line = reference.getReference();
         } else {
             line = "" + reference.getReferenceNumber();
@@ -190,7 +203,7 @@ public class GetReferenceServlet extends HttpServlet {
         makeQRCodeImage(line);
         makeGraphics2DForRender();
         fillRestWithWhite();
-        
+
         drawUrlToImage();
         drawTextToImage(line);
 
@@ -226,12 +239,12 @@ public class GetReferenceServlet extends HttpServlet {
     private void drawUrlToImage() {
         url = "http://cs.helsinki.fi/okkopa";
         makeFontSettings(24, Color.BLACK);
-        g2d.drawString(url, width + 200/2 - (fm.stringWidth(url) / 2), height/2 - 10);
+        g2d.drawString(url, width + 200 / 2 - (fm.stringWidth(url) / 2), height / 2 - 10);
     }
 
     private void drawTextToImage(String line) {
         makeFontSettings(70, Color.BLACK);
-        g2d.drawString(line, width + 200/2 - (fm.stringWidth(line) / 2), height/2 - 90);
+        g2d.drawString(line, width + 200 / 2 - (fm.stringWidth(line) / 2), height / 2 - 90);
     }
 
     private void closeImages() {
@@ -253,6 +266,6 @@ public class GetReferenceServlet extends HttpServlet {
 
     private void fillRestWithWhite() {
         g2d.setColor(Color.WHITE);
-        g2d.fillRect(width-50, 0, 400, height);
+        g2d.fillRect(width - 50, 0, 400, height);
     }
 }

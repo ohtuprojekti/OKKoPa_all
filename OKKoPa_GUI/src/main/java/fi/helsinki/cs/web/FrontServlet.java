@@ -1,8 +1,8 @@
 package fi.helsinki.cs.web;
 
-import fi.helsinki.cs.okkopa.database.OracleConnector;
-import fi.helsinki.cs.okkopa.database.Settings;
-import fi.helsinki.cs.okkopa.model.CourseDbModel;
+import fi.helsinki.cs.okkopa.shared.Settings;
+import fi.helsinki.cs.okkopa.shared.database.OracleConnector;
+import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,10 +11,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 public class FrontServlet extends HttpServlet {
 
@@ -28,7 +31,17 @@ public class FrontServlet extends HttpServlet {
     private String courceYear;
     private String valueName;
     private List<CourseDbModel> cources;
+    @Autowired
     private OracleConnector oc;
+    @Autowired
+    private Settings settings;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+    }
 
     /**
      * Processes requests for both HTTP
@@ -42,12 +55,12 @@ public class FrontServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        request.setAttribute("message", Settings.instance.getProperty("gui.front.header"));
-        request.setAttribute("help", Settings.instance.getProperty("gui.front.help"));
-        request.setAttribute("info", Settings.instance.getProperty("gui.front.infofield"));
-        request.setAttribute("email", Settings.instance.getProperty("gui.front.emailfield"));
+        request.setAttribute("message", settings.getProperty("gui.front.header"));
+        request.setAttribute("help", settings.getProperty("gui.front.help"));
+        request.setAttribute("info", settings.getProperty("gui.front.infofield"));
+        request.setAttribute("email", settings.getProperty("gui.front.emailfield"));
         
-        request.setAttribute("submit", Settings.instance.getProperty("gui.form.submit"));
+        request.setAttribute("submit", settings.getProperty("gui.form.submit"));
         
         oc = connectToDB();
         
@@ -183,7 +196,7 @@ public class FrontServlet extends HttpServlet {
     }
 
     private OracleConnector connectToDB() throws SQLException {
-        OracleConnector oc = new OracleConnector(Settings.instance);
+        OracleConnector oc = new OracleConnector(settings);
         oc.connect();
         return oc;
     }

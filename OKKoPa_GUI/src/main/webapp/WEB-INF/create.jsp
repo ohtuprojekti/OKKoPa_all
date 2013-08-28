@@ -38,45 +38,13 @@
                             <option value="300">300</option>
                             <option value="400">400</option>
                             <option value="500">500</option>
-                            <option value="600">600</option>
-                            <option value="700">700</option>
-                            <option value="800">800</option>
-                            <option value="900">900</option>
-                            <option value="1000">1000</option>
-                            <option value="2000">2000</option>
-                            <option value="3000">3000</option>
-                            <option value="4000">4000</option>
-                            <option value="5000">5000</option>
-                            <option value="6000">6000</option>
-                            <option value="7000">7000</option>
-                            <option value="8000">8000</option>
-                            <option value="9000">9000</option>
-                            <option value="10000">10000</option>
                         </select></td>
                 </tr>
                 <tr>
-                    <td>${size}</td><td><select name="size">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6" selected="selected">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                        </select></td>
+                    <td>${size}</td><td>${codeSize}</td>
                 </tr>
                 <tr>
-                    <td>${letters}</td><td>
-                        <input type="radio" name="letters" value="yes" checked="checked">${lettersYes}
-                        <input type="radio" name="letters" value="no">${lettersNo}</td>
+                    <td>${letters}</td><td>${lettersWhat}</td>
                 </tr>
                 <tr>
                     <td>${back}</td><td>

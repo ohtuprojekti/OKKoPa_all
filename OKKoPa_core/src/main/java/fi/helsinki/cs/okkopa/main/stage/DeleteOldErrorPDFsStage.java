@@ -4,10 +4,6 @@ import fi.helsinki.cs.okkopa.file.delete.ErrorPDFRemover;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author hannahir
- */
 @Component
 public class DeleteOldErrorPDFsStage extends Stage {
 

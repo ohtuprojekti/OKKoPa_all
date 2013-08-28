@@ -7,9 +7,10 @@ import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import fi.helsinki.cs.okkopa.model.BatchDbModel;
-import fi.helsinki.cs.okkopa.model.MissedExamDbModel;
-import fi.helsinki.cs.okkopa.model.QRCodeDbModel;
+import fi.helsinki.cs.okkopa.shared.Settings;
+import fi.helsinki.cs.okkopa.shared.database.model.BatchDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.MissedExamDbModel;
+import fi.helsinki.cs.okkopa.shared.database.model.QRCodeDbModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,10 +28,10 @@ public class OkkopaDatabase {
         return open;
     }
 
-    public OkkopaDatabase() throws SQLException {
-        String databaseUrl = Settings.instance.getProperty("database.h2.url");
-        String username = Settings.instance.getProperty("database.h2.user");
-        String password = Settings.instance.getProperty("database.h2.password");
+    public OkkopaDatabase(Settings settings) throws SQLException {
+        String databaseUrl = settings.getProperty("database.h2.url");
+        String username = settings.getProperty("database.h2.user");
+        String password = settings.getProperty("database.h2.password");
 
         // create a connection source to our database
         connectionSource = new JdbcConnectionSource(databaseUrl, username, password);
