@@ -1,5 +1,8 @@
 package fi.helsinki.cs.okkopa.shared.exception;
 
+/**
+ * Extended exception for events where something is not found.
+ */
 public class NotFoundException extends Exception {
 
     public NotFoundException() {

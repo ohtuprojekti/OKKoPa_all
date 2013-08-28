@@ -50,7 +50,7 @@ public class OracleConnector {
     }
 
     /**
-     *
+     * Connects to Oracle database.
      * @throws SQLException
      */
     public void connect() throws SQLException {
@@ -58,7 +58,7 @@ public class OracleConnector {
     }
 
     /**
-     *
+     * Disconnects from the Oracle database.
      */
     public void disconnect() {
         try {
@@ -67,10 +67,11 @@ public class OracleConnector {
             LOGGER.error("Could not disconnect from Oracle DB (Kurki).");
         }
     }
-
+    
     /**
-     *
-     * @return
+     * Returs list of database models (=rows) where one model-object has info of one line in database. In this instance it has info of different cources.
+     * Limited by "how many years old cources" in settings.xml.
+     * @return List of datadase models of the cources.
      * @throws SQLException
      */
     public List<CourseDbModel> getCourseList() throws SQLException {
@@ -84,9 +85,9 @@ public class OracleConnector {
     }
 
     /**
-     *
-     * @param course
-     * @return
+     * Checks if given cource exists in Kurki databse.
+     * @param course Database model which is to be checked.
+     * @return true or false if exists.
      * @throws SQLException
      */
     public boolean courseExists(CourseDbModel course) throws SQLException {
@@ -101,9 +102,9 @@ public class OracleConnector {
     }
 
     /**
-     *
-     * @param student
-     * @return
+     * Checks if student exists in Kurki database.
+     * @param student database model of wanted student.
+     * @return true or false if exists.
      * @throws SQLException
      */
     public boolean studentExists(StudentDbModel student) throws SQLException {
@@ -118,8 +119,8 @@ public class OracleConnector {
     }
 
     /**
-     *
-     * @param newRow
+     * Iserts new Feedback for some cource with given pdf-attachment.
+     * @param newRow database model of new feedback.
      * @throws SQLException
      */
     public void insertFeedBackRow(FeedbackDbModel newRow) throws SQLException {

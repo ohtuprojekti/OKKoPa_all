@@ -33,9 +33,9 @@ public class QRCodeDAO {
     }
 
     /**
-     *
-     * @param qrcodeString
-     * @return
+     * Returns username of given anonymous reference.
+     * @param qrcodeString anonymous label.
+     * @return Student username.
      * @throws SQLException
      * @throws NotFoundException
      */
@@ -47,6 +47,12 @@ public class QRCodeDAO {
         return qrCode.getUserId();
     }
 
+    /**
+     * Adds new anonymous reference for database so it can be registered for students later.
+     * @param qrCodeString newly generated qr-code.
+     * @return return true or false if given code does not already exists in database.
+     * @throws SQLException
+     */
     public boolean addQRCode(String qrCodeString) throws SQLException {
         QRCodeDbModel qrCode = new QRCodeDbModel(qrCodeString, null);
 
@@ -57,6 +63,13 @@ public class QRCodeDAO {
         return false;
     }
 
+    /**
+     * Adds student username for given anonymous reference-code.
+     * @param qrCodeString user-given qr-code reference.
+     * @param UserId students username.
+     * @return true or false if wasn't already registered to someone else.
+     * @throws SQLException
+     */
     public boolean addUser(String qrCodeString, String UserId) throws SQLException {
         QRCodeDbModel qrCode = qrCodeDao.queryForId(qrCodeString);
 
