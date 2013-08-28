@@ -151,8 +151,8 @@ public class GetReferenceServlet extends HttpServlet {
 
     private void getAmountSizeLettersBackByForm(HttpServletRequest request) {
         amount = request.getParameter("amount");
-        size = request.getParameter("size");
-        letters = request.getParameter("letters");
+        size = settings.getProperty("gui.create.code.size");
+        letters = settings.getProperty("gui.create.code.letters");
         back = request.getParameter("back");
     }
 
@@ -191,7 +191,7 @@ public class GetReferenceServlet extends HttpServlet {
 
     private String getReference() {
         String line;
-        if (letters.equals("yes")) {
+        if (letters.equals("true")) {
             line = reference.getReference();
         } else {
             line = "" + reference.getReferenceNumber();

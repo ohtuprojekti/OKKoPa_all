@@ -97,11 +97,12 @@
     <entry key="gui.create.link">Viitteiden luonti (vain admin) /Create references (only admin)</entry>
     <entry key="gui.create.info">Lisätietoa luonnista/ More information</entry>
     
+    <entry key="gui.create.code.size">8</entry>
+    <entry key="gui.create.code.letters">true</entry> <!-- or false -->
+    
     <entry key="gui.create.text.amount">Viitteiden määrä</entry>
     <entry key="gui.create.text.size">Merkkien määrä</entry>
     <entry key="gui.create.text.letters">Käytetäänkö kirjaimia</entry>
-    <entry key="gui.create.text.letters.yes">Kyllä</entry>
-    <entry key="gui.create.text.letters.no">Ei</entry>
     <entry key="gui.create.text.back">Mitä palautetaan</entry>
     <entry key="gui.create.text.back.txt">txt-tiedosto viitteistä</entry>
     <entry key="gui.create.text.back.zip">zip-tiedosto luoduista QR-koodeista</entry>

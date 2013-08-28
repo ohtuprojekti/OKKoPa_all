@@ -41,28 +41,10 @@
                         </select></td>
                 </tr>
                 <tr>
-                    <td>${size}</td><td><select name="size">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6" selected="selected">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                        </select></td>
+                    <td>${size}</td><td>${codeSize}</td>
                 </tr>
                 <tr>
-                    <td>${letters}</td><td>
-                        <input type="radio" name="letters" value="yes" checked="checked">${lettersYes}
-                        <input type="radio" name="letters" value="no">${lettersNo}</td>
+                    <td>${letters}</td><td>${lettersWhat}</td>
                 </tr>
                 <tr>
                     <td>${back}</td><td>

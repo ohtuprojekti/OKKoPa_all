@@ -41,10 +41,10 @@ public class CreateServlet extends HttpServlet {
         request.setAttribute("amount", settings.getProperty("gui.create.text.amount"));
         request.setAttribute("size", settings.getProperty("gui.create.text.size"));
         
-        request.setAttribute("letters", settings.getProperty("gui.create.text.letters"));
-        request.setAttribute("lettersYes", settings.getProperty("gui.create.text.letters.yes"));
-        request.setAttribute("lettersNo", settings.getProperty("gui.create.text.letters.no"));
+        request.setAttribute("codeSize", settings.getProperty("gui.create.code.size"));
+        request.setAttribute("lettersWhat", settings.getProperty("gui.create.code.letters"));
         
+        request.setAttribute("letters", settings.getProperty("gui.create.text.letters"));
         request.setAttribute("back", settings.getProperty("gui.create.text.back"));
         request.setAttribute("backTxt", settings.getProperty("gui.create.text.back.txt"));
         request.setAttribute("backZip", settings.getProperty("gui.create.text.back.zip"));
