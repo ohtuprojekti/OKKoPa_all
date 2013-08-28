@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.helsinki.cs.okkopa.shared.database.model;
 
 import com.j256.ormlite.field.DatabaseField;
@@ -9,6 +5,9 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 
+/**
+ * OKKoPa's own database's model for miseed exam info for anonymous references processed before students registration.
+ */
 @DatabaseTable(tableName = "MissedExam")
 public class MissedExamDbModel {
     @DatabaseField(columnName = "qrCode", foreign = true, canBeNull = false)
@@ -21,6 +20,10 @@ public class MissedExamDbModel {
     }
     
     
+    /**
+     * Creates new model with given qr-code datqabase model.
+     * @param qRCode
+     */
     public MissedExamDbModel(QRCodeDbModel qRCode) {
         this.qrCode = qRCode;
         this.date = new Date();

@@ -16,9 +16,6 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- *
- */
 @Component
 public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
 

@@ -19,10 +19,6 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author hannahir
- */
 @Component
 public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
 

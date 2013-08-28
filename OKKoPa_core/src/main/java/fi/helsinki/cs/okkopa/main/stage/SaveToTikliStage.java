@@ -9,7 +9,6 @@ import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
 import fi.helsinki.cs.okkopa.model.ExamPaper;
-import fi.helsinki.cs.okkopa.model.Student;
 import fi.helsinki.cs.okkopa.shared.database.model.FeedbackDbModel;
 import fi.helsinki.cs.okkopa.shared.database.model.StudentDbModel;
 import java.security.GeneralSecurityException;
@@ -18,9 +17,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- *
- */
 @Component
 public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
 

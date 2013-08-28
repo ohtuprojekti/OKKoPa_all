@@ -44,7 +44,7 @@
     
     <!-- Oracle settings (Kurki) -->
     <entry key="database.oracle.host">bodbacka.cs.helsinki.fi</entry>
-    <entry key="database.oracle.user">tk_testi</entry>
+    <entry key="database.oracle.user">okkopa</entry>
     <entry key="database.oracle.port">1521</entry>
     <entry key="database.oracle.instance">test</entry>
     <entry key="database.oracle.showcoursesforyears">5</entry>
@@ -113,11 +113,11 @@
     <entry key="gui.add.text.username">Käyttäjätunnus</entry>
     <entry key="gui.add.text.code">Viitteesi</entry>
     
-    <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus./ Reference is incorrect. Pleace check it and try again.</entry>
-    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä./ Username must be at least two characters.</entry>
-    <entry key="gui.add.username.ok">Homma OK! Koe tulee sinulle kunhan se on tarkistettu./ Exampaper will be sent to you. when its ready.</entry>
-    <entry key="gui.add.username.double">Joku oli jo rekisteröitynyt antamallesi QR-koodille. Ota yhteyttä Ossiin, ja selvitä hässäkkä./ Reference is registered already. Contact Ossi!</entry>
-    <entry key="gui.add.username.noreferenceondb">Antamaasi viitettä ei löytynyt, etkai vaan yritä syöttää paskaa sisään?/ Reference does not exist.</entry>
+    <entry key="gui.add.reference.typo">Kirjoitit viitteesi väärin, tarkista oikeinkirjoitus. / Reference is incorrect. Pleace check it and try again.</entry>
+    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä. / Username must be at least two characters long.</entry>
+    <entry key="gui.add.username.ok">Homma OK! Koe tulee sinulle kunhan se on tarkistettu. / Exampaper will be sent to you when it's ready.</entry>
+    <entry key="gui.add.username.double">Joku oli jo rekisteröitynyt antamallesi QR-koodille. / Reference is already registered.</entry>
+    <entry key="gui.add.username.noreferenceondb">Antamaasi viitettä ei löytynyt. / Reference does not exist.</entry>
 
     <entry key="gui.add.missedexams">Rekisteröit viitteesi hieman myöhässä, joten tulevat konseptit tulevat sinulle, mutta missasit seuraavissa kellonajoissa konsepteja:/</entry>
     
