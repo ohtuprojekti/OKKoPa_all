@@ -38,20 +38,6 @@
                             <option value="300">300</option>
                             <option value="400">400</option>
                             <option value="500">500</option>
-                            <option value="600">600</option>
-                            <option value="700">700</option>
-                            <option value="800">800</option>
-                            <option value="900">900</option>
-                            <option value="1000">1000</option>
-                            <option value="2000">2000</option>
-                            <option value="3000">3000</option>
-                            <option value="4000">4000</option>
-                            <option value="5000">5000</option>
-                            <option value="6000">6000</option>
-                            <option value="7000">7000</option>
-                            <option value="8000">8000</option>
-                            <option value="9000">9000</option>
-                            <option value="10000">10000</option>
                         </select></td>
                 </tr>
                 <tr>
