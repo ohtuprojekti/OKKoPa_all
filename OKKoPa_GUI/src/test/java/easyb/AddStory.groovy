@@ -6,7 +6,6 @@ import fi.helsinki.cs.okkopa.*
 import fi.helsinki.cs.okkopa.database.OkkopaDatabase;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.DefaultSelenium;
-import org.openqa.selenium.server.SeleniumServer
 
 description "Adding anonymous references"
  
@@ -16,13 +15,13 @@ scenario "User gives empty reference code and username", {
     
     given "Viitteiden rekisteröinti is selected",{     
         WebDriver driver = new HtmlUnitDriver(true);
-        String baseUrl = "http://localhost:8081";
+        String baseUrl = "http://localhost:8080";
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
         selenium.open("/add");
     }
  
     when "empty form is submitted", {  
-        selenium.click("name=Lähetä");
+        selenium.click("css=input[type=\"submit\"]");
         selenium.waitForPageToLoad("30000");
     }
  
@@ -38,7 +37,7 @@ scenario "User gives incorrect reference code with correct username", {
     
     given "Viitteiden rekisteröinti is selected",{
         WebDriver driver = new HtmlUnitDriver(true);
-        String baseUrl = "http://localhost:8081";
+        String baseUrl = "http://localhost:8080";
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
         selenium.open("/add");
     }
@@ -46,7 +45,7 @@ scenario "User gives incorrect reference code with correct username", {
     when "incorrect reference code is submitted", { 
         selenium.typeKeys("name=id", "testi");
 	selenium.typeKeys("name=code", "shgsh57");
-        selenium.click("name=Lähetä");
+        selenium.click("css=input[type=\"submit\"]");
         selenium.waitForPageToLoad("30000");
     }
  
@@ -55,36 +54,3 @@ scenario "User gives incorrect reference code with correct username", {
         selenium.stop();
     }
 }
-
-
-//
-//scenario "User gives correct reference code and username", {
-//    
-//    Selenium selenium
-//    
-//    given "Viitteiden rekisteröinti is selected",{
-//        WebDriver driver = new HtmlUnitDriver(true);
-//        String baseUrl = "http://localhost:8081/";
-//        selenium = new WebDriverBackedSelenium(driver, baseUrl);
-//        selenium.open("/add");
-//    }
-// 
-//    when "correct reference code is submitted", { 
-//        
-//        newReference = new fi.helsinki.cs.okkopa.reference.Reference(6);
-//        stringReference = newReference.getReference();
-//        
-//        db = new OkkopaDatabase();
-//        db.addQRCode(stringReference); 
-//        
-//        selenium.typeKeys("name=id", "testi");
-//	selenium.typeKeys("name=code", ""+stringReference); <--ongelma
-//        selenium.click("name=Lähetä");
-//        selenium.waitForPageToLoad("30000");
-//    }
-// 
-//    then "reference code is registered", {
-//        selenium.getText("//p[3]").shouldBe "- homma OK! Koe tulee sinulle kunhan se on tarkistettu."
-//        selenium.stop();
-//    }
-//}
