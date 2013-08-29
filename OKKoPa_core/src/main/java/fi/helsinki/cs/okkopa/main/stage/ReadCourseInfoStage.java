@@ -19,6 +19,10 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Reads whether the first page is a front page. Then reads the exam papers by calling the next stage repeatedly.
+ */
+
 @Component
 public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
 
@@ -32,7 +36,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     private final static String NOBATCHSTRING = "NA";
 
     /**
-     *
+     * 
      * @param pDFProcessor
      * @param exceptionLogger
      * @param batch

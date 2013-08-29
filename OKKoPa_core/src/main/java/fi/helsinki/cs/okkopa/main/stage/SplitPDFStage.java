@@ -11,6 +11,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Splits a PDF file to multiple PDF files with two pages.
+ */
+
 @Component
 public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {
 

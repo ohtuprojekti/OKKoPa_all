@@ -1,9 +1,9 @@
 package fi.helsinki.cs.okkopa.main.stage;
 
 /**
- *
- * @param <I>
- * @param <O>
+ * Subclasses of Stage should implement an algorithm in the abstract process method. Each stage contains a reference to the next stage that should be processed by using the processNextStages method at the end of the process method.
+ * @param <I> Input parameter type for this Stage.
+ * @param <O> Input parameter type for the next Stage.
  */
 public abstract class Stage<I, O> {
 
