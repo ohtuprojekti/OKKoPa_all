@@ -55,62 +55,31 @@ import com.thoughtworks.selenium.DefaultSelenium;
 //        selenium.stop();
 //    }
 //}
-
-<<<<<<< HEAD
-scenario "User gives correctly formatted not foundable reference code with correct username", {
-    
-    Selenium selenium
-    
-    given "Viitteiden rekisteröinti is selected",{
-        WebDriver driver = new HtmlUnitDriver(true);
-        String baseUrl = "http://localhost:8080";
-        selenium = new WebDriverBackedSelenium(driver, baseUrl);
-        selenium.open("/add");
-    }
- 
-    when "correctly formatted not foundable reference code is submitted", { 
-        selenium.typeKeys("name=id", "testi");
-        
-        fi.helsinki.cs.okkopa.reference.Reference ref = new fi.helsinki.cs.okkopa.reference.Reference(6);
-        String code = ref.getReference();
-        
-	selenium.typeKeys("name=code", code);
-        selenium.click("css=input[type=\"submit\"]");
-        selenium.waitForPageToLoad("30000");
-    }
- 
-    then "user will see an error message", {
-        selenium.getText("//p[3]").shouldBe "- Antamaasi viitettä ei löytynyt. / Reference does not exist."
-        selenium.stop();
-    }
-}
-
-scenario "User gives correctly formatted not foundable reference code with correct username", {
-    
-    Selenium selenium
-    
-    given "Viitteiden rekisteröinti is selected",{
-        WebDriver driver = new HtmlUnitDriver(true);
-        String baseUrl = "http://localhost:8080";
-        selenium = new WebDriverBackedSelenium(driver, baseUrl);
-        selenium.open("/add");
-    }
- 
-    when "correctly formatted not foundable reference code is submitted", { 
-        selenium.typeKeys("name=id", "testi");
-        
-        fi.helsinki.cs.okkopa.reference.Reference ref = new fi.helsinki.cs.okkopa.reference.Reference(6);
-        String code = ref.getReference();
-        
-	selenium.typeKeys("name=code", code);
-        selenium.click("css=input[type=\"submit\"]");
-        selenium.waitForPageToLoad("30000");
-    }
- 
-    then "user will see an error message", {
-        selenium.getText("//p[3]").shouldBe "- Antamaasi viitettä ei löytynyt. / Reference does not exist."
-        selenium.stop();
-    }
-}
-
-
+//
+//scenario "User gives correctly formatted not foundable reference code with correct username", {
+//    
+//    Selenium selenium
+//    
+//    given "Viitteiden rekisteröinti is selected",{
+//        WebDriver driver = new HtmlUnitDriver(true);
+//        String baseUrl = "http://localhost:8080";
+//        selenium = new WebDriverBackedSelenium(driver, baseUrl);
+//        selenium.open("/add");
+//    }
+// 
+//    when "correctly formatted not foundable reference code is submitted", { 
+//        selenium.typeKeys("name=id", "testi");
+//        
+//        fi.helsinki.cs.okkopa.reference.Reference ref = new fi.helsinki.cs.okkopa.reference.Reference(6);
+//        String code = ref.getReference();
+//        
+//	selenium.typeKeys("name=code", code);
+//        selenium.click("css=input[type=\"submit\"]");
+//        selenium.waitForPageToLoad("30000");
+//    }
+// 
+//    then "user will see an error message", {
+//        selenium.getText("//p[3]").shouldBe "- Antamaasi viitettä ei löytynyt. / Reference does not exist."
+//        selenium.stop();
+//    }
+//}
