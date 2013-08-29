@@ -1,4 +1,4 @@
-package fi.helsinki.cs.okkopa.main;
+package fi.helsinki.cs.okkopa.model;
 
 import fi.helsinki.cs.okkopa.shared.Settings;
 import org.springframework.beans.factory.annotation.Autowired;

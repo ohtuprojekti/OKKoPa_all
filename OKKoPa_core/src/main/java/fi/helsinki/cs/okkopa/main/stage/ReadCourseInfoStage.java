@@ -3,7 +3,7 @@ package fi.helsinki.cs.okkopa.main.stage;
 import fi.helsinki.cs.okkopa.shared.database.BatchDetailDAO;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.mail.send.EmailSender;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.model.BatchDbModel;
@@ -118,6 +118,8 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
         BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
         if (bdm.getEmailContent() != null && !bdm.getEmailContent().equals("")) {
             batch.appendEmailContent(bdm.getEmailContent());
+        } else {
+            batch.appendEmailContent(" -");
         }
         if (bdm.getReportEmailAddress() != null && !bdm.getReportEmailAddress().equals("")) {
             batch.setReportEmailAddress(bdm.getReportEmailAddress());

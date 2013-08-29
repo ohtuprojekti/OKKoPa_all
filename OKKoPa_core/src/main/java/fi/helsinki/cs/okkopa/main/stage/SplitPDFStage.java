@@ -1,7 +1,7 @@
 package fi.helsinki.cs.okkopa.main.stage;
 
 import fi.helsinki.cs.okkopa.exception.DocumentException;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.model.ExamPaper;
 import fi.helsinki.cs.okkopa.pdfprocessor.PDFProcessor;
