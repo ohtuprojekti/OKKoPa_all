@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import javax.mail.MessagingException;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -47,7 +48,7 @@ public class RetryFailedEmailsStage extends Stage {
         this.exceptionLogger = exceptionLogger;
         this.fileSaver = fileSaver;
         this.failedEmailDatabase = failedEmailDatabase;
-        
+
         this.saveRetryFolder = settings.getProperty("mail.send.retrysavefolder");
         this.retryExpirationMinutes = Integer.parseInt(settings.getProperty("mail.send.retryexpirationminutes"));
     }
@@ -66,14 +67,14 @@ public class RetryFailedEmailsStage extends Stage {
     private void checkFailedEmails() {
         // Get failed email send attachments (PDF-files)
         LOGGER.debug("Yritetään lähettää sähköposteja uudelleen.");
-        
+
         ArrayList<File> fileList = fileSaver.list(saveRetryFolder);
-        
+
         if (fileList == null) {
             LOGGER.debug("Ei uudelleenlähetettävää.");
             return;
         }
-        
+
         // Get list of failed emails from database
         List<FailedEmailDbModel> failedEmails;
         try {
@@ -83,6 +84,7 @@ public class RetryFailedEmailsStage extends Stage {
             return;
         }
         matchFilesAndSend(failedEmails, fileList);
+        cleanNonmatching(failedEmails, fileList);
     }
 
     private boolean retryFailedEmail(File pdf, FailedEmailDbModel failedEmail) {
@@ -94,14 +96,13 @@ public class RetryFailedEmailsStage extends Stage {
             LOGGER.debug("Tiedostoa ei ollutkaan levyllä vaikka listaus sen palautti.");
             return true;
         }
-        
+
         try {
             sendEmail(failedEmail, fis);
             pdf.delete();
             LOGGER.debug("Lähetettiin sähköposti onnistuneesti (uusintayritys).");
         } catch (MessagingException ex) {
             exceptionLogger.logException(ex);
-            
             deleteFileIfTooOld(failedEmail, pdf);
             return true;
         }
@@ -119,14 +120,23 @@ public class RetryFailedEmailsStage extends Stage {
                 }
             }
         }
-        // TODO clean nonmatching database <-> folder
     }
 
     private void deleteFileIfTooOld(FailedEmailDbModel failedEmail, File pdf) {
         // Delete if too old.
         long ageInMinutes = TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - failedEmail.getFailTime().getTime());
         if (ageInMinutes > retryExpirationMinutes) {
+            LOGGER.debug("Vanhentunut viesti poistettu.");
             pdf.delete();
+            try {
+                failedEmailDatabase.deleteFailedEmail(failedEmail);
+            } catch (SQLException ex) {
+                exceptionLogger.logException(ex);
+            }
         }
+    }
+
+    private void cleanNonmatching(List<FailedEmailDbModel> failedEmails, ArrayList<File> fileList) {
+        // TODO clean nonmatching database <-> folder
     }
 }

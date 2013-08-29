@@ -168,7 +168,7 @@ If you have any questions about the exam, your grade or evaluation, please, part
     <entry key="gui.add.text.username">Käyttäjätunnus / Username </entry>
     <entry key="gui.add.text.code">QR-koodi / QR-code</entry>
     
-    <entry key="gui.add.reference.typo">Virheellinen QR-koodi, tarkista oikeinkirjoitus. / There's an error in the QR-code. Pleace check re-type and try again.</entry>
+    <entry key="gui.add.reference.typo">Virheellinen QR-koodi, tarkista oikeinkirjoitus. / There's an error in the QR-code. Please check and try again.</entry>
     <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä. / Username must be at least two characters.</entry>
     <entry key="gui.add.username.ok">QR-koodin rekistöinti käyttäjätunnuksellesi onnistui! / QR-code registeration to your username was successful!</entry>
     <entry key="gui.add.username.double">Kirjoittamasi QR-koodi on jo rekisteröity. / Reference is already registered. </entry>
