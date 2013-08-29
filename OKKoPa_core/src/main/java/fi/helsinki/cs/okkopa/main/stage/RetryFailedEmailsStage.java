@@ -101,7 +101,6 @@ public class RetryFailedEmailsStage extends Stage {
             LOGGER.debug("Lähetettiin sähköposti onnistuneesti (uusintayritys).");
         } catch (MessagingException ex) {
             exceptionLogger.logException(ex);
-            
             deleteFileIfTooOld(failedEmail, pdf);
             return true;
         }
@@ -126,6 +125,7 @@ public class RetryFailedEmailsStage extends Stage {
         // Delete if too old.
         long ageInMinutes = TimeUnit.MILLISECONDS.toMinutes(new Date().getTime() - failedEmail.getFailTime().getTime());
         if (ageInMinutes > retryExpirationMinutes) {
+            LOGGER.debug("Vanhentunut viesti poistettu.");
             pdf.delete();
         }
     }
