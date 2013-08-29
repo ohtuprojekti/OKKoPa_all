@@ -32,6 +32,7 @@ scenario "User gives empty reference code and username", {
     }
 }
 
+
 scenario "User gives incorrect reference code with correct username", {
     
     Selenium selenium
@@ -83,5 +84,3 @@ scenario "User gives correctly formatted not foundable reference code with corre
         selenium.stop();
     }
 }
-
-

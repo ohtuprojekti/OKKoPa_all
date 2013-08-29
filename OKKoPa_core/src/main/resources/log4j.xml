@@ -40,7 +40,6 @@
     <!--Root-->
     <root>
         <priority value ="warn" />
-        <appender-ref ref="default.console" />
         <appender-ref ref="default.file" />
     </root>
 </log4j:configuration>  
