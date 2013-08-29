@@ -12,7 +12,7 @@ public class OkkopaMain {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         OkkopaRunner runner = (OkkopaRunner) ctx.getBean("okkopaRunner");
-        Settings settings = (Settings) ctx.getBean("productionSettings");
+        Settings settings = (Settings) ctx.getBean("settings");
         int minutesBetweenRuns = Integer.parseInt(settings.getProperty("main.minutesbetweenruns"));
         
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);

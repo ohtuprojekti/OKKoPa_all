@@ -9,11 +9,22 @@ public class ReferenceString {
     private final Random randomGenerator;
     private String string;
 
+    /**
+     * Creates a new random reference code with given size.
+     * 
+     * @param size
+     */
     public ReferenceString(int size) {
         this.size = size;
         randomGenerator = new Random();
     }
 
+    /**
+     * Generates a reference code with mixed letters and numbers where 
+     * the first digit is always a check number.
+     * 
+     * @return reference as String
+     */
     public String getReference() {
         string = "" + (1 + randomGenerator.nextInt(9)) + this.getRandomPart();
         return string + this.getCheckPart(string);
@@ -35,6 +46,12 @@ public class ReferenceString {
         }
     }
 
+    /**
+     * Checks if a reference code is valid.
+     * 
+     * @param reference
+     * @return boolean checked reference
+     */
     public boolean checkReference(String reference) {
         if (reference == null || reference.equals("")) {
             return false;
