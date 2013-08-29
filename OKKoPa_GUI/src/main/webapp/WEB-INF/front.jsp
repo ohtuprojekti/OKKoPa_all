@@ -38,7 +38,6 @@
               action="${pageContext.request.contextPath}/getfront"
               method="post">
             <select name="cource">
-                <option value="null"></option>
                 <c:forEach var="cource" items="${courceCodes}">
                     ${cource}</c:forEach>
             </select>
