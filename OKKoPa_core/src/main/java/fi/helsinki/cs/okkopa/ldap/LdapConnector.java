@@ -120,7 +120,6 @@ public class LdapConnector {
         String[] strArr = entry.getAttributeValue("schacPersonalUniqueCode").split(":");
         String studentNumber = strArr[strArr.length - 1];
         student.setStudentNumber(studentNumber);
-        //student.setStudentNumber("012617177");
         
         LOGGER.info("Found student with student number: " + studentNumber);
     }
