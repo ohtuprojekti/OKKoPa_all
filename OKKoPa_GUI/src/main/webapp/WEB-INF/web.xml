@@ -3,6 +3,14 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AddReferenceServlet</servlet-name>
         <servlet-class>fi.helsinki.cs.web.AddReferenceServlet</servlet-class>
