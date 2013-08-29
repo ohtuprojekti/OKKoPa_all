@@ -14,11 +14,20 @@ public class ReferenceNumber {
     private String string;
     private int size;
 
+    /**
+     * Creates a random reference number with given size.
+     * 
+     * @param size
+     */
     public ReferenceNumber(int size) {
         randomGenerator = new Random();
         this.size = size - 1;
     }
 
+    /**
+     *
+     * @return reference number
+     */
     public int getReferenceNumber() {
         return this.getReferenceNumber(this.randomNumber());
     }
@@ -33,6 +42,11 @@ public class ReferenceNumber {
         return Integer.valueOf(sb.toString());
     }
     
+    /**
+     *
+     * @param number
+     * @return checked if number
+     */
     public boolean checkReferenceNumber(int number) {
         string = Integer.toString(number);
         string = string.substring(0, string.length() -1);
