@@ -2,24 +2,19 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-    <!-- passwords -->
-    <entry key="ldap.password"></entry>
-    <entry key="mail.smtp.password"></entry>
-    <entry key="mail.imap.password"></entry>
-    <entry key="database.h2.password"></entry>
-    <entry key="database.oracle.password"></entry>
-     
     <!-- smtp-settings -->
+    <entry key="mail.smtp.user">okkopa2.2013@gmail.com</entry> 
+    <entry key="mail.smtp.password"></entry>
     <entry key="mail.smtp.auth">true</entry>
     <entry key="mail.smtp.starttls.enable">true</entry>
     <entry key="mail.smtp.host">smtp.gmail.com</entry>
-    <entry key="mail.smtp.port">587</entry>
-    <entry key="mail.smtp.user">okkopa2.2013@gmail.com</entry> 
-    
+    <entry key="mail.smtp.port">587</entry>    
+
     <!-- imap-settings -->
-    <entry key="mail.imap.host">imap.googlemail.com</entry>  
-    <entry key="mail.imap.port">993</entry>
     <entry key="mail.imap.user">okkopa2.2013@gmail.com</entry>
+    <entry key="mail.imap.password"></entry>
+    <entry key="mail.imap.host">imap.googlemail.com</entry>  
+    <entry key="mail.imap.port">993</entry>    
     <entry key="mail.imap.inboxfoldername">inbox</entry>
     <entry key="mail.imap.deleteafterprocessing">false</entry>
     <!-- Folder for processed emails, used only
@@ -56,28 +51,28 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
     <!-- Url without .h2.db in the end. -->
     <entry key="database.h2.url">jdbc:h2:okkopa;FILE_LOCK=NO</entry>
     <entry key="database.h2.user">okkopa</entry>
+    <entry key="database.h2.password"></entry>
     
     <!-- Oracle settings (Kurki) -->
-    <entry key="database.oracle.host">bodbacka.cs.helsinki.fi</entry>
     <entry key="database.oracle.user">okkopa</entry>
+    <entry key="database.oracle.password"></entry>
+    <entry key="database.oracle.host">bodbacka.cs.helsinki.fi</entry>
     <entry key="database.oracle.port">1521</entry>
     <entry key="database.oracle.instance">test</entry>
     <entry key="database.oracle.showcoursesforyears">5</entry>
     
     <!-- Ldap settings -->
     <entry key="ldap.user">ou=tikli,ou=login,o=hy</entry>
+    <entry key="ldap.password"></entry>
     <entry key="ldap.keystore.file">src/main/resources/keystore</entry>
     <entry key="ldap.keystore.secret">okkopa2013</entry>
     <entry key="ldap.server.address">ldap-internal.it.helsinki.fi</entry>
     <entry key="ldap.server.port">636</entry>
 
     <!-- Other settings -->     
-    <entry key="tikli.enable">true</entry>
     <entry key="main.minutesbetweenruns">1</entry>
     <entry key="reference.anonymous.size">9</entry>
-
-    <!-- Exception handling -->
-    <entry key="mail.deletemailswithoutattachment">false</entry>
+    <entry key="logger.logcompletestack">false</entry>
     
     <!-- Save exam papers with unreadable qr-codes. -->
     <entry key="exampaper.saveunreadable">true</entry>
@@ -88,12 +83,15 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
     <!-- Time after which email send is not retried and file will be deleted. -->
     <entry key="mail.send.retryexpirationminutes">1</entry>
     <entry key="mail.send.retrysavefolder">retrypdfs</entry>
-     
+    
+    <!-- Tikli settings --> 
+    <entry key="tikli.enable">true</entry>
     <entry key="tikli.retryattempts">1</entry>
     <entry key="tikli.retrydealyinminutes">1</entry>
     <entry key="tikli.description">Koepaperi / Exam paper</entry>
     <entry key="tikli.authorid">KARKULAHTI_O</entry>
-    <entry key="logger.logcompletestack">false</entry>
+    
+    
     
     <!-- Texts for GUI -->
     <entry key="gui.form.submit">Lähetä / Submit</entry>
@@ -162,7 +160,6 @@ If you have any questions about the exam, your grade or evaluation, please, part
 3. Click "Submit" in order to reserve the QR-code for your username.
 4. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi         
     </entry>
-
     
     <entry key="gui.add.text.username">Käyttäjätunnus / Username </entry>
     <entry key="gui.add.text.code">QR-koodi / QR-code</entry>
@@ -173,5 +170,9 @@ If you have any questions about the exam, your grade or evaluation, please, part
     <entry key="gui.add.username.double">Kirjoittamasi QR-koodi on jo rekisteröity. / Reference is already registered. </entry>
     <entry key="gui.add.username.noreferenceondb">Antamaasi QR-koodia ei löytynyt. / The QR-code you submitted could not be found.</entry>
     <entry key="gui.add.missedexams">Rekisteröimällesi koodille on jo palautettu seuraavat kokeet: / Following exams have already been returned: /</entry>
+    
+    <!-- Other GUI settings -->
+    <entry key="gui.create.code.size">8</entry>
+    <entry key="gui.create.code.letters">true</entry> <!-- or false -->
     
 </properties>
