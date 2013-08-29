@@ -102,8 +102,8 @@ public class BatchDetails {
         return emailContent;
     }
 
-    public void setEmailContent(String emailContent) {
-        this.emailContent = emailContent;
+    public void appendEmailContent(String emailContent) {
+        this.emailContent= this.emailContent+"\n"+emailContent;
     }
 
     public int getSuccessfulTikliSaves() {
