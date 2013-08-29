@@ -17,6 +17,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Saves the evaluated exam to Tikli (Kurki db) as a course feedback.
+ */
+
 @Component
 public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
 

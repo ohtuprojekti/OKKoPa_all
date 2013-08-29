@@ -18,6 +18,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Sends the evaluated exam to a student. If sending fails the exam paper is saved to be sent later.
+ */
+
 @Component
 public class SendEmailStage extends Stage<ExamPaper, ExamPaper> {
 

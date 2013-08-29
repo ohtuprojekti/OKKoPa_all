@@ -21,6 +21,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Tries to resend messages that hasn't been able to be sent previously.
+ * Removes the exam papers that have been unable to be sent for longer time than the settings file permit.
+ */
+
 @Component
 public class RetryFailedEmailsStage extends Stage {
 
