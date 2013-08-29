@@ -30,7 +30,7 @@
 
         <h1>${message}</h1>
 
-        <p>${help}</p>
+        <pre>${help}</pre>
 
         <p> - - - - - - - - </p>
 
