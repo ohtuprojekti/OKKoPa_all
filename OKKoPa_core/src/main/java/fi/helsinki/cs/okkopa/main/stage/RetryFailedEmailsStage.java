@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import javax.mail.MessagingException;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
