@@ -52,4 +52,8 @@ public class FailedEmailDAO {
     public List<FailedEmailDbModel> listAll() throws SQLException {
         return emailDao.queryForAll();
     }
+    
+    public void deleteFailedEmail(FailedEmailDbModel failedEmail) throws SQLException {
+        emailDao.delete(failedEmail);
+    }
 }
