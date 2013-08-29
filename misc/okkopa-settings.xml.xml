@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!-- smtp-settings -->
+    <entry key="mail.smtp.user">okkopa2.2013@gmail.com</entry> 
+    <entry key="mail.smtp.password"></entry>
+    <entry key="mail.smtp.auth">true</entry>
+    <entry key="mail.smtp.starttls.enable">true</entry>
+    <entry key="mail.smtp.host">smtp.gmail.com</entry>
+    <entry key="mail.smtp.port">587</entry>    
+
+    <!-- imap-settings -->
+    <entry key="mail.imap.user">okkopa2.2013@gmail.com</entry>
+    <entry key="mail.imap.password"></entry>
+    <entry key="mail.imap.host">imap.googlemail.com</entry>  
+    <entry key="mail.imap.port">993</entry>    
+    <entry key="mail.imap.inboxfoldername">inbox</entry>
+    <entry key="mail.imap.deleteafterprocessing">false</entry>
+    <!-- Folder for processed emails, used only
+    if mail.imap.deleteafterprocessing is false-->
+    <entry key="mail.imap.processedfoldername">processed</entry>
+    
+    <!-- Message settings -->
+    
+    <!-- @ + domain part of the email that will be added to read qr-code string
+    can leave empty when using full email in the qr-code -->
+    <entry key="mail.receiver.atdomain">@mappi.helsinki.fi</entry>
+    <entry key="mail.attachment.maximumsizeinmegabytes">100</entry>
+    
+    <!-- Don't use tabs in "mail.message.defaultbody" unless
+    you want them to appear in e-mails. -->
+    <entry key="mail.message.defaultbody">
+Tämä on automaattinen ilmoitus tarkastetun tenttipaperisi saapumisesta. Paperin löydät tämän ilmoituksen liitteenä.
+Mikäli sinulla on kysyttävää tenttiin, arvosanaan tai arvosteluun liittyen, ole hyvä ja osallistu kokeidenpalautustilaisuuteen. Ethän vastaa tähän ilmoitukseen.
+Huomaathan, että jokainen tenttipaperisi tulee omana sähköpostinaan ja niiden järjestyksessä sekä saapumisajankohdassa on vaihtelua.
+
+---
+
+You have received an evaluated exam paper. You will find a single scanned page of your exam as an attachment.
+If you have any questions about the exam, your grade or evaluation, please, participate in course feedback session. Note that is an automatically generated e-mail, please do not reply.
+Please take note that each scanned page will arrive as a separate e-mail and there may be variation regarding their ordering and time of arrival.
+
+Viesti kurssin ohjaajalta: / A message from course instructor:
+    </entry>
+    <entry key="mail.message.defaulttopic">Tenttipaperisi on tarkastettu / Your exam paper has been evaluated</entry>
+    <entry key="mail.message.replyto">okkopa2.2013@gmail.com</entry>
+    <entry key="mail.message.defaulttopic.report">Konseptipinkan raportti</entry>
+     
+    <!-- Database settings -->
+    <!-- Url without .h2.db in the end. -->
+    <entry key="database.h2.url">jdbc:h2:okkopa;FILE_LOCK=NO</entry>
+    <entry key="database.h2.user">okkopa</entry>
+    <entry key="database.h2.password"></entry>
+    
+    <!-- Oracle settings (Kurki) -->
+    <entry key="database.oracle.user">okkopa</entry>
+    <entry key="database.oracle.password"></entry>
+    <entry key="database.oracle.host">bodbacka.cs.helsinki.fi</entry>
+    <entry key="database.oracle.port">1521</entry>
+    <entry key="database.oracle.instance">test</entry>
+    <entry key="database.oracle.showcoursesforyears">5</entry>
+    
+    <!-- Ldap settings -->
+    <entry key="ldap.user">ou=tikli,ou=login,o=hy</entry>
+    <entry key="ldap.password"></entry>
+    <entry key="ldap.keystore.file">src/main/resources/keystore</entry>
+    <entry key="ldap.keystore.secret">okkopa2013</entry>
+    <entry key="ldap.server.address">ldap-internal.it.helsinki.fi</entry>
+    <entry key="ldap.server.port">636</entry>
+
+    <!-- Other settings -->     
+    <entry key="main.minutesbetweenruns">1</entry>
+    <entry key="reference.anonymous.size">9</entry>
+    <entry key="logger.logcompletestack">false</entry>
+    
+    <!-- Save exam papers with unreadable qr-codes. -->
+    <entry key="exampaper.saveunreadable">true</entry>
+    <entry key="exampaper.saveunreadablefolder">errorpdfs</entry>
+    <entry key="exampaper.deleteunreadableafterdays">14</entry>
+    <entry key="exampaper.attachmentname">exam.pdf</entry>
+
+    <!-- Time after which email send is not retried and file will be deleted. -->
+    <entry key="mail.send.retryexpirationminutes">1</entry>
+    <entry key="mail.send.retrysavefolder">retrypdfs</entry>
+    
+    <!-- Tikli settings --> 
+    <entry key="tikli.enable">true</entry>
+    <entry key="tikli.retryattempts">1</entry>
+    <entry key="tikli.retrydealyinminutes">1</entry>
+    <entry key="tikli.description">Koepaperi / Exam paper</entry>
+    <entry key="tikli.authorid">KARKULAHTI_O</entry>
+    
+    
+    
+    <!-- Texts for GUI -->
+    <entry key="gui.form.submit">Lähetä / Submit</entry>
+    
+    <entry key="gui.front.header">OKKoPa - kurssikansisivun luonti / OKKoPa - create course front page</entry>
+    <entry key="gui.front.help">
+1. Valitse kurssi jolle haluat luoda kansilehden.
+2. Kirjoita halutessasi viesti (esim. kokeenpalautustilaisuuden ajankohta) opiskelijoille. Tämä viesti lisätään opiskelijalle lähtevän sähköpostin perään.
+3. Lisää halutessasi sähköpostiosoite, johon saat ilmoituksen skannauksen onnistumisesta (sähköpostiosoite ei näy opiskelijoille).
+4. Paina "lähetä" tallentaaksesi tai tulostaaksesi PDF-kansilehden.
+5. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+               
+1. Please select a course you want to create a front page for.
+2. If you want you can write a message (i.e time and place of the course feedback session) for students. This message will be appended to an e-mail that will be sent to students.
+3. You can also add an e-mail address for receiving a report of the success on scanning the exams (e-mail address will not be shown to students).
+4. Click "submit" to save or print the PDF cover page.
+5. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi       
+</entry>
+
+    
+    <entry key="gui.front.infofield">Opiskelijoille lähtevä viesti (ei pakollinen) / Message for students (optional):</entry>
+    <entry key="gui.front.emailfield">Sähköpostiosoite (ei pakollinen) / E-mail address (optional):</entry>
+    
+    <entry key="gui.create.header">OKKoPa - Anonyymien QR-koodien luonti / OKKoPa -  Create anonymous QR-codes</entry>
+    
+<entry key="gui.create.help">
+1. Valitse kuinka monta koodia haluat luoda.        
+2. Valitse kuinka monta merkkiä haluat koodien sisältävän.       
+3. Valitse haluatko koodin sisältävän kirjaimia.
+4. Valitse missä muodossa haluat tallentaa koodit.
+5. Paina "lähetä" lisätäksesi koodit järjestelmään sekä tallentaaksesi halutussa formaatissa.
+6. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+               
+1. Select the amount of codes to be generated.
+2. Select the number of characters you want to use in a code.       
+3. Choose if you want the code to contain letters.       
+4. Choose the in which format you want to download the codes.
+5. Click "submit" to add the codes to the system and download them in the format of your choosing.
+6. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi           
+</entry>
+
+    <entry key="gui.create.text.amount">Anonyymien QR-koodien määrä / Amount of anonymous QR-codes</entry>
+    <entry key="gui.create.text.size">Merkkien määrä / Amount of characters</entry>
+    <entry key="gui.create.text.letters">Käytetäänkö kirjaimia? / Use letters? </entry>
+    <entry key="gui.create.text.letters.yes">Kyllä / Yes</entry>
+    <entry key="gui.create.text.letters.no">Ei / No</entry>
+    <entry key="gui.create.text.back">Mitä palautetaan / Format</entry>
+    <entry key="gui.create.text.back.txt">txt-tiedosto / txt file</entry>
+    <entry key="gui.create.text.back.zip">zip-tiedosto luoduista QR-koodeista / QR-codes in a zip file</entry>
+    
+    <entry key="gui.add.header">OKKoPa - QR-koodin rekisteröinti / OKKoPa - QR-code registration</entry>
+    <entry key="gui.add.help">
+Huomaathan, että QR-koodin käyttö ei korvaa kokeidenpalautustilaisuutta.
+Mikäli sinulla on kysyttävää tenttiin, arvosanaan tai arvosteluun liittyen, ole hyvä ja osallistu kokeidenpalautustilaisuuteen.        
+
+1. Kirjoita käyttäjätunnuksesi.
+2. Kirjoita QR-kooditarraasi painettu 8-merkkinen koodi.
+3. Paina "lähetä" varataksesi QR-koodin käyttäjätunnuksellesi.
+4. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+                
+Please note that using QR-codes does not substitute course feedback sessions. 
+If you have any questions about the exam, your grade or evaluation, please, participate in course feedback session.
+
+1. Fill in your username.
+2. Fill in the 8-digit code from your QR-code sticker.
+3. Click "Submit" in order to reserve the QR-code for your username.
+4. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi         
+    </entry>
+    
+    <entry key="gui.add.text.username">Käyttäjätunnus / Username </entry>
+    <entry key="gui.add.text.code">QR-koodi / QR-code</entry>
+    
+    <entry key="gui.add.reference.typo">Virheellinen QR-koodi, tarkista oikeinkirjoitus. / There's an error in the QR-code. Please check and try again.</entry>
+    <entry key="gui.add.username.typo">Käyttäjätunnus pitää olla yli kaksi merkkiä pitkä. / Username must be at least two characters.</entry>
+    <entry key="gui.add.username.ok">QR-koodin rekistöinti käyttäjätunnuksellesi onnistui! / QR-code registeration to your username was successful!</entry>
+    <entry key="gui.add.username.double">Kirjoittamasi QR-koodi on jo rekisteröity. / Reference is already registered. </entry>
+    <entry key="gui.add.username.noreferenceondb">Antamaasi QR-koodia ei löytynyt. / The QR-code you submitted could not be found.</entry>
+    <entry key="gui.add.missedexams">Rekisteröimällesi koodille on jo palautettu seuraavat kokeet: / Following exams have already been returned: /</entry>
+    
+    <!-- Other GUI settings -->
+    <entry key="gui.create.code.size">8</entry>
+    <entry key="gui.create.code.letters">true</entry> <!-- or false -->
+    
+</properties>
