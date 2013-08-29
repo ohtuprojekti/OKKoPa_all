@@ -102,7 +102,7 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
                 oc.insertFeedBackRow(feedback);
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.toString());  
+            exceptionLogger.logException(ex);
         } finally {
             oc.disconnect();
         }
