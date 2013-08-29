@@ -18,11 +18,24 @@ public class Settings extends Properties {
     public Settings() throws IOException {
         String envVar = "OKKOPA_SETTINGS_FILEPATH";
         String filePath = System.getenv(envVar);
+        Properties props;
         if (filePath == null) {
             LOGGER.warn(envVar + " environment variable not set, trying to find settings.xml in program folder.");
             filePath = "settings.xml";
+            try {
+                props = readSettingXML(filePath);
+            } catch(IOException ex) {
+                throw new IOException("Settings file could not be found using environment variable: "+envVar+". Value of "+envVar+" was set to: "+filePath+
+                                      ". Make sure it points to your xml settings file.");
+            }
+        } else {
+            try {
+                props = readSettingXML(filePath);
+            } catch(IOException ex) {
+                throw new IOException("Settings file could not be found. Environment variable: "+envVar+" was not set."+
+                                      "Make sure it points to your xml settings file.");
+            }
         }
-        Properties props = readSettingXML(filePath);
         this.putAll(props);
     }
 
