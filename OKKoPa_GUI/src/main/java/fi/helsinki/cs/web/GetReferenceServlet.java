@@ -53,6 +53,7 @@ public class GetReferenceServlet extends HttpServlet {
     private String back;
     private String url;
     private OkkopaDatabase database;
+    
     @Autowired
     Settings settings;
 
