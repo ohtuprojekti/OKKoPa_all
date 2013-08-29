@@ -22,10 +22,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author anttkaik
- */
 public class ErrorPDFRemoverTest {
 
     private Remover remover;

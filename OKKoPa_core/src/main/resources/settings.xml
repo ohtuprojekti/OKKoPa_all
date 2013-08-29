@@ -66,7 +66,6 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
     
     <!-- Ldap settings -->
     <entry key="ldap.user">ou=tikli,ou=login,o=hy</entry>
-    <entry key="ldap.password"></entry>
     <entry key="ldap.keystore.file">src/main/resources/keystore</entry>
     <entry key="ldap.keystore.secret">okkopa2013</entry>
     <entry key="ldap.server.address">ldap-internal.it.helsinki.fi</entry>

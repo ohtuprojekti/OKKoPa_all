@@ -12,6 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Retrieves new emails and processes the attachments one by one by calling the next stage repeatedly.
+ */
+
 @Component
 public class GetEmailStage extends Stage<Object, InputStream> {
 

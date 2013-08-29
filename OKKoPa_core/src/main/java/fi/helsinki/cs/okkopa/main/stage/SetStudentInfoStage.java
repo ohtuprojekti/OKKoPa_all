@@ -12,6 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Checks whether the QR code is an anonymous code beginning with a digit or an username. An anonymous code is converted to an username by fetching it from the database.
+ */
+
 @Component
 public class SetStudentInfoStage extends Stage<ExamPaper, ExamPaper> {
 
