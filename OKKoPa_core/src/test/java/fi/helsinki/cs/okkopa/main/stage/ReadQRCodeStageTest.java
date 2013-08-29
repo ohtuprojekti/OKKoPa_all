@@ -6,7 +6,7 @@ package fi.helsinki.cs.okkopa.main.stage;
 
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.file.save.Saver;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.model.ExamPaper;

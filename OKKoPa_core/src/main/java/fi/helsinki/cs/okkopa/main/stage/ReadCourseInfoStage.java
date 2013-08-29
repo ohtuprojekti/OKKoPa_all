@@ -3,7 +3,7 @@ package fi.helsinki.cs.okkopa.main.stage;
 import fi.helsinki.cs.okkopa.shared.database.BatchDetailDAO;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.mail.send.EmailSender;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.model.BatchDbModel;
@@ -19,6 +19,10 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Reads whether the first page is a front page. Then reads the exam papers by calling the next stage repeatedly.
+ */
+
 @Component
 public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
 
@@ -32,7 +36,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     private final static String NOBATCHSTRING = "NA";
 
     /**
-     *
+     * 
      * @param pDFProcessor
      * @param exceptionLogger
      * @param batch
@@ -113,7 +117,9 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     private void getAndSetInfoAndEmail(String[] fields) throws NotFoundException, SQLException {
         BatchDbModel bdm = batchDao.getBatchDetails(fields[5]);
         if (bdm.getEmailContent() != null && !bdm.getEmailContent().equals("")) {
-            batch.setEmailContent(bdm.getEmailContent());
+            batch.appendEmailContent(bdm.getEmailContent());
+        } else {
+            batch.appendEmailContent(" -");
         }
         if (bdm.getReportEmailAddress() != null && !bdm.getReportEmailAddress().equals("")) {
             batch.setReportEmailAddress(bdm.getReportEmailAddress());

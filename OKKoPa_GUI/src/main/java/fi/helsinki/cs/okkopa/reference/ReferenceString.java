@@ -21,7 +21,7 @@ public class ReferenceString {
 
     /**
      * Generates a reference code with mixed letters and numbers where 
-     * the first digit is always a check number.
+     * the first character is always a number. Last is check character.
      * 
      * @return reference as String
      */
@@ -50,7 +50,7 @@ public class ReferenceString {
      * Checks if a reference code is valid.
      * 
      * @param reference
-     * @return boolean checked reference
+     * @return boolean true if correct or false
      */
     public boolean checkReference(String reference) {
         if (reference == null || reference.equals("")) {

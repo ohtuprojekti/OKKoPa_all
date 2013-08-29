@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Kurki database model for feedback info for student in given cource.
  */
-@DatabaseTable(tableName = "TK_TESTI.SUORITEPALAUTE")
+@DatabaseTable(tableName = "SUORITUSPALAUTE")
 public class FeedbackDbModel {
 
     @DatabaseField(columnName = "SUORITUSPALAUTE_ID", generatedIdSequence = "SUORITUSPALAUTE_SEQUENCE")

@@ -1,7 +1,7 @@
 package fi.helsinki.cs.okkopa.main.stage;
 
 import fi.helsinki.cs.okkopa.exception.DocumentException;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.model.ExamPaper;
 import fi.helsinki.cs.okkopa.pdfprocessor.PDFProcessor;
@@ -10,6 +10,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+/**
+ * Splits a PDF file to multiple PDF files with two pages.
+ */
 
 @Component
 public class SplitPDFStage extends Stage<InputStream, List<ExamPaper>> {

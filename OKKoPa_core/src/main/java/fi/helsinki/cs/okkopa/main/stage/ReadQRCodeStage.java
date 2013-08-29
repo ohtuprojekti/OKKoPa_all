@@ -2,7 +2,7 @@ package fi.helsinki.cs.okkopa.main.stage;
 
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.file.save.Saver;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.model.ExamPaper;
@@ -16,9 +16,14 @@ import org.jpedal.exception.PdfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Reads the QR-code from an image. Saves the Exam Paper if no QR-code is found.
+ */
+
 @Component
 public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
 
+    
     private static final Logger LOGGER = Logger.getLogger(ReadQRCodeStage.class.getName());
     private ExceptionLogger exceptionLogger;
     private Saver fileSaver;

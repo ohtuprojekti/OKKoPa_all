@@ -1,4 +1,4 @@
-package fi.helsinki.cs.okkopa.main;
+package fi.helsinki.cs.okkopa.model;
 
 import fi.helsinki.cs.okkopa.shared.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,8 +102,8 @@ public class BatchDetails {
         return emailContent;
     }
 
-    public void setEmailContent(String emailContent) {
-        this.emailContent = emailContent;
+    public void appendEmailContent(String emailContent) {
+        this.emailContent= this.emailContent+"\n"+emailContent;
     }
 
     public int getSuccessfulTikliSaves() {

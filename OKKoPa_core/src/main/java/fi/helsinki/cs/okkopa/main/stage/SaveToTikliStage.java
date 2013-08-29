@@ -4,7 +4,7 @@ import com.unboundid.ldap.sdk.LDAPException;
 import fi.helsinki.cs.okkopa.shared.database.OracleConnector;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.ldap.LdapConnector;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
@@ -16,6 +16,10 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+/**
+ * Saves the evaluated exam to Tikli (Kurki db) as a course feedback.
+ */
 
 @Component
 public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
@@ -102,7 +106,7 @@ public class SaveToTikliStage extends Stage<ExamPaper, ExamPaper> {
                 oc.insertFeedBackRow(feedback);
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.toString());  
+            exceptionLogger.logException(ex);
         } finally {
             oc.disconnect();
         }
