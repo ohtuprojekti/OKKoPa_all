@@ -56,7 +56,6 @@ import com.thoughtworks.selenium.DefaultSelenium;
 //    }
 //}
 
-<<<<<<< HEAD
 scenario "User gives correctly formatted not foundable reference code with correct username", {
     
     Selenium selenium
