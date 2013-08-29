@@ -45,7 +45,7 @@ public class ReferenceNumber {
     /**
      *
      * @param number
-     * @return checked if number
+     * @return checked if last number is correct for errors, same as bank reference error check
      */
     public boolean checkReferenceNumber(int number) {
         string = Integer.toString(number);

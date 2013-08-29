@@ -28,7 +28,7 @@ public class Reference {
     /**
      *
      * @param number
-     * @return checked number
+     * @return true if check charecter is correct or false
      */
     public boolean checkReferenceNumber(int number) {
         return this.number.checkReferenceNumber(number);
@@ -53,7 +53,7 @@ public class Reference {
     /**
      *
      * @param reference
-     * @return reference not null or empty
+     * @return true if check charecter is correct or false
      */
     public boolean checkReference(String reference) {
         return this.letters.checkReference(reference);
