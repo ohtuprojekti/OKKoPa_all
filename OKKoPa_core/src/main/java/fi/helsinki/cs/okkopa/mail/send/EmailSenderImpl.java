@@ -1,6 +1,6 @@
 package fi.helsinki.cs.okkopa.mail.send;
 
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import java.io.IOException;
 import java.io.InputStream;

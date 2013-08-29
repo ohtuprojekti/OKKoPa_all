@@ -4,7 +4,7 @@ import com.unboundid.ldap.sdk.LDAPException;
 import fi.helsinki.cs.okkopa.shared.database.OracleConnector;
 import fi.helsinki.cs.okkopa.shared.exception.NotFoundException;
 import fi.helsinki.cs.okkopa.ldap.LdapConnector;
-import fi.helsinki.cs.okkopa.main.BatchDetails;
+import fi.helsinki.cs.okkopa.model.BatchDetails;
 import fi.helsinki.cs.okkopa.main.ExceptionLogger;
 import fi.helsinki.cs.okkopa.shared.Settings;
 import fi.helsinki.cs.okkopa.shared.database.model.CourseDbModel;
