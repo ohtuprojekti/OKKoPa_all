@@ -119,25 +119,19 @@ Viesti kurssin ohjaajalta: / A message from course instructor:
     
 <entry key="gui.create.help">
 1. Valitse kuinka monta koodia haluat luoda.        
-2. Valitse kuinka monta merkkiä haluat koodien sisältävän.       
-3. Valitse haluatko koodin sisältävän kirjaimia.
-4. Valitse missä muodossa haluat tallentaa koodit.
-5. Paina "lähetä" lisätäksesi koodit järjestelmään sekä tallentaaksesi halutussa formaatissa.
-6. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
+2. Valitse missä muodossa haluat tallentaa koodit.
+3. Paina "lähetä" lisätäksesi koodit järjestelmään sekä tallentaaksesi halutussa formaatissa.
+4. Ongelmatilanteissa ota yhteys ossi.karkulahti[ät]cs.helsinki.fi
                
 1. Select the amount of codes to be generated.
-2. Select the number of characters you want to use in a code.       
-3. Choose if you want the code to contain letters.       
-4. Choose the in which format you want to download the codes.
-5. Click "submit" to add the codes to the system and download them in the format of your choosing.
-6. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi           
+2. Choose the in which format you want to download the codes.
+3. Click "submit" to add the codes to the system and download them in the format of your choosing.
+4. If you encounter any problems, please contact ossi.karkulahti[at]cs.helsinki.fi           
 </entry>
 
     <entry key="gui.create.text.amount">Anonyymien QR-koodien määrä / Amount of anonymous QR-codes</entry>
     <entry key="gui.create.text.size">Merkkien määrä / Amount of characters</entry>
     <entry key="gui.create.text.letters">Käytetäänkö kirjaimia? / Use letters? </entry>
-    <entry key="gui.create.text.letters.yes">Kyllä / Yes</entry>
-    <entry key="gui.create.text.letters.no">Ei / No</entry>
     <entry key="gui.create.text.back">Mitä palautetaan / Format</entry>
     <entry key="gui.create.text.back.txt">txt-tiedosto / txt file</entry>
     <entry key="gui.create.text.back.zip">zip-tiedosto luoduista QR-koodeista / QR-codes in a zip file</entry>
