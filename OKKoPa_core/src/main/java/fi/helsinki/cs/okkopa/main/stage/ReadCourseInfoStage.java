@@ -93,7 +93,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
 
     private void sendEmail() {
         try {
-            LOGGER.debug("Lähetetään raporttisähköposti.");
+            LOGGER.debug("Lähetetään raporttisähköposti osoitteeseen " + batch.getReportEmailAddress() + " .");
             sendReportEmail();
             
         } catch (MessagingException ex) {
