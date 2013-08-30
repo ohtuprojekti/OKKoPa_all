@@ -77,6 +77,10 @@ public class BatchDetails {
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
+    
+    public void addToTotalPages() {
+        this.totalPages++;
+    }
 
     public int getFailedScans() {
         return failedScans;

@@ -153,8 +153,7 @@ public class ReadCourseInfoStage extends Stage<List<ExamPaper>, ExamPaper> {
     private void sendReportEmail() throws MessagingException {
         emailSender.send(batch.getReportEmailAddress(),
                 settings.getProperty("mail.message.defaulttopic.report"),
-                "katenoi sisältö kasaan\nSivuja ytheensä: "
-                + batch.getTotalPages() + "\nQR-koodin luku epäonnistui: "
-                + batch.getFailedScans(), null, null);
+                "Sivuja yhteensä: "+ batch.getTotalPages() + "\n"
+                + "QR-koodin luku epäonnistui: " + batch.getFailedScans(), null, null);
     }
 }

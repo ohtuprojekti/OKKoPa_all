@@ -55,6 +55,7 @@ public class ReadQRCodeStage extends Stage<ExamPaper, ExamPaper> {
     @Override
     public void process(ExamPaper examPaper) {
         try {
+            batch.addToTotalPages();
             readAndSetQRCode(examPaper);
         } catch (PdfException | NotFoundException ex) {
             exceptionLogger.logException(ex);
