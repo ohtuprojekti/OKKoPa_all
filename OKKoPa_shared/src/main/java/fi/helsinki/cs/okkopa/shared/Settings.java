@@ -25,15 +25,15 @@ public class Settings extends Properties {
             try {
                 props = readSettingXML(filePath);
             } catch(IOException ex) {
-                throw new IOException("Settings file could not be found using environment variable: "+envVar+". Value of "+envVar+" was set to: "+filePath+
-                                      ". Make sure it points to your xml settings file.");
+                throw new IOException("Settings file could not be found. Environment variable: "+envVar+" was not set."+
+                                      "Make sure it points to your xml settings file.");
             }
         } else {
             try {
                 props = readSettingXML(filePath);
             } catch(IOException ex) {
-                throw new IOException("Settings file could not be found. Environment variable: "+envVar+" was not set."+
-                                      "Make sure it points to your xml settings file.");
+                throw new IOException("Settings file could not be found using environment variable: "+envVar+". Value of "+envVar+" was set to: "+filePath+
+                                      ". Make sure it points to your xml settings file.");
             }
         }
         this.putAll(props);
