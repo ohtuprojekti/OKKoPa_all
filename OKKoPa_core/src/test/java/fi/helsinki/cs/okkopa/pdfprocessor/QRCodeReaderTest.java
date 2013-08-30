@@ -54,6 +54,22 @@ public class QRCodeReaderTest {
         BufferedImage image = ImageIO.read(barCodeInputStream);
         assertEquals("asperhee", reader.readQRCode(image).getText());
     }
+    
+    /**
+     * Test reading an exam paper with two same QR codes on same side.
+     */
+    @Test
+    public void readTwoQRCodesSameSide2() throws Exception {
+        InputStream barCodeInputStream = getClass().getResourceAsStream("/images/testi.png");
+        BufferedImage image = ImageIO.read(barCodeInputStream);
+        System.out.println(reader.readQRCode(image).getText());
+        assertEquals("582201:K:2008:L:3:49naeh027", reader.readQRCode(image).getText());
+        
+        //same with one qr-code
+        barCodeInputStream = getClass().getResourceAsStream("/images/testi2.png");
+        image = ImageIO.read(barCodeInputStream);
+        assertEquals("582201:K:2008:L:3:49naeh027", reader.readQRCode(image).getText());
+    }
 
     /**
      * Test reading an exam paper with two and a half QR codes on same side.
