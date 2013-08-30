@@ -58,7 +58,7 @@ public class PDFProcessorImpl implements PDFProcessor {
                 
                 try {
                     return reader.readQRCode(resized).getText();
-                } catch (com.google.zxing.NotFoundException | ChecksumException | FormatException ex) {
+                } catch (Exception ex) {
                     e = ex;
                 }
             }
