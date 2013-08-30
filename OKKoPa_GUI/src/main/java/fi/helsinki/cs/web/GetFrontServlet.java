@@ -81,6 +81,7 @@ public class GetFrontServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, COSVisitorException, SQLException {
+        request.setCharacterEncoding("UTF-8");
 
         parseEmailAndInfo(request);
         parseCource(request);
