@@ -164,7 +164,8 @@ public class GetFrontServlet extends HttpServlet {
         g2d = bufferedImage.createGraphics();
         g2d.fillRect(0, 0, width * 3, height * 3);
         
-        g2d.drawImage(img, width, height * 3 / 2, Color.WHITE, null);
+        g2d.drawImage(img, width, 0, Color.WHITE, null);
+        g2d.drawImage(img, width, height * 2, Color.WHITE, null); 
     }
 
     private void makeFontSettings(int size, Color c) {
